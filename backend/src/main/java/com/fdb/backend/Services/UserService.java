@@ -16,11 +16,11 @@ public class UserService {
     }
 
     public User fetchUserByEmailId(String emailID) {
-        return repo.findByEmailId(emailID);
+        return repo.findByEmailID(emailID);
     }
 
     public User fetchUserByEmailIdAndPassword(String emailId, String password) {
-        return repo.findByEmailIdAndPassword(emailId, password);
+        return repo.findByEmailIDAndPassword(emailId, password);
     }
 
     public List<User> fetchAllUsers() {
