@@ -21,7 +21,6 @@ public class UserController {
 
     @PostMapping("/register")
     public User registerUser(@RequestBody User user) throws Exception {
-//        User tempUser = user;
         String tempEmailId = user.getEmailID();
         if (tempEmailId != null && !tempEmailId.isEmpty()) {
             User existingUser = service.fetchUserByEmailId(tempEmailId);
