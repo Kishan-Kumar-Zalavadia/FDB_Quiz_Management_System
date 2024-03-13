@@ -24,7 +24,13 @@ public class FeedbackService {
         return repo.save(feedback);
     }
 
+    // ---------------------------------------------------------------------------------------------------
     public List<Feedback> fetchAllFeedbacks() {
         return repo.findAll();
+    }
+
+    // ---------------------------------------------------------------------------------------------------
+    public List<Feedback> fetchFeedbacksByUserID(int userID) {
+        return repo.findByUser_UserID(userID);
     }
 }

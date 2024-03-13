@@ -40,4 +40,11 @@ public class FeedbackController {
         return feedback.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+//----------------------------------------------------------------------------------------------------------------
+// Get feedbacks by userID
+    @GetMapping("/user/{userID}")
+    public ResponseEntity<List<Feedback>> getFeedbacksByUserID(@PathVariable int userID) {
+        List<Feedback> feedbacks = feedbackService.fetchFeedbacksByUserID(userID);
+        return ResponseEntity.ok(feedbacks);
+    }
 }
