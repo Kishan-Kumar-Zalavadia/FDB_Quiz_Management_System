@@ -20,6 +20,6 @@ public class User {
     private String password;
 
     @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "profileID")
+    @JoinColumn(name = "profileID")
     private Profile profile;
 }

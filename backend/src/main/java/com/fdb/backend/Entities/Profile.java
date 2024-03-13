@@ -1,9 +1,6 @@
 package com.fdb.backend.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,7 +29,10 @@ public class Profile {
     private String DOB;
     private int age;
 
-
+    // Bidirectional mapping
+    // To use this we need to use @JoinColumn in User.
+    @OneToOne(mappedBy = "profile")
+    private User user;
 
 }
 
