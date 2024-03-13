@@ -22,4 +22,9 @@ public class Feedback {
     private String feedbackText;
     private Date feedbackDate;
     private Time feedbackTime;
+
+    // Many-1 (Feedback - User)
+    @ManyToOne
+    @JoinColumn(name = "userID")
+    private User user;
 }
