@@ -23,6 +23,7 @@ public class UserController {
     }
 
 // ---------------------------------------------------------------------------------------------------
+// Save User
     @PostMapping("/register")
     public User registerUser(@RequestBody User user) throws Exception {
         String tempEmailId = user.getEmailID();
@@ -35,6 +36,7 @@ public class UserController {
         return service.saveUser(user);
     }
 // ---------------------------------------------------------------------------------------------------
+// User Login
 
 //    @PostMapping("/login")
 //    public User loginUser(@RequestBody User user) throws Exception {
@@ -52,6 +54,7 @@ public class UserController {
 
 
 // ---------------------------------------------------------------------------------------------------
+// User login
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody User user) {
         String tempEmailId = user.getEmailID();
@@ -68,12 +71,14 @@ public class UserController {
 
 
 // ---------------------------------------------------------------------------------------------------
+// Get all Users
     @GetMapping("")
     public List<User> getAllUsers() {
         return service.fetchAllUsers();
     }
 
 // ---------------------------------------------------------------------------------------------------
+// Get user by userID
     @GetMapping("/{userId}")
     public User getUserById(@PathVariable int userId) throws Exception{
         User user = service.fetchUserByUserId(userId);

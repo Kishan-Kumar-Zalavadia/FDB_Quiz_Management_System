@@ -15,6 +15,9 @@ public class ProfileController {
     @Autowired
     private ProfileService service;
 
+//----------------------------------------------------------------------------------------------------------------
+// Get Profile by profileID
+
     @GetMapping("/{profileID}")
     public Profile getProfileById(@PathVariable int profileID) throws Exception{
         Profile profile = service.fetchProfileByProfileID(profileID);
@@ -25,6 +28,8 @@ public class ProfileController {
         return profile;
     }
 
+//----------------------------------------------------------------------------------------------------------------
+// Get all Profiles
     @GetMapping("")
     public List<Profile> getAllProfiles(){
         return service.fetchAllProfiles();

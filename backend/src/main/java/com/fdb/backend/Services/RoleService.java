@@ -16,7 +16,11 @@ public class RoleService {
         return repo.findByRoleID(roleId);
     }
 
-    public List<Role> fetchAllUsers() {
+    public List<Role> fetchAllRoles() {
         return repo.findAll();
+    }
+
+    public Role saveRole(Role role) {
+        return repo.save(role);
     }
 }
