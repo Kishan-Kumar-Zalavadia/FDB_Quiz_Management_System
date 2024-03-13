@@ -12,14 +12,17 @@ public class RoleService {
     @Autowired
     private RoleRepo repo;
 
+    // ---------------------------------------------------------------------------------------------------
     public Role fetchRoleByRoleID(int roleId){
         return repo.findByRoleID(roleId);
     }
 
+    // ---------------------------------------------------------------------------------------------------
     public List<Role> fetchAllRoles() {
         return repo.findAll();
     }
 
+    // ---------------------------------------------------------------------------------------------------
     public Role saveRole(Role role) {
         return repo.save(role);
     }

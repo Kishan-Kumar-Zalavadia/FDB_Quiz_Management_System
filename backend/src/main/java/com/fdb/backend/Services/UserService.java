@@ -15,20 +15,34 @@ public class UserService {
         return repo.save(user);
     }
 
+    // ---------------------------------------------------------------------------------------------------
     public User fetchUserByEmailId(String emailID) {
         return repo.findByEmailID(emailID);
     }
 
+    // ---------------------------------------------------------------------------------------------------
     public User fetchUserByEmailIdAndPassword(String emailId, String password) {
         return repo.findByEmailIDAndPassword(emailId, password);
     }
 
+    // ---------------------------------------------------------------------------------------------------
     public List<User> fetchAllUsers() {
         return repo.findAll();
     }
+
+    // ---------------------------------------------------------------------------------------------------
 
     public User fetchUserByUserId(int userId) {
         return repo.findById(userId).orElse(null);
     }
 
+    // ---------------------------------------------------------------------------------------------------
+    public int getRoleIdByUserId(int userId) throws Exception {
+        User user = repo.findByUserID(userId);
+        if (user == null) {
+            throw new Exception("User with ID " + userId + " not found");
+        }
+
+        return user.getRole().getRoleID();
+    }
 }

@@ -89,5 +89,20 @@ public class UserController {
         return user;
     }
 
+// ---------------------------------------------------------------------------------------------------
+// Get roleID by userID
+    @GetMapping("/{userId}/role")
+    public ResponseEntity<Integer> getRoleByUserId(@PathVariable int userId) {
+        try {
+            int roleId = service.getRoleIdByUserId(userId);
+            System.out.println("RoleID: "+roleId);
+            return ResponseEntity.ok(roleId);
+        } catch (Exception e) {
+            System.out.println("Error getting roleID by userID");
+//            return ResponseEntity.notFound().build();
+            return ResponseEntity.ok(0);
+        }
+
+    }
 
 }

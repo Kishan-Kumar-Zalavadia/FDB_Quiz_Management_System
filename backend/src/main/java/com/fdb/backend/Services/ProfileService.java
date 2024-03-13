@@ -11,10 +11,13 @@ import java.util.List;
 public class ProfileService {
     @Autowired
     private ProfileRepo repo;
+
+    // ---------------------------------------------------------------------------------------------------
     public List<Profile> fetchAllProfiles() {
         return repo.findAll();
     }
 
+    // ---------------------------------------------------------------------------------------------------
     public Profile fetchProfileByProfileID(int profileID) {
         return repo.findByProfileID(profileID);
     }
