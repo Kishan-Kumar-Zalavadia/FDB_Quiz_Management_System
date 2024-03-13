@@ -2,7 +2,10 @@ package com.fdb.backend.Controllers;
 
 import com.fdb.backend.Entities.User;
 import com.fdb.backend.Services.UserService;
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +22,7 @@ public class UserController {
         this.service = service;
     }
 
+// ---------------------------------------------------------------------------------------------------
     @PostMapping("/register")
     public User registerUser(@RequestBody User user) throws Exception {
         String tempEmailId = user.getEmailID();
@@ -30,9 +34,26 @@ public class UserController {
         }
         return service.saveUser(user);
     }
+// ---------------------------------------------------------------------------------------------------
 
+//    @PostMapping("/login")
+//    public User loginUser(@RequestBody User user) throws Exception {
+//        String tempEmailId = user.getEmailID();
+//        String tempPass = user.getPassword();
+//        User userObj = null;
+//        if (tempEmailId != null && tempPass != null) {
+//            userObj = service.fetchUserByEmailIdAndPassword(tempEmailId, tempPass);
+//        }
+//        if (userObj == null) {
+//            throw new Exception("Bad Credentials");
+//        }
+//        return userObj;
+//    }
+
+
+// ---------------------------------------------------------------------------------------------------
     @PostMapping("/login")
-    public User loginUser(@RequestBody User user) throws Exception {
+    public ResponseEntity<?> loginUser(@RequestBody User user) {
         String tempEmailId = user.getEmailID();
         String tempPass = user.getPassword();
         User userObj = null;
@@ -40,16 +61,19 @@ public class UserController {
             userObj = service.fetchUserByEmailIdAndPassword(tempEmailId, tempPass);
         }
         if (userObj == null) {
-            throw new Exception("Bad Credentials");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Bad Credentials");
         }
-        return userObj;
+        return ResponseEntity.ok(userObj);
     }
 
+
+// ---------------------------------------------------------------------------------------------------
     @GetMapping("")
     public List<User> getAllUsers() {
         return service.fetchAllUsers();
     }
 
+// ---------------------------------------------------------------------------------------------------
     @GetMapping("/{userId}")
     public User getUserById(@PathVariable int userId) throws Exception{
         User user = service.fetchUserByUserId(userId);
