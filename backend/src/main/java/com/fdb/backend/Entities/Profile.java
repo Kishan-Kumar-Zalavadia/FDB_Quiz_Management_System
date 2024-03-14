@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
 
 //@Entity
@@ -64,8 +67,20 @@ public class Profile {
     private int age;
 
     // Many-1 (Profile - Department)
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "departmentID")
     private Department department;
+
+    // Calculate age from DOB
+    @PostLoad
+    @PostPersist
+    @PostUpdate
+    public void calculateAge() {
+        if (dob != null) {
+            LocalDate birthDate = dob.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate currentDate = LocalDate.now();
+            this.age = Period.between(birthDate, currentDate).getYears();
+        }
+    }
 }
 

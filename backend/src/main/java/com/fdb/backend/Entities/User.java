@@ -55,7 +55,7 @@ public class User {
     @JoinColumn(name = "profileID")
     private Profile profile;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "roleID")
     private Role role;
 }
