@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Profile } from 'src/app/models/profileModel/profile';
 import { ProfileService } from 'src/app/services/profileService/profile.service';
+import { UserService } from 'src/app/services/userService/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,22 +9,23 @@ import { ProfileService } from 'src/app/services/profileService/profile.service'
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  profileID?: number;
   profile: Profile | undefined;
-  noProfile: boolean = false;
-  constructor(private profileService: ProfileService) {}
+  constructor(private profileService: ProfileService, private userService: UserService) {}
 
   ngOnInit(): void {
-    this.getProfile(1);
+    this.profileID = this.userService.getUser().profile.profileID;
+    this.getProfile(this.profileID);
   }
 
   getProfile(profileID: number): void {
     this.profileService.getProfileByProfileId(profileID).subscribe(
-      (profile: Profile) => {
-        this.profile = profile;
+      (data) => {
+        this.profile = data;
+        console.log(data);
       },
       (error) => {
         console.log('Error');
-        this.noProfile = true;
       }
     );
   }

@@ -7,12 +7,11 @@ import { Profile } from 'src/app/models/profileModel/profile';
   providedIn: 'root',
 })
 export class ProfileService {
-
-  private baseUrl = 'http://localhost:8080/api/profiles'; // Replace with your backend API URL
+  private baseUrl = 'http://localhost:9292/profiles'; // Replace with your backend API URL
 
   constructor(private http: HttpClient) {}
 
-  getProfileByProfileId(profileId: number): Observable<Profile> {
+  getProfileByProfileId(profileId: number): Observable<any> {
     return this.http.get<Profile>(`${this.baseUrl}/${profileId}`);
   }
 }

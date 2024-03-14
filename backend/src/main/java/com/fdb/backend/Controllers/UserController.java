@@ -1,5 +1,6 @@
 package com.fdb.backend.Controllers;
 
+import com.fdb.backend.Entities.Profile;
 import com.fdb.backend.Entities.User;
 import com.fdb.backend.Services.UserService;
 import org.apache.catalina.connector.Response;
@@ -62,6 +63,14 @@ public class UserController {
         User userObj = null;
         if (tempEmailId != null && tempPass != null) {
             userObj = userService.fetchUserByEmailIdAndPassword(tempEmailId, tempPass);
+            if (userObj != null && userObj.getProfile() == null) {
+                // Create an empty profile for the user
+                Profile emptyProfile = new Profile();
+                // Save the empty profile to the user object
+                userObj.setProfile(emptyProfile);
+                // Update the user object in the database
+                userService.saveUser(userObj);
+            }
         }
         if (userObj == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Bad Credentials");
