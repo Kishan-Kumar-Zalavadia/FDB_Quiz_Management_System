@@ -59,5 +59,10 @@ public class Profile {
     private String country;
     private String DOB;
     private int age;
+
+    // Many-1 (Profile - Department)
+    @ManyToOne
+    @JoinColumn(name = "departmentID")
+    private Department department;
 }
 
