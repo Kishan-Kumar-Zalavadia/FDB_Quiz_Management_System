@@ -24,8 +24,9 @@ export class LoginComponent {
     this._service.loginUserFromRemote(this.user).subscribe(
       (data) => {
         console.log(data);
-        // this._userService.setUser(data);
-        // if (this.user.emailId == 'admin@gmail.com') {
+        this._userService.setUser(data);
+        this._router.navigate(['home']);
+        // if (this.user.emailID == 'admin@gmail.com') {
         //   this._router.navigate(['/home/allUsers']);
         // } else this._router.navigate(['/home/buy']);
         // this._router.navigate(["/home"], {
