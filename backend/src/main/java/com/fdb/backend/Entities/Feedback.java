@@ -24,7 +24,7 @@ public class Feedback {
     private Time feedbackTime;
 
     // Many-1 (Feedback - User)
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "userID")
     private User user;
 }
