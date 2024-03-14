@@ -1,0 +1,84 @@
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: black;
+  // background-image: url(../../../assets/bg1.avif);
+  background-size: cover;
+}
+
+.container {
+  max-width: 400px;
+}
+
+/* Common styles for the container and form */
+.main-container,
+.container {
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+  text-align: center;
+  color: #fff;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #fff;
+}
+
+.form-control {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #444;
+  border-radius: 5px;
+  background-color: #222;
+  color: #fff;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.checkbox label {
+  display: block;
+  margin-top: 10px;
+  color: #fff;
+}
+
+.btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.text-danger {
+  color: #dc3545;
+}
+
+.has-error .text-danger {
+  color: #dc3545;
+  font-size: 14px;
+  display: block;
+}
+
+.d-none {
+  display: none;
+}
