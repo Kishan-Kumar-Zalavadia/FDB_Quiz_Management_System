@@ -1,4 +1,5 @@
 import { Profile } from '../profileModel/profile';
+import { Role } from '../roleModel/role';
 
 export class User {
   userID!: number;
@@ -8,4 +9,5 @@ export class User {
   profileID!: number;
   roleID!: number;
   profile!: Profile
+  role!: Role
 }
