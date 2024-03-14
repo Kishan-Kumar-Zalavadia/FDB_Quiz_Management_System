@@ -1,2 +1,19 @@
-package com.fdb.backend.Entities;public class Course {
+package com.fdb.backend.Entities;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class Course {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer courseId;
+
+    @Column(unique = true)
+    private String courseName;
 }
