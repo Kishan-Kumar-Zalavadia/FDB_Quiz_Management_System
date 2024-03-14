@@ -3,6 +3,8 @@ package com.fdb.backend.Controllers;
 import com.fdb.backend.Entities.Profile;
 import com.fdb.backend.Services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,5 +36,14 @@ public class ProfileController {
     public List<Profile> getAllProfiles(){
         return profileService.fetchAllProfiles();
     }
+
+    //----------------------------------------------------------------------------------------------------------------
+// Add Profile
+    @PostMapping("/save")
+    public ResponseEntity<Profile> saveProfile(@RequestBody Profile profile) {
+        Profile savedProfile = profileService.saveProfile(profile);
+        return new ResponseEntity<>(savedProfile, HttpStatus.CREATED);
+    }
+
 
 }

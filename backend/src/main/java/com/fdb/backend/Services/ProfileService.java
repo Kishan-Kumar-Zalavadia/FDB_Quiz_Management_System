@@ -22,4 +22,8 @@ public class ProfileService {
         return profileRepository.findByProfileID(profileID);
     }
 
+    // ---------------------------------------------------------------------------------------------------
+    public Profile saveProfile(Profile profile) {
+        return profileRepository.save(profile);
+    }
 }

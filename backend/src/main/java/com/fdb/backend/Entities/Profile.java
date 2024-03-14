@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 //@Entity
 //@Getter
 //@Setter
@@ -57,7 +59,8 @@ public class Profile {
     private String state;
     private String zip;
     private String country;
-    private String DOB;
+    @Temporal(TemporalType.DATE)
+    private Date dob;
     private int age;
 
     // Many-1 (Profile - Department)
