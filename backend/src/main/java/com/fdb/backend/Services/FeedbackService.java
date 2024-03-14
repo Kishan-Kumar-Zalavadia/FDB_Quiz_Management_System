@@ -1,7 +1,7 @@
 package com.fdb.backend.Services;
 
 import com.fdb.backend.Entities.Feedback;
-import com.fdb.backend.Repositories.FeedbackRepo;
+import com.fdb.backend.Repositories.FeedbackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,25 +12,25 @@ import java.util.Optional;
 public class FeedbackService {
 
     @Autowired
-    private FeedbackRepo repo;
+    private FeedbackRepository feedbackRepository;
 
     // ---------------------------------------------------------------------------------------------------
     public Optional<Feedback> fetchFeedbackById(Integer feedbackID) {
-        return repo.findById(feedbackID);
+        return feedbackRepository.findById(feedbackID);
     }
 
     // ---------------------------------------------------------------------------------------------------
     public Feedback saveFeedback(Feedback feedback) {
-        return repo.save(feedback);
+        return feedbackRepository.save(feedback);
     }
 
     // ---------------------------------------------------------------------------------------------------
     public List<Feedback> fetchAllFeedbacks() {
-        return repo.findAll();
+        return feedbackRepository.findAll();
     }
 
     // ---------------------------------------------------------------------------------------------------
     public List<Feedback> fetchFeedbacksByUserID(int userID) {
-        return repo.findByUser_UserID(userID);
+        return feedbackRepository.findByUser_UserID(userID);
     }
 }

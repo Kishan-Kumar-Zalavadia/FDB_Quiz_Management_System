@@ -13,14 +13,14 @@ import java.util.List;
 public class ProfileController {
 
     @Autowired
-    private ProfileService service;
+    private ProfileService profileService;
 
 //----------------------------------------------------------------------------------------------------------------
 // Get Profile by profileID
 
     @GetMapping("/{profileID}")
     public Profile getProfileById(@PathVariable int profileID) throws Exception{
-        Profile profile = service.fetchProfileByProfileID(profileID);
+        Profile profile = profileService.fetchProfileByProfileID(profileID);
         if (profile == null) {
             // Handle the case where the profile with the specified ID is not found.
             throw new Exception("Profile with ID " + profileID + " not found");
@@ -32,7 +32,7 @@ public class ProfileController {
 // Get all Profiles
     @GetMapping("")
     public List<Profile> getAllProfiles(){
-        return service.fetchAllProfiles();
+        return profileService.fetchAllProfiles();
     }
 
 }

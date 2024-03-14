@@ -1,7 +1,7 @@
 package com.fdb.backend.Services;
 
 import com.fdb.backend.Entities.User;
-import com.fdb.backend.Repositories.UserRepo;
+import com.fdb.backend.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,35 +10,35 @@ import java.util.List;
 @Service
 public class UserService {
     @Autowired
-    private UserRepo repo;
+    private UserRepository userRepository;
     public User saveUser(User user) {
-        return repo.save(user);
+        return userRepository.save(user);
     }
 
     // ---------------------------------------------------------------------------------------------------
     public User fetchUserByEmailId(String emailID) {
-        return repo.findByEmailID(emailID);
+        return userRepository.findByEmailID(emailID);
     }
 
     // ---------------------------------------------------------------------------------------------------
     public User fetchUserByEmailIdAndPassword(String emailId, String password) {
-        return repo.findByEmailIDAndPassword(emailId, password);
+        return userRepository.findByEmailIDAndPassword(emailId, password);
     }
 
     // ---------------------------------------------------------------------------------------------------
     public List<User> fetchAllUsers() {
-        return repo.findAll();
+        return userRepository.findAll();
     }
 
     // ---------------------------------------------------------------------------------------------------
 
     public User fetchUserByUserId(int userId) {
-        return repo.findById(userId).orElse(null);
+        return userRepository.findById(userId).orElse(null);
     }
 
     // ---------------------------------------------------------------------------------------------------
     public int getRoleIdByUserId(int userId) throws Exception {
-        User user = repo.findByUserID(userId);
+        User user = userRepository.findByUserID(userId);
         if (user == null) {
             throw new Exception("User with ID " + userId + " not found");
         }

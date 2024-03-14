@@ -15,11 +15,11 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
-    private UserService service;
+    private UserService userService;
 
     @Autowired
     public UserController(UserService service) {
-        this.service = service;
+        this.userService = service;
     }
 
 // ---------------------------------------------------------------------------------------------------
@@ -28,12 +28,12 @@ public class UserController {
     public User registerUser(@RequestBody User user) throws Exception {
         String tempEmailId = user.getEmailID();
         if (tempEmailId != null && !tempEmailId.isEmpty()) {
-            User existingUser = service.fetchUserByEmailId(tempEmailId);
+            User existingUser = userService.fetchUserByEmailId(tempEmailId);
             if (existingUser != null) {
                 throw new Exception("User with " + tempEmailId + " already exists");
             }
         }
-        return service.saveUser(user);
+        return userService.saveUser(user);
     }
 // ---------------------------------------------------------------------------------------------------
 // User Login
@@ -44,7 +44,7 @@ public class UserController {
 //        String tempPass = user.getPassword();
 //        User userObj = null;
 //        if (tempEmailId != null && tempPass != null) {
-//            userObj = service.fetchUserByEmailIdAndPassword(tempEmailId, tempPass);
+//            userObj = userService.fetchUserByEmailIdAndPassword(tempEmailId, tempPass);
 //        }
 //        if (userObj == null) {
 //            throw new Exception("Bad Credentials");
@@ -61,7 +61,7 @@ public class UserController {
         String tempPass = user.getPassword();
         User userObj = null;
         if (tempEmailId != null && tempPass != null) {
-            userObj = service.fetchUserByEmailIdAndPassword(tempEmailId, tempPass);
+            userObj = userService.fetchUserByEmailIdAndPassword(tempEmailId, tempPass);
         }
         if (userObj == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Bad Credentials");
@@ -74,14 +74,14 @@ public class UserController {
 // Get all Users
     @GetMapping("")
     public List<User> getAllUsers() {
-        return service.fetchAllUsers();
+        return userService.fetchAllUsers();
     }
 
 // ---------------------------------------------------------------------------------------------------
 // Get user by userID
     @GetMapping("/{userId}")
     public User getUserById(@PathVariable int userId) throws Exception{
-        User user = service.fetchUserByUserId(userId);
+        User user = userService.fetchUserByUserId(userId);
         if (user == null) {
             // Handle the case where the user with the specified ID is not found.
             throw new Exception("User with ID " + userId + " not found");
@@ -94,7 +94,7 @@ public class UserController {
     @GetMapping("/{userId}/role")
     public ResponseEntity<Integer> getRoleByUserId(@PathVariable int userId) {
         try {
-            int roleId = service.getRoleIdByUserId(userId);
+            int roleId = userService.getRoleIdByUserId(userId);
             System.out.println("RoleID: "+roleId);
             return ResponseEntity.ok(roleId);
         } catch (Exception e) {

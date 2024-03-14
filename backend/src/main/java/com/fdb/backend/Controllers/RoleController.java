@@ -14,13 +14,13 @@ import java.util.List;
 public class RoleController {
 
     @Autowired
-    private RoleService service;
+    private RoleService roleService;
 
 //----------------------------------------------------------------------------------------------------------------
 // Get Role by RoleID
     @GetMapping("/{roleId}")
     public Role getRoleByID(@PathVariable int roleId) throws Exception{
-        Role role = service.fetchRoleByRoleID(roleId);
+        Role role = roleService.fetchRoleByRoleID(roleId);
         if (role == null) {
             // Handle the case where the user with the specified ID is not found.
             throw new Exception("Role with ID " + roleId + " not found");
@@ -32,13 +32,13 @@ public class RoleController {
 // Get all roles
     @GetMapping("")
     public List<Role> getAllRoles(){
-        return this.service.fetchAllRoles();
+        return this.roleService.fetchAllRoles();
     }
 
 //----------------------------------------------------------------------------------------------------------------
 // Add roles
     @PostMapping("/saveRole")
     public Role addRole(@RequestBody Role role){
-        return this.service.saveRole(role);
+        return this.roleService.saveRole(role);
     }
 }
