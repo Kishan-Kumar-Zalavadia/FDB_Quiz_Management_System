@@ -7,23 +7,14 @@ import { User } from 'src/app/models/userModel/user';
   providedIn: 'root',
 })
 export class UserService {
-  user = new User();
+  currentUser = new User();
 
   setUser(user: User) {
-    this.user = user;
+    console.log('User set as: ' + JSON.stringify(user));
+    this.currentUser = user;
   }
   getUser() {
-    return this.user;
-  }
-
-  seller = new User();
-
-  setSeller(seller: User) {
-    this.seller = seller;
-  }
-
-  getSeller() {
-    return this.seller;
+    return this.currentUser;
   }
 
   constructor(private _http: HttpClient) {}
@@ -32,7 +23,6 @@ export class UserService {
 
   public getUserByIDFromRemote(userID: number): Observable<any> {
     const url = `${this.usersUrl}/${userID}`;
-    console.log("From userService: "+userID);
     return this._http.get<any>(url);
   }
 

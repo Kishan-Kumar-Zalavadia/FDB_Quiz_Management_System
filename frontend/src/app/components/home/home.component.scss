@@ -1,0 +1,52 @@
+.navbar {
+  background-color: #007bff;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
+}
+
+.list-item {
+  text-decoration: none;
+  font-size: 18px;
+  color: #fff;
+  padding: 10px 20px;
+  position: relative;
+  display: inline;
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition effect */
+
+  /* Add a background color for unselected items */
+  background-color: transparent;
+}
+
+.list-item:hover {
+  background-color: #333;
+  border-radius: 10px;
+}
+
+.list-item:hover::before {
+  opacity: 0.5;
+  transform: scaleY(0.5);
+}
+
+.list-item.selected {
+  background-color: #333; /* Background color for the selected item */
+  color: #fff; /* Text color for the selected item */
+  border-radius: 10px;
+}

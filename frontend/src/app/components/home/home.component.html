@@ -1,1 +1,10 @@
-<h1>Welcome to Quiz Management System<h1>
+<nav class="navbar">
+  <div class="navbar-left">
+    <a routerLink="profile" routerLinkActive="selected" class="list-item">{{
+      user.userName
+    }}</a>
+    <a routerLink="/login" class="list-item">Log Out</a>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
