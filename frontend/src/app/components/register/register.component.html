@@ -1,7 +1,7 @@
 <div class="main-container"> 
     <div class="container">
         <h2>Registration</h2>
-        <form #RegistrationForm="ngForm" (ngSubmit)="registerUser()">
+        <form #RegistrationForm="ngForm" (ngSubmit)="registerUser(RegistrationForm)">
             <small class="text-success">{{msg}}</small>
             
             <div class="form-group" [class.has-error]="email.invalid && email.touched">
@@ -32,6 +32,15 @@
                     <!-- <small class="text-danger" *ngIf="password.errors">Password Id is required field</small> -->
                     <!-- <small class="text-danger" *ngIf="email.errors">Enter the valid emailId</small> -->
                 </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="role">Role:</label>
+                <select class="form-control" name="role" [(ngModel)]="selectedRole" required #role="ngModel" (change)="logSelectedRole()" [compareWith]="compareRoles">
+                    <option value="" disabled selected>Select role</option>
+                    <option *ngFor="let role of roles" [ngValue]="role">{{ role.roleType }}</option>
+                </select>
             </div>
 
             <button [disabled]="RegistrationForm.form.invalid" type="submit" class="btn">Register</button>

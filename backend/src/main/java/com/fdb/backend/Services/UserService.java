@@ -1,6 +1,8 @@
 package com.fdb.backend.Services;
 
+import com.fdb.backend.Entities.Role;
 import com.fdb.backend.Entities.User;
+import com.fdb.backend.Repositories.RoleRepository;
 import com.fdb.backend.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,10 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
+
+
     public User saveUser(User user) {
         return userRepository.save(user);
     }
@@ -44,5 +50,14 @@ public class UserService {
         }
 
         return user.getRole().getRoleID();
+    }
+
+    public User createUserWithRole(User user, int roleID) {
+        Role role = roleRepository.findById(roleID).orElse(null);
+
+        user.setRole(role);
+
+        userRepository.save(user);
+        return user;
     }
 }

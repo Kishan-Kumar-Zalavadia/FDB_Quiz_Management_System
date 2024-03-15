@@ -6,8 +6,6 @@ export class User {
   emailID!: string;
   userName!: string;
   password!: string;
-  profileID!: number;
-  roleID!: number;
   profile!: Profile
   role!: Role
 }

@@ -25,17 +25,17 @@ public class UserController {
 
 // ---------------------------------------------------------------------------------------------------
 // Save User
-    @PostMapping("/register")
-    public User registerUser(@RequestBody User user) throws Exception {
-        String tempEmailId = user.getEmailID();
-        if (tempEmailId != null && !tempEmailId.isEmpty()) {
-            User existingUser = userService.fetchUserByEmailId(tempEmailId);
-            if (existingUser != null) {
-                throw new Exception("User with " + tempEmailId + " already exists");
-            }
+@PostMapping("/register")
+public User registerUser(@RequestBody User user) throws Exception {
+    String tempEmailId = user.getEmailID();
+    if (tempEmailId != null && !tempEmailId.isEmpty()) {
+        User existingUser = userService.fetchUserByEmailId(tempEmailId);
+        if (existingUser != null) {
+            throw new Exception("User with " + tempEmailId + " already exists");
         }
-        return userService.saveUser(user);
     }
+    return userService.saveUser(user);
+}
 // ---------------------------------------------------------------------------------------------------
 // User Login
 
@@ -113,5 +113,40 @@ public class UserController {
         }
 
     }
+// ---------------------------------------------------------------------------------------------------
+    // Create user with role
+//    @PostMapping("/register/role/{roleID")
+//    public User createUserWithRole(@RequestBody User user, @RequestParam int roleID) {
+//        String tempEmailId = user.getEmailID();
+//        if (tempEmailId != null && !tempEmailId.isEmpty()) {
+//            User existingUser = userService.fetchUserByEmailId(tempEmailId);
+//            if (existingUser != null) {
+//                throw new Exception("User with " + tempEmailId + " already exists");
+//            }
+//        }
+//        return userService.createUserWithRole(user, roleID);
+//    }
+
+    @PostMapping("/register/withRoleID/{roleID}")
+    public ResponseEntity<User> createUserWithRole(@RequestBody User user, @PathVariable int roleID) {
+        try {
+            // Check if a user with the same email already exists
+            String tempEmailId = user.getEmailID();
+            if (tempEmailId != null && !tempEmailId.isEmpty()) {
+                User existingUser = userService.fetchUserByEmailId(tempEmailId);
+                if (existingUser != null) {
+                    throw new Exception("User with email " + tempEmailId + " already exists");
+                }
+            }
+
+            // If no user with the same email exists, proceed with creating the user
+            User createdUser = userService.createUserWithRole(user, roleID);
+            return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // Handle exception
+        }
+    }
+
+
 
 }
