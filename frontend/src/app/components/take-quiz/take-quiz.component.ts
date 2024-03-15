@@ -15,6 +15,7 @@ export class TakeQuizComponent implements OnInit {
   quizForm: any;
   selectedOptions: { [questionId: number]: number } = {};
   selectedOptionIDs!: number[];
+  score: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,5 +35,15 @@ export class TakeQuizComponent implements OnInit {
     console.log('Selected Options:', this.selectedOptions);
     this.selectedOptionIDs = Object.values(this.selectedOptions);
     console.log('Selected Option IDs:', this.selectedOptionIDs);
+    this.calculateScore();
+  }
+
+  calculateScore(): void {
+    this.quizService
+      .calculateScore(this.selectedOptionIDs)
+      .subscribe((score) => {
+        this.score = score;
+        console.log('Score:', this.score);
+      });
   }
 }

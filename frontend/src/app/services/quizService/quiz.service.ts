@@ -7,25 +7,31 @@ import { Quiz } from 'src/app/models/quizModel/quiz';
   providedIn: 'root',
 })
 export class QuizService {
-
   quiz = new Quiz();
 
   setQuiz(quiz: Quiz) {
     this.quiz = quiz;
   }
 
-  getQuiz(){
+  getQuiz() {
     return this.quiz;
   }
 
   getQuizById(quizId: number) {
     throw new Error('Method not implemented.');
   }
-  private apiUrl = 'http://localhost:9292/quizzes'; // Replace 'your-api-url' with your actual API URL
+  private apiUrl = 'http://localhost:9292'; // Replace 'your-api-url' with your actual API URL
 
   constructor(private http: HttpClient) {}
 
   getAllQuizzes(): Observable<Quiz[]> {
-    return this.http.get<Quiz[]>(this.apiUrl);
+    return this.http.get<Quiz[]>(`${this.apiUrl}/quizzes`);
+  }
+
+  calculateScore(selectedOptionIds: number[]): Observable<number> {
+    return this.http.post<number>(
+      `${this.apiUrl}/options/score`,
+      selectedOptionIds
+    );
   }
 }

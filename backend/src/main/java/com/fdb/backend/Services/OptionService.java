@@ -40,4 +40,16 @@ public class OptionService {
         }
         return false;
     }
+
+
+    public int calculateScore(List<Integer> selectedOptionIds) {
+        int score = 0;
+        for (Integer optionId : selectedOptionIds) {
+            Option option = optionRepository.findById(optionId).orElse(null);
+            if (option != null && option.isCorrect() && option.getQuestion() != null) {
+                score += option.getQuestion().getQuestionMarks();
+            }
+        }
+        return score;
+    }
 }

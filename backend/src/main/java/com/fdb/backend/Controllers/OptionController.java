@@ -44,4 +44,9 @@ public class OptionController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Option or Question not found");
         }
     }
+
+    @PostMapping("/score")
+    public int calculateScore(@RequestBody List<Integer> selectedOptionIds) {
+        return optionService.calculateScore(selectedOptionIds);
+    }
 }
