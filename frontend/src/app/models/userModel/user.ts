@@ -7,8 +7,8 @@ export class User {
   emailID!: string;
   userName!: string;
   password!: string;
-  profile!: Profile
-  role!: Role
+  profile!: Profile;
+  role!: Role;
 
-  courses!: Course[];;
+  courses!: Course[];
 }

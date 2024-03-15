@@ -27,6 +27,5 @@ public class Quiz {
     private String instruction;
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Question> questions;
 }

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/quizzes")
 public class QuizController {
     private final QuizService quizService;

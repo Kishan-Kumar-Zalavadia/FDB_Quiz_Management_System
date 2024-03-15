@@ -13,6 +13,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { CourseComponent } from './components/course/course/course.component';
+import { QuizComponent } from './components/quiz/quiz.component';
+import { TakeQuizComponent } from './components/take-quiz/take-quiz.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { CourseComponent } from './components/course/course/course.component';
     ProfileComponent,
     FeedbackComponent,
     CourseComponent,
+    QuizComponent,
+    TakeQuizComponent,
   ],
   imports: [
     BrowserModule,

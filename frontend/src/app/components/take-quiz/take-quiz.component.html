@@ -1,0 +1,18 @@
+<div *ngIf="quiz">
+  <h2>{{ quiz.quizTitle }}</h2>
+  <p>Duration: {{ quiz.quizDuration }}</p>
+  <p>Number of Attempts: {{ quiz.quizNumberOfAttempts }}</p>
+  <p>Access Code: {{ quiz.accessCode }}</p>
+
+  <div *ngFor="let question of quiz.questions">
+    <h3>{{ question.questionText }}</h3>
+    <ul>
+      <li *ngFor="let option of question.options">
+        <label>
+          <input type="radio" name="option{{ question.questionId }}" [value]="option.optionId">
+          {{ option.optionName }}
+        </label>
+      </li>
+    </ul>
+  </div>
+</div>
