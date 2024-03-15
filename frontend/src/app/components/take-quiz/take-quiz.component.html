@@ -19,29 +19,30 @@
 
  -->
 
-<div *ngIf="quiz">
-  <h2>{{ quiz.quizTitle }}</h2>
-  <p>Duration: {{ quiz.quizDuration }}</p>
-  <p>Number of Attempts: {{ quiz.quizNumberOfAttempts }}</p>
-  <p>Access Code: {{ quiz.accessCode }}</p>
+<div class="quiz-container" *ngIf="quiz">
+  <h2 class="quiz-title">{{ quiz.quizTitle }}</h2>
+  <p class="quiz-info">Duration: {{ quiz.quizDuration }}</p>
+  <p class="quiz-info">Number of Attempts: {{ quiz.quizNumberOfAttempts }}</p>
+  <p class="quiz-info">Access Code: {{ quiz.accessCode }}</p>
 
-  <form #quizForm="ngForm" (ngSubmit)="submitQuiz()">
+  <form #quizForm="ngForm" (ngSubmit)="submitQuiz()" class="quiz-form">
     <div *ngFor="let question of quiz.questions" class="question-container">
-      <h3>{{ question.questionText }}</h3>
+      <h3 class="question-text">{{ question.questionText }}</h3>
       <ul class="options-list">
         <li *ngFor="let option of question.options" class="option-item">
-          <label>
+          <label class="option-label">
             <input
               type="radio"
               name="question{{ question.questionId }}"
               [(ngModel)]="selectedOptions[question.questionId]"
               [value]="option.optionId"
+              class="option-input"
             />
-            {{ option.optionName }}
+            <span class="option-name">{{ option.optionName }}</span>
           </label>
         </li>
       </ul>
     </div>
-    <button type="submit">Submit Quiz</button>
+    <button type="submit" class="submit-button">Submit Quiz</button>
   </form>
 </div>
