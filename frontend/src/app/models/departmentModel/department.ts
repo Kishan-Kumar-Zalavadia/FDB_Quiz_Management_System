@@ -1,6 +1,6 @@
 // department.model.ts
 
-export interface Department {
-  departmentId: number;
-  departmentName: string;
+export class Department {
+  departmentId!: number;
+  departmentName!: string;
 }
