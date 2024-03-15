@@ -1,4 +1,4 @@
-<div *ngIf="quiz">
+<!-- <div *ngIf="quiz">
   <h2>{{ quiz.quizTitle }}</h2>
   <p>Duration: {{ quiz.quizDuration }}</p>
   <p>Number of Attempts: {{ quiz.quizNumberOfAttempts }}</p>
@@ -13,6 +13,31 @@
           {{ option.optionName }}
         </label>
       </li>
-    </ul>
+    </ul>  
   </div>
+</div> 
+
+ -->
+
+
+ <div *ngIf="quiz">
+  <h2>{{ quiz.quizTitle }}</h2>
+  <p>Duration: {{ quiz.quizDuration }}</p>
+  <p>Number of Attempts: {{ quiz.quizNumberOfAttempts }}</p>
+  <p>Access Code: {{ quiz.accessCode }}</p>
+
+  <form #quizForm="ngForm" (ngSubmit)="submitQuiz()">
+    <div *ngFor="let question of quiz.questions" class="question-container">
+      <h3>{{ question.questionText }}</h3>
+      <ul class="options-list">
+        <li *ngFor="let option of question.options" class="option-item">
+          <label>
+            <input type="radio" name="question{{ question.questionId }}" [(ngModel)]="selectedOptions[question.questionId]" [value]="option.optionId">
+            {{ option.optionName }}
+          </label>
+        </li>
+      </ul>
+    </div>
+    <button type="submit">Submit Quiz</button>
+  </form>
 </div>
