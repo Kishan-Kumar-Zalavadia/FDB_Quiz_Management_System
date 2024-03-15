@@ -6,6 +6,7 @@ import com.fdb.backend.Entities.User;
 import com.fdb.backend.Repositories.CourseRepository;
 import com.fdb.backend.Repositories.RoleRepository;
 import com.fdb.backend.Repositories.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,8 +78,22 @@ public class UserService {
 
     @Transactional
     public void assignCourseToUser(int userID, int courseID) {
-        User user = userRepository.findById(userID).orElseThrow(() -> new RuntimeException("User not found with ID: " + userID));
-        Course course = courseRepository.findById(courseID).orElseThrow(() -> new RuntimeException("Course not found with ID: " + courseID));
+//        User user = userRepository.findById(userID).orElseThrow(() -> new RuntimeException("User not found with ID: " + userID));
+//        Course course = courseRepository.findById(courseID).orElseThrow(() -> new RuntimeException("Course not found with ID: " + courseID));
+//        user.getCourses().add(course);
+//        userRepository.save(user);
+
+        // Retrieve the user and course entities from the database
+        User user = userRepository.findById(userID).orElseThrow(() -> new EntityNotFoundException("User not found"));
+        Course course = courseRepository.findById(courseID).orElseThrow(() -> new EntityNotFoundException("Course not found"));
+
+        // Check if the user is already enrolled in the course
+        if (user.getCourses().contains(course)) {
+            // If user is already enrolled, return without saving
+            return;
+        }
+
+        // Assign the course to the user
         user.getCourses().add(course);
         userRepository.save(user);
     }
