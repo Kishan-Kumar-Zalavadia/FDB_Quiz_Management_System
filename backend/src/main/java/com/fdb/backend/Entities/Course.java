@@ -23,4 +23,8 @@ public class Course {
     @ManyToMany(mappedBy = "courses")
     @JsonIgnore
     private List<User> users;
+
+    @ManyToMany(mappedBy = "courses")
+    @JsonIgnore
+    private List<Department> departments;
 }
