@@ -1,14 +1,18 @@
-<h2>Available Courses</h2>
-<ul>
-  <li *ngFor="let course of courses">
-    {{ course.courseName }}
-    <button (click)="enrollCourse(course)">Enroll</button>
-  </li>
-</ul>
+<div class="course-section">
+  <h2 class="section-title">Available Courses</h2>
+  <ul class="course-list">
+    <li *ngFor="let course of courses" class="course-item">
+      {{ course.courseName }}
+      <button (click)="enrollCourse(course)" class="enroll-button">Enroll</button>
+    </li>
+  </ul>
+</div>
 
-<h2>Enrolled Courses</h2>
-<ul>
-  <li *ngFor="let course of enrolledCourses">
-    {{ course.courseName }}
-  </li>
-</ul>
+<div class="course-section">
+  <h2 class="section-title">Enrolled Courses</h2>
+  <ul class="course-list">
+    <li *ngFor="let course of enrolledCourses" class="course-item">
+      {{ course.courseName }}
+    </li>
+  </ul>
+</div>
