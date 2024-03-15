@@ -1,7 +1,10 @@
 package com.fdb.backend.Services;
 
+import com.fdb.backend.Entities.Department;
 import com.fdb.backend.Entities.Profile;
+import com.fdb.backend.Repositories.DepartmentRepository;
 import com.fdb.backend.Repositories.ProfileRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +14,9 @@ import java.util.List;
 public class ProfileService {
     @Autowired
     private ProfileRepository profileRepository;
+
+    @Autowired
+    private DepartmentRepository departmentRepository;
 
     // ---------------------------------------------------------------------------------------------------
     public List<Profile> fetchAllProfiles() {
@@ -48,5 +54,15 @@ public class ProfileService {
         existingProfile.setDepartment(updatedProfile.getDepartment());
 
         return profileRepository.save(existingProfile);
+    }
+
+
+    @Transactional
+    public Profile assignDepartment(int profileId, int departmentID) throws Exception {
+        Profile profile = profileRepository.findById(profileId).orElseThrow(() -> new Exception("Profile not found"));
+        Department department = departmentRepository.findById(departmentID).orElseThrow(() -> new Exception("Department not found"));
+        department.setDepartmentID(departmentID);
+        profile.setDepartment(department);
+        return profileRepository.save(profile);
     }
 }

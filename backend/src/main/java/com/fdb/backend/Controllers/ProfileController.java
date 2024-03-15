@@ -57,4 +57,16 @@ public class ProfileController {
         }
 
     }
+
+    //----------------------------------------------------------------------------------------------------------------
+// Update Profile Department
+    @PutMapping("/{profileId}/assignDepartment/{departmentId}")
+    public ResponseEntity<Profile> assignDepartmentToProfile(@PathVariable int profileId, @PathVariable int departmentId) {
+        try {
+            Profile updatedProfile = profileService.assignDepartment(profileId, departmentId);
+            return ResponseEntity.ok(updatedProfile);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }
