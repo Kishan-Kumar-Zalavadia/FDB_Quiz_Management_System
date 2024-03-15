@@ -1,6 +1,7 @@
 package com.fdb.backend.Entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +19,7 @@ public class Question {
     private int questionMarks;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "quiz_id")
     private Quiz quiz;
 }

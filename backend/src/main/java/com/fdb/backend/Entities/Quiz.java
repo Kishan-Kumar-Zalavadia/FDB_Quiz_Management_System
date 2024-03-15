@@ -1,5 +1,6 @@
 package com.fdb.backend.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
@@ -26,5 +27,6 @@ public class Quiz {
     private String instruction;
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Question> questions;
 }
