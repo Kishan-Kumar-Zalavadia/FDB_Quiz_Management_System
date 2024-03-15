@@ -31,10 +31,10 @@ public class QuizController {
     }
 
 
-    @GetMapping("/{quizId}/questions")
-    public List<Question> getAllQuestionsByQuizId(@PathVariable int quizId) {
-        return getAllQuestionsByQuizId(quizId);
-    }
+//    @GetMapping("/{quizId}/questions")
+//    public List<Question> getAllQuestionsByQuizId(@PathVariable int quizId) {
+//        return getAllQuestionsByQuizId(quizId);
+//    }
 
 
     @PostMapping("/save")
@@ -44,5 +44,13 @@ public class QuizController {
     }
 
 
-
+    @GetMapping("/{quizId}/questions")
+    public ResponseEntity<List<Question>> getAllQuestionsByQuizId(@PathVariable int quizId) {
+        List<Question> questions = quizService.getAllQuestionsByQuizId(quizId);
+        if (questions != null) {
+            return ResponseEntity.ok(questions);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
 }

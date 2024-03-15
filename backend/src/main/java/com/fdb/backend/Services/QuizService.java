@@ -26,9 +26,12 @@ public class QuizService {
     }
 
     public List<Question> getAllQuestionsByQuizId(int quizId) {
-        return quizRepository.findByQuizId(quizId);
+        Quiz quiz = quizRepository.findById(quizId).orElse(null);
+        if (quiz != null) {
+            return quiz.getQuestions();
+        }
+        return null;
     }
-
     public Quiz saveQuiz(Quiz quiz) {
         return quizRepository.save(quiz);
     }
