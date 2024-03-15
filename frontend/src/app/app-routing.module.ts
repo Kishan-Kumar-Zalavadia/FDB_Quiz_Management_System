@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { FeedbackComponent } from './components/feedback/feedback.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -11,7 +12,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    children: [{ path: 'profile', component: ProfileComponent }],
+    children: [
+      { path: 'profile', component: ProfileComponent },
+      { path: 'feedback', component: FeedbackComponent },
+    ],
   },
 ];
 
