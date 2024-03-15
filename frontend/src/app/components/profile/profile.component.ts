@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Profile } from 'src/app/models/profileModel/profile';
+import { DepartmentService } from 'src/app/services/departmentService/department.service';
 import { ProfileService } from 'src/app/services/profileService/profile.service';
 import { UserService } from 'src/app/services/userService/user.service';
 
@@ -16,9 +17,10 @@ export class ProfileComponent implements OnInit {
 
   profile = new Profile();
   profileForm = new Profile();
+
   constructor(
     private profileService: ProfileService,
-    private userService: UserService
+    private userService: UserService,
   ) {}
 
   ngOnInit(): void {

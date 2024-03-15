@@ -2,6 +2,7 @@ package com.fdb.backend.Controllers;
 
 import com.fdb.backend.Entities.Profile;
 import com.fdb.backend.Entities.User;
+import com.fdb.backend.Services.ProfileService;
 import com.fdb.backend.Services.UserService;
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class UserController {
     public UserController(UserService service) {
         this.userService = service;
     }
+
+    @Autowired
+    private ProfileService profileService;
 
 // ---------------------------------------------------------------------------------------------------
 // Save User
@@ -63,14 +67,14 @@ public User registerUser(@RequestBody User user) throws Exception {
         User userObj = null;
         if (tempEmailId != null && tempPass != null) {
             userObj = userService.fetchUserByEmailIdAndPassword(tempEmailId, tempPass);
-            if (userObj != null && userObj.getProfile() == null) {
-                // Create an empty profile for the user
-                Profile emptyProfile = new Profile();
-                // Save the empty profile to the user object
-                userObj.setProfile(emptyProfile);
-                // Update the user object in the database
-                userService.saveUser(userObj);
-            }
+//            if (userObj != null && userObj.getProfile() == null) {
+//                // Create an empty profile for the user
+//                Profile emptyProfile = new Profile();
+//                // Save the empty profile to the user object
+//                userObj.setProfile(emptyProfile);
+//                // Update the user object in the database
+//                userService.saveUser(userObj);
+//            }
         }
         if (userObj == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Bad Credentials");
@@ -141,6 +145,14 @@ public User registerUser(@RequestBody User user) throws Exception {
 
             // If no user with the same email exists, proceed with creating the user
             User createdUser = userService.createUserWithRole(user, roleID);
+            if (createdUser != null && createdUser.getProfile() == null) {
+                // Create an empty profile for the user
+                Profile emptyProfile = new Profile();
+                // Save the empty profile to the user object
+                createdUser.setProfile(emptyProfile);
+                // Update the user object in the database
+                userService.saveUser(createdUser);
+            }
             return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // Handle exception

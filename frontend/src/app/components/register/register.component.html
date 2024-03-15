@@ -43,6 +43,14 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                <label for="role">Department:</label>
+                <select class="form-control" name="role" [(ngModel)]="selectedDepartment" required #department="ngModel" (change)="logSelectedDepartment()" [compareWith]="compareDepartments">
+                    <option value="" disabled selected>Select Department</option>
+                    <option *ngFor="let department of departments" [ngValue]="department">{{ department.departmentName }}</option>
+                </select>
+            </div>
+
             <button [disabled]="RegistrationForm.form.invalid" type="submit" class="btn">Register</button>
         </form>
         <!-- <small class="float-right" (click)="gotoRegistration()">New User? Register here</small> -->

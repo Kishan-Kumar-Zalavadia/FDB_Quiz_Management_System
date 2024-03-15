@@ -26,4 +26,17 @@ export class RegisterService {
       user
     );
   }
+
+  public registerUserFromRemoteInclusingRoleAndDepartment(
+    roleID: number,
+    departmentID: number,
+    user: User
+  ): Observable<any> {
+    console.log('Role ID: ' + roleID);
+    console.log('Department ID: ' + departmentID);
+    return this._http.post<any>(
+      'http://localhost:9292/users/register/withRoleID/' + roleID +"/department/" + departmentID,
+      user
+    );
+  }
 }

@@ -1,6 +1,6 @@
 // department.model.ts
 
 export class Department {
-  departmentId!: number;
+  departmentID!: number;
   departmentName!: string;
 }
