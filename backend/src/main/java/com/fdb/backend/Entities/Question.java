@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -22,4 +24,8 @@ public class Question {
     @JsonIgnore
     @JoinColumn(name = "quiz_id")
     private Quiz quiz;
+
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Option> options;
 }

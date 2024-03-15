@@ -1,4 +1,5 @@
 package com.fdb.backend.Controllers;
+import com.fdb.backend.Entities.Option;
 import com.fdb.backend.Entities.Question;
 import com.fdb.backend.Services.QuestionService;
 import com.fdb.backend.Services.QuizService;
@@ -37,6 +38,16 @@ public class QuestionController {
             return ResponseEntity.ok("Question assigned to quiz successfully");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Question or Quiz not found");
+        }
+    }
+
+    @GetMapping("/{questionId}/options")
+    public ResponseEntity<List<Option>> getAllOptionsByQuestionId(@PathVariable int questionId) {
+        List<Option> options = questionService.getAllOptionsByQuestionId(questionId);
+        if (options != null) {
+            return ResponseEntity.ok(options);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 }

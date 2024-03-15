@@ -1,10 +1,12 @@
 package com.fdb.backend.Services;
 
+import com.fdb.backend.Entities.Option;
 import com.fdb.backend.Entities.Question;
 import com.fdb.backend.Repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,5 +29,13 @@ public class QuestionService {
     public Question getById(int id) {
         Optional<Question> optionalQuestion = questionRepository.findById(id);
         return optionalQuestion.orElse(null);
+    }
+
+    public List<Option> getAllOptionsByQuestionId(int questionId) {
+        Question question = questionRepository.findById(questionId).orElse(null);
+        if (question != null) {
+            return question.getOptions();
+        }
+        return null;
     }
 }

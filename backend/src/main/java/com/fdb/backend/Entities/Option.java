@@ -1,10 +1,13 @@
 package com.fdb.backend.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 
 @Entity
@@ -23,6 +26,4 @@ public class Option {
     @ManyToOne
     @JoinColumn(name = "question_id")
     private Question question;
-
-    // Constructors, getters, and setters
 }
