@@ -9,3 +9,63 @@
   <p>Country: {{ profile.country }}</p>
   <!-- Add other profile details here -->
 </div>
+
+<h1>Update profile</h1>
+<form #profileForm="ngForm" (ngSubmit)="updateProfile(profileForm)">
+  <div>
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" [(ngModel)]="profile.firstName" required>
+  </div>
+  <div>
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" [(ngModel)]="profile.lastName" required>
+  </div>
+  <div>
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="tel" id="phoneNumber" name="phoneNumber" [(ngModel)]="profile.phoneNumber">
+  </div>
+  <div>
+    <label for="photoURL">Photo URL:</label>
+    <input type="text" id="photoURL" name="photoURL" [(ngModel)]="profile.photoURL">
+  </div>
+  <div>
+    <label for="streetNumber">Street Number:</label>
+    <input type="text" id="streetNumber" name="streetNumber" [(ngModel)]="profile.streetNumber">
+  </div>
+  <div>
+    <label for="streetName">Street Name:</label>
+    <input type="text" id="streetName" name="streetName" [(ngModel)]="profile.streetName">
+  </div>
+  <div>
+    <label for="aptNumber">Apt Number:</label>
+    <input type="text" id="aptNumber" name="aptNumber" [(ngModel)]="profile.aptNumber">
+  </div>
+  <div>
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city" [(ngModel)]="profile.city">
+  </div>
+  <div>
+    <label for="state">State:</label>
+    <input type="text" id="state" name="state" [(ngModel)]="profile.state">
+  </div>
+  <div>
+    <label for="zip">Zip:</label>
+    <input type="text" id="zip" name="zip" [(ngModel)]="profile.zip">
+  </div>
+  <div>
+    <label for="country">Country:</label>
+    <input type="text" id="country" name="country" [(ngModel)]="profile.country">
+  </div>
+  <div>
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" [(ngModel)]="profile.dob">
+  </div>
+  <div>
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" [(ngModel)]="profile.age">
+  </div>
+  <!-- Add similar input fields for other profile properties -->
+  
+  <!-- Submit button -->
+  <button type="submit" [disabled]="profileForm.invalid">Update Profile</button>
+</form>
