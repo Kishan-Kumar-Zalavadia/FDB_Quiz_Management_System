@@ -24,13 +24,15 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.profileID = this.userService.getUser().profile.profileID;
     this.getProfile(this.profileID);
-    console.log('Current ProfileID:' + this.profile?.profileID);
+    this.profileForm = this.profile;
+    console.log('Current ProfileID:' + this.profile.profileID);
   }
 
   getProfile(profileID: number): void {
     this.profileService.getProfileByProfileId(profileID).subscribe(
       (data) => {
         this.profile = data;
+        // this.profileForm = data;
         console.log(data);
       },
       (error) => {
@@ -50,6 +52,7 @@ export class ProfileComponent implements OnInit {
     this.profileService.updateProfile(updatedProfile, this.profileID).subscribe(
       () => {
         // Handle successful update
+        this.getProfile(this.profileID);
         console.log('Profile updated successfully');
       },
       (error) => {
@@ -57,5 +60,23 @@ export class ProfileComponent implements OnInit {
         console.error('Error updating profile:', error);
       }
     );
+  }
+
+  // * Pop up
+
+  showAdminPopup: boolean = false;
+
+  editProfile(profile: Profile){
+    this.profileForm = { ...profile };
+    this.openAdminPopup();
+  }
+
+  openAdminPopup() {
+    this.showAdminPopup = true;
+  }
+
+  // Method to close the admin pop-up
+  closeAdminPopup() {
+    this.showAdminPopup = false;
   }
 }
