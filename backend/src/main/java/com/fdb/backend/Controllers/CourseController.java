@@ -27,6 +27,12 @@ public class CourseController {
         return new ResponseEntity<>(courses, HttpStatus.OK);
     }
 
+    @GetMapping("/not-enrolled/{userId}")
+    public ResponseEntity<List<Course>> getNotEnrolledCourses(@PathVariable int userId) throws Exception {
+        List<Course> notEnrolledCourses = courseService.getNotEnrolledCoursesByUserId(userId);
+        return new ResponseEntity<>(notEnrolledCourses, HttpStatus.OK);
+    }
+
     @GetMapping("/{courseId}")
     public ResponseEntity<Course> getCourseById(@PathVariable int courseId) {
         Optional<Course> course = courseService.getCourseById(courseId);

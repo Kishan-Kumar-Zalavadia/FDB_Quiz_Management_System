@@ -12,11 +12,8 @@ export class CourseService {
   constructor(private http: HttpClient) {}
 
   enrollCourse(userId: number, course: Course): Observable<any> {
-    console.log("Enrolling Course"+ JSON.stringify(course));
-    return this.http.post<any>(
-      `${this.apiUrl}/users/${userId}/enroll`,
-      course
-    );
+    console.log('Enrolling Course' + JSON.stringify(course));
+    return this.http.post<any>(`${this.apiUrl}/users/${userId}/enroll`, course);
   }
 
   getEnrolledCourses(userId: number): Observable<Course[]> {
@@ -25,5 +22,11 @@ export class CourseService {
 
   getAllCourses(): Observable<Course[]> {
     return this.http.get<Course[]>(`${this.apiUrl}/courses`);
+  }
+
+  getUnenrolledCourses(userId: number): Observable<Course[]> {
+    return this.http.get<Course[]>(
+      `${this.apiUrl}/courses/not-enrolled/${userId}`
+    );
   }
 }

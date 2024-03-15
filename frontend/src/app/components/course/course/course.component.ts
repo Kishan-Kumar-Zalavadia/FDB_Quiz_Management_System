@@ -40,9 +40,14 @@ export class CourseComponent {
   // }
 
   getAllCourses(): void {
-    this.courseService.getAllCourses().subscribe((courses) => {
-      this.courses = courses;
-    });
+    // this.courseService.getAllCourses().subscribe((courses) => {
+    //   this.courses = courses;
+    // });
+    this.courseService
+      .getUnenrolledCourses(this.userID)
+      .subscribe((courses) => {
+        this.courses = courses;
+      });
   }
 
   updateCanEnrollCourses(): void {
@@ -54,7 +59,9 @@ export class CourseComponent {
           )
       );
       this.getEnrolledCourses();
-      console.log('Enrolled Courses in update: ' + JSON.stringify(this.enrollCourse));
+      console.log(
+        'Enrolled Courses in update: ' + JSON.stringify(this.enrollCourse)
+      );
       console.log(
         'Can Enroll Courses in update: ' + JSON.stringify(this.canEnrollCourses)
       );
@@ -65,7 +72,9 @@ export class CourseComponent {
     this.courseService.getEnrolledCourses(this.userID).subscribe(
       (data) => {
         this.enrolledCourses = data;
-        console.log("Enrolled Courses: " + JSON.stringify(this.enrolledCourses));
+        console.log(
+          'Enrolled Courses: ' + JSON.stringify(this.enrolledCourses)
+        );
       },
       (error) => {
         console.log('Error while getting enrolled courses:' + error);
@@ -78,10 +87,12 @@ export class CourseComponent {
     this.courseService.enrollCourse(this.userID, course).subscribe(
       () => {
         this.getEnrolledCourses();
+        this.getAllCourses();
       },
       (error) => {
         console.log('Error while enrolling:' + error);
         this.getEnrolledCourses();
+        this.getAllCourses();
       }
     );
   }
