@@ -3,8 +3,10 @@ package com.fdb.backend.Services;
 import com.fdb.backend.Entities.Course;
 import com.fdb.backend.Entities.Role;
 import com.fdb.backend.Entities.User;
+import com.fdb.backend.Repositories.CourseRepository;
 import com.fdb.backend.Repositories.RoleRepository;
 import com.fdb.backend.Repositories.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,9 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private CourseRepository courseRepository;
 
 
     public User saveUser(User user) {
@@ -68,6 +73,14 @@ public class UserService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         return user.getCourses();
+    }
+
+    @Transactional
+    public void assignCourseToUser(int userID, int courseID) {
+        User user = userRepository.findById(userID).orElseThrow(() -> new RuntimeException("User not found with ID: " + userID));
+        Course course = courseRepository.findById(courseID).orElseThrow(() -> new RuntimeException("Course not found with ID: " + courseID));
+        user.getCourses().add(course);
+        userRepository.save(user);
     }
 
 }

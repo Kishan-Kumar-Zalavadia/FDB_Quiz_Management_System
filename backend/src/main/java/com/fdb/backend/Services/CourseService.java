@@ -21,7 +21,7 @@ public class CourseService {
         return courseRepository.findAll();
     }
 
-    public Optional<Course> getCourseById(Long courseId) {
+    public Optional<Course> getCourseById(int courseId) {
         return courseRepository.findById(courseId);
     }
 

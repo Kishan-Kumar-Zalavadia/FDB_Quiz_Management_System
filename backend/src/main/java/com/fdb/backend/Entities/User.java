@@ -1,5 +1,6 @@
 package com.fdb.backend.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -60,6 +61,7 @@ public class User {
     private Role role;
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name = "user_course",
             joinColumns = @JoinColumn(name = "user_id"),

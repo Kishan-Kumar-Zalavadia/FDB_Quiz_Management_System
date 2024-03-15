@@ -28,7 +28,7 @@ public class CourseController {
     }
 
     @GetMapping("/{courseId}")
-    public ResponseEntity<Course> getCourseById(@PathVariable Long courseId) {
+    public ResponseEntity<Course> getCourseById(@PathVariable int courseId) {
         Optional<Course> course = courseService.getCourseById(courseId);
         return course.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));

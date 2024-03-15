@@ -203,4 +203,10 @@ public User registerUser(@RequestBody User user) throws Exception {
         return userService.getAllCoursesByUserId(userId);
     }
 
+    // ---------------------------------------------------------------------------------------------------
+    @PostMapping("/{userID}/courses/{courseID}")
+    public ResponseEntity<String> assignCourseToUser(@PathVariable int userID, @PathVariable int courseID) {
+        userService.assignCourseToUser(userID, courseID);
+        return ResponseEntity.status(HttpStatus.OK).body("Course with ID " + courseID + " assigned to user with ID " + userID);
+    }
 }
