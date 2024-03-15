@@ -26,4 +26,27 @@ public class ProfileService {
     public Profile saveProfile(Profile profile) {
         return profileRepository.save(profile);
     }
+
+    // ---------------------------------------------------------------------------------------------------
+    public Profile updateProfile(int profileID, Profile updatedProfile) throws Exception {
+        Profile existingProfile = profileRepository.findById(profileID)
+                .orElseThrow(() -> new Exception("Profile not found"));
+        // Update the existing profile with the new data
+        existingProfile.setFirstName(updatedProfile.getFirstName());
+        existingProfile.setLastName(updatedProfile.getLastName());
+        existingProfile.setPhoneNumber(updatedProfile.getPhoneNumber());
+        existingProfile.setPhotoURL(updatedProfile.getPhotoURL());
+        existingProfile.setStreetNumber(updatedProfile.getStreetNumber());
+        existingProfile.setStreetName(updatedProfile.getStreetName());
+        existingProfile.setAptNumber(updatedProfile.getAptNumber());
+        existingProfile.setCity(updatedProfile.getCity());
+        existingProfile.setState(updatedProfile.getState());
+        existingProfile.setZip(updatedProfile.getZip());
+        existingProfile.setCountry(updatedProfile.getCountry());
+        existingProfile.setDob(updatedProfile.getDob());
+        existingProfile.setAge(updatedProfile.getAge());
+        existingProfile.setDepartment(updatedProfile.getDepartment());
+
+        return profileRepository.save(existingProfile);
+    }
 }

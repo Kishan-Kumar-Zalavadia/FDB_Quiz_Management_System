@@ -63,7 +63,7 @@ public class Profile {
     private String zip;
     private String country;
     @Temporal(TemporalType.DATE)
-    private Date dob;
+    private LocalDate dob;
     private int age;
 
     // Many-1 (Profile - Department)
@@ -77,9 +77,8 @@ public class Profile {
     @PostUpdate
     public void calculateAge() {
         if (dob != null) {
-            LocalDate birthDate = dob.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate currentDate = LocalDate.now();
-            this.age = Period.between(birthDate, currentDate).getYears();
+            this.age = Period.between(dob, currentDate).getYears();
         }
     }
 }

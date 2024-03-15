@@ -45,5 +45,16 @@ public class ProfileController {
         return new ResponseEntity<>(savedProfile, HttpStatus.CREATED);
     }
 
+    //----------------------------------------------------------------------------------------------------------------
+// Update Profile
+    @PutMapping("update/{profileID}")
+    public ResponseEntity<Profile> updateProfile(@PathVariable int profileID, @RequestBody Profile updatedProfile) {
+        try {
+            Profile profile = profileService.updateProfile(profileID, updatedProfile);
+            return ResponseEntity.ok(profile);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
 
+    }
 }
