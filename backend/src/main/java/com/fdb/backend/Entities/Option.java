@@ -1,6 +1,7 @@
 package com.fdb.backend.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public class Option {
 
     @ManyToOne
     @JoinColumn(name = "question_id")
-    @JsonIgnore
+//    @JsonIgnore
+    @JsonIgnoreProperties("options")
     private Question question;
 }

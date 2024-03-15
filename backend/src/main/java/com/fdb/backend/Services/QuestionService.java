@@ -2,6 +2,7 @@ package com.fdb.backend.Services;
 
 import com.fdb.backend.Entities.Option;
 import com.fdb.backend.Entities.Question;
+import com.fdb.backend.Repositories.OptionRepository;
 import com.fdb.backend.Repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,9 @@ import java.util.Optional;
 @Service
 public class QuestionService {
     private final QuestionRepository questionRepository;
+
+    @Autowired
+    private OptionRepository optionRepository;
 
     @Autowired
     public QuestionService(QuestionRepository questionRepository) {
@@ -37,5 +41,19 @@ public class QuestionService {
             return question.getOptions();
         }
         return null;
+    }
+
+    public Question saveQuestionWithOptions(Question questionWithOptions) {
+        // Save the question
+        Question savedQuestion = questionRepository.save(questionWithOptions);
+
+        // Set the question for each option and save them
+        List<Option> options = savedQuestion.getOptions();
+        for (Option option : options) {
+            option.setQuestion(savedQuestion);
+            optionRepository.save(option);
+        }
+
+        return savedQuestion;
     }
 }

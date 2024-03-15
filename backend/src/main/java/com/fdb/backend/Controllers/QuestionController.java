@@ -28,6 +28,13 @@ public class QuestionController {
         Question savedQuestion = questionService.saveQuestion(question);
         return new ResponseEntity<>(savedQuestion, HttpStatus.CREATED);
     }
+    @PostMapping("/saveQuestionWithOptions")
+    public ResponseEntity<Question> saveQuestionWithOptions(@RequestBody Question questionWithOptions) {
+        Question savedQuestion = questionService.saveQuestionWithOptions(questionWithOptions);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedQuestion);
+    }
+
+
 
 
     @PutMapping("/{questionId}/assignToQuiz/{quizId}")
