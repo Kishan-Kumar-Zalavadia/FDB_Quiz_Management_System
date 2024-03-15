@@ -161,4 +161,39 @@ public User registerUser(@RequestBody User user) throws Exception {
 
 
 
+    @PostMapping("/register/withRoleID/{roleID}/department/{departmentID}")
+    public ResponseEntity<User> createUserWithRoleAndDepartment(@RequestBody User user, @PathVariable int roleID, @PathVariable int departmentID) {
+        try {
+            // Check if a user with the same email already exists
+            String tempEmailId = user.getEmailID();
+            if (tempEmailId != null && !tempEmailId.isEmpty()) {
+                User existingUser = userService.fetchUserByEmailId(tempEmailId);
+                if (existingUser != null) {
+                    throw new Exception("User with email " + tempEmailId + " already exists");
+                }
+            }
+
+            // If no user with the same email exists, proceed with creating the user
+            User createdUser = userService.createUserWithRole(user, roleID);
+            if (createdUser != null && createdUser.getProfile() == null) {
+                // Create an empty profile for the user
+                Profile emptyProfile = new Profile();
+
+                // Save the empty profile to the user object
+                createdUser.setProfile(emptyProfile);
+                // Update the user object in the database
+                userService.saveUser(createdUser);
+
+            }
+//            System.out.println("UserID:"+createdUser.getUserID());
+//            System.out.println("ProfileID:"+createdUser.getProfile().getProfileID());
+            this.profileService.assignDepartment(createdUser.getProfile().getProfileID(),departmentID);
+            return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // Handle exception
+        }
+    }
+
+
+
 }
