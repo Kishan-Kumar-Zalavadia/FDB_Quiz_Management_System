@@ -19,8 +19,7 @@
 
  -->
 
-
- <div *ngIf="quiz">
+<div *ngIf="quiz">
   <h2>{{ quiz.quizTitle }}</h2>
   <p>Duration: {{ quiz.quizDuration }}</p>
   <p>Number of Attempts: {{ quiz.quizNumberOfAttempts }}</p>
@@ -32,7 +31,12 @@
       <ul class="options-list">
         <li *ngFor="let option of question.options" class="option-item">
           <label>
-            <input type="radio" name="question{{ question.questionId }}" [(ngModel)]="selectedOptions[question.questionId]" [value]="option.optionId">
+            <input
+              type="radio"
+              name="question{{ question.questionId }}"
+              [(ngModel)]="selectedOptions[question.questionId]"
+              [value]="option.optionId"
+            />
             {{ option.optionName }}
           </label>
         </li>

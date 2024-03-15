@@ -14,6 +14,7 @@ export class TakeQuizComponent implements OnInit {
   formBuilder: any;
   quizForm: any;
   selectedOptions: { [questionId: number]: number } = {};
+  selectedOptionIDs!: number[];
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +32,7 @@ export class TakeQuizComponent implements OnInit {
 
   submitQuiz(): void {
     console.log('Selected Options:', this.selectedOptions);
-    // Now you can send the selected options to your backend or perform any other actions
+    this.selectedOptionIDs = Object.values(this.selectedOptions);
+    console.log('Selected Option IDs:', this.selectedOptionIDs);
   }
 }
