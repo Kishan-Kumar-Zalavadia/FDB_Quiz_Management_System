@@ -21,7 +21,7 @@ public class CourseController {
         this.courseService = courseService;
     }
 
-    @GetMapping
+    @GetMapping("")
     public ResponseEntity<List<Course>> getAllCourses() {
         List<Course> courses = courseService.getAllCourses();
         return new ResponseEntity<>(courses, HttpStatus.OK);
@@ -38,5 +38,10 @@ public class CourseController {
     public ResponseEntity<Course> saveCourse(@RequestBody Course course) {
         Course savedCourse = courseService.saveCourse(course);
         return new ResponseEntity<>(savedCourse, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/user/{userId}")
+    public List<Course> getAllCoursesByUserId(@PathVariable int userId) {
+        return courseService.getAllCoursesByUserId(userId);
     }
 }

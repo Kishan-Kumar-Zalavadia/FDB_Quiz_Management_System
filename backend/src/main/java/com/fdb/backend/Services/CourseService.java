@@ -28,4 +28,8 @@ public class CourseService {
     public Course saveCourse(Course course) {
         return courseRepository.save(course);
     }
+
+    public List<Course> getAllCoursesByUserId(int userId) {
+        return courseRepository.findByUsersUserID(userId);
+    }
 }

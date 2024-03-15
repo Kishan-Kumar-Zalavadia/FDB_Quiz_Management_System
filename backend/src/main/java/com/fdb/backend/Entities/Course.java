@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -16,4 +18,7 @@ public class Course {
 
     @Column(unique = true)
     private String courseName;
+
+    @ManyToMany(mappedBy = "courses")
+    private List<User> users;
 }

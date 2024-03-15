@@ -1,5 +1,6 @@
 package com.fdb.backend.Services;
 
+import com.fdb.backend.Entities.Course;
 import com.fdb.backend.Entities.Role;
 import com.fdb.backend.Entities.User;
 import com.fdb.backend.Repositories.RoleRepository;
@@ -52,6 +53,7 @@ public class UserService {
         return user.getRole().getRoleID();
     }
 
+    // ---------------------------------------------------------------------------------------------------
     public User createUserWithRole(User user, int roleID) {
         Role role = roleRepository.findById(roleID).orElse(null);
 
@@ -59,6 +61,13 @@ public class UserService {
 
         userRepository.save(user);
         return user;
+    }
+
+    // ---------------------------------------------------------------------------------------------------
+    public List<Course> getAllCoursesByUserId(int userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return user.getCourses();
     }
 
 }

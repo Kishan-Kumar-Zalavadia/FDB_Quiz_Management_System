@@ -1,5 +1,6 @@
 package com.fdb.backend.Controllers;
 
+import com.fdb.backend.Entities.Course;
 import com.fdb.backend.Entities.Profile;
 import com.fdb.backend.Entities.User;
 import com.fdb.backend.Services.ProfileService;
@@ -195,5 +196,11 @@ public User registerUser(@RequestBody User user) throws Exception {
     }
 
 
+
+    // ---------------------------------------------------------------------------------------------------
+    @GetMapping("/{userId}/courses")
+    public List<Course> getAllCoursesByUserId(@PathVariable int userId) {
+        return userService.getAllCoursesByUserId(userId);
+    }
 
 }
