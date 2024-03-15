@@ -60,13 +60,14 @@ export class ProfileComponent implements OnInit {
         console.error('Error updating profile:', error);
       }
     );
+    this.closeAdminPopup();
   }
 
   // * Pop up
 
   showAdminPopup: boolean = false;
 
-  editProfile(profile: Profile){
+  editProfile(profile: Profile) {
     this.profileForm = { ...profile };
     this.openAdminPopup();
   }
