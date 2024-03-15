@@ -12,6 +12,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeedbackComponent } from './components/feedback/feedback.component';
+import { CourseComponent } from './components/course/course/course.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
     RegisterComponent,
     ProfileComponent,
     FeedbackComponent,
+    CourseComponent,
   ],
   imports: [
     BrowserModule,

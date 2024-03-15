@@ -204,9 +204,17 @@ public User registerUser(@RequestBody User user) throws Exception {
     }
 
     // ---------------------------------------------------------------------------------------------------
-    @PostMapping("/{userID}/courses/{courseID}")
-    public ResponseEntity<String> assignCourseToUser(@PathVariable int userID, @PathVariable int courseID) {
-        userService.assignCourseToUser(userID, courseID);
-        return ResponseEntity.status(HttpStatus.OK).body("Course with ID " + courseID + " assigned to user with ID " + userID);
+//    @PostMapping("/{userID}/enroll/{courseID}")
+//    public ResponseEntity<String> assignCourseToUser(@PathVariable int userID, @PathVariable int courseID, @RequestBody int dummy) {
+//        userService.assignCourseToUser(userID, courseID);
+//        return ResponseEntity.status(HttpStatus.OK).body("Course with ID " + courseID + " assigned to user with ID " + userID);
+//    }
+
+
+    // ---------------------------------------------------------------------------------------------------
+    @PostMapping("/{userID}/enroll")
+    public ResponseEntity<String> assignCourseToUser(@PathVariable int userID, @RequestBody Course course) {
+        userService.assignCourseToUser(userID, course.getCourseId());
+        return ResponseEntity.status(HttpStatus.OK).body("Course with ID " + course.getCourseId() + " assigned to user with ID " + userID);
     }
 }

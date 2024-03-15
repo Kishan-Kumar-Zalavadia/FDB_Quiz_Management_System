@@ -1,3 +1,4 @@
+import { Course } from '../courseModel/course';
 import { Profile } from '../profileModel/profile';
 import { Role } from '../roleModel/role';
 
@@ -8,4 +9,6 @@ export class User {
   password!: string;
   profile!: Profile
   role!: Role
+
+  courses!: Course[];;
 }
