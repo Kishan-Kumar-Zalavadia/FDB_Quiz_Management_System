@@ -35,6 +35,7 @@ export class ProfileComponent implements OnInit {
       (data) => {
         this.profile = data;
         // this.profileForm = data;
+        this.profileService.setProfile(this.profile);
         console.log(data);
       },
       (error) => {

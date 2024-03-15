@@ -7,6 +7,18 @@ import { Profile } from 'src/app/models/profileModel/profile';
   providedIn: 'root',
 })
 export class ProfileService {
+
+  currentProfile = new Profile();
+
+  setProfile(profile: Profile) {
+    console.log('Profile set as: ' + JSON.stringify(profile));
+    this.currentProfile = profile;
+  }
+  getProfile() {
+    return this.currentProfile;
+  }
+  
+
   private baseUrl = 'http://localhost:9292/profiles'; // Replace with your backend API URL
 
   constructor(private http: HttpClient) {}

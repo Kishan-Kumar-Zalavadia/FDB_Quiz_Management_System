@@ -51,7 +51,7 @@ public class ProfileService {
         existingProfile.setCountry(updatedProfile.getCountry());
         existingProfile.setDob(updatedProfile.getDob());
         existingProfile.setAge(updatedProfile.getAge());
-        existingProfile.setDepartment(updatedProfile.getDepartment());
+//        existingProfile.setDepartment(updatedProfile.getDepartment());
 
         return profileRepository.save(existingProfile);
     }
