@@ -1,38 +1,61 @@
-/* Style for the container div */
-div {
-  margin: 20px;
-}
-
-/* Style for the heading */
-h2 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-}
-
-/* Style for the textarea */
-textarea {
-  width: 100%;
-  height: 150px;
+.container {
   padding: 10px;
-  font-size: 1em;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  resize: vertical; /* Allows vertical resizing */
-  margin-bottom: 10px;
+}
+.feedback-form {
+  margin-bottom: 20px;
+
+  .form-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .feedback-textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 1rem;
+  }
+
+  .submit-button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
 }
 
-/* Style for the submit button */
-button {
-  padding: 10px 20px;
-  font-size: 1em;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.feedbacks-container {
+  .feedbacks-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .feedbacks-list {
+    list-style-type: none;
+    padding: 0;
+
+    .feedback-item {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+
+      .feedback-property {
+        margin-bottom: 5px;
+      }
+    }
+  }
 }
 
-/* Hover effect for the submit button */
-button:hover {
-  background-color: #0056b3;
+.no-feedbacks {
+  font-size: 1rem;
+  margin-top: 10px;
 }

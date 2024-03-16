@@ -1,5 +1,31 @@
-<div>
-  <h2>Submit Feedback</h2>
-  <textarea [(ngModel)]="feedbackText" placeholder="Enter your feedback"></textarea>
-  <button (click)="submitFeedback()">Submit</button>
+<div class="container">
+<div class="feedback-form">
+  <h2 class="form-title">Submit Feedback</h2>
+  <textarea
+    [(ngModel)]="feedbackText"
+    placeholder="Enter your feedback"
+    class="feedback-textarea"
+  ></textarea>
+  <button (click)="submitFeedback()" class="submit-button">Submit</button>
+</div>
+
+<div *ngIf="feedbacks.length > 0" class="feedbacks-container">
+  <h2 class="feedbacks-title">Feedbacks</h2>
+  <ul class="feedbacks-list">
+    <li *ngFor="let feedback of feedbacks" class="feedback-item">
+      <p class="feedback-property">
+        Feedback Text: {{ feedback.feedbackText }}
+      </p>
+      <p class="feedback-property">
+        Feedback Date: {{ feedback.feedbackDate | date : "mediumDate" }}
+      </p>
+      <p class="feedback-property">
+        Feedback Time: {{ feedback.feedbackTime }}
+      </p>
+    </li>
+  </ul>
+</div>
+<div *ngIf="feedbacks.length === 0" class="no-feedbacks">
+  <p>No feedbacks found.</p>
+</div>
 </div>
