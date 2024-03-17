@@ -1,0 +1,19 @@
+.quiz-attempts {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.attempt-item {
+  list-style-type: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.quiz-name,
+.attempt-number,
+.start-time,
+.end-time,
+.attempt-date {
+  margin: 0;
+}

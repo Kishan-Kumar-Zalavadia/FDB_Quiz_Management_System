@@ -38,7 +38,6 @@ public class QuizAttempt {
     private User user;
 //
     @ManyToOne
-    @JsonIgnore
 //    @JoinColumn(name = "quiz_id", nullable = false)
     private Quiz quiz;
 

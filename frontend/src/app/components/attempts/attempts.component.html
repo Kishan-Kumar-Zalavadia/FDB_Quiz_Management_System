@@ -1,12 +1,12 @@
-<div>
+<div class="quiz-attempts">
   <h2>Quiz Attempts</h2>
   <ul>
-    <li *ngFor="let attempt of quizAttempts">
-      <p>Attempt ID: {{ attempt.quizAttemptId }}</p>
-      <p>Attempt Number: {{ attempt.attemptNumber }}</p>
-      <p>Start Time: {{ attempt.startTime }}</p>
-      <p>End Time: {{ attempt.endTime }}</p>
-      <p>Attempt Date: {{ attempt.attemptDate }}</p>
+    <li *ngFor="let attempt of quizAttempts" class="attempt-item">
+      <p class="quiz-name">Quiz Name: {{ attempt.quiz.quizTitle }}</p>
+      <p class="attempt-number">Attempt Number: {{ attempt.attemptNumber }}</p>
+      <p class="start-time">Start Time: {{ attempt.startTime }}</p>
+      <p class="end-time">End Time: {{ attempt.endTime }}</p>
+      <p class="attempt-date">Attempt Date: {{ attempt.attemptDate }}</p>
       <!-- Display other attempt details as needed -->
     </li>
   </ul>

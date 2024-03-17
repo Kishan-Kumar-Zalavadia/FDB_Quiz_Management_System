@@ -30,5 +30,6 @@ public class Quiz {
     private List<Question> questions;
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<QuizAttempt> quizAttempt;
 }
