@@ -2,6 +2,7 @@ package com.fdb.backend.Controllers;
 
 import com.fdb.backend.Entities.Course;
 import com.fdb.backend.Entities.Profile;
+import com.fdb.backend.Entities.QuizAttempt;
 import com.fdb.backend.Entities.User;
 import com.fdb.backend.Services.ProfileService;
 import com.fdb.backend.Services.UserService;
@@ -216,5 +217,15 @@ public User registerUser(@RequestBody User user) throws Exception {
     public ResponseEntity<String> assignCourseToUser(@PathVariable int userID, @RequestBody Course course) {
         userService.assignCourseToUser(userID, course.getCourseId());
         return ResponseEntity.status(HttpStatus.OK).body("Course with ID " + course.getCourseId() + " assigned to user with ID " + userID);
+    }
+
+    @GetMapping("/{userId}/quiz-attempts")
+    public ResponseEntity<List<QuizAttempt>> getAllQuizAttemptsByUserId(@PathVariable int userId) {
+        List<QuizAttempt> quizAttempts = userService.getAllQuizAttemptsByUserId(userId);
+        if (quizAttempts != null) {
+            return new ResponseEntity<>(quizAttempts, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

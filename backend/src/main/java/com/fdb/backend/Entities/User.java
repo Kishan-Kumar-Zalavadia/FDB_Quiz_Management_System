@@ -68,4 +68,8 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
     private List<Course> courses;
+
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<QuizAttempt> quizAttempt;
 }

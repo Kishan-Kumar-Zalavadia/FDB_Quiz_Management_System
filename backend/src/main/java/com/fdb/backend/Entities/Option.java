@@ -29,4 +29,8 @@ public class Option {
 //    @JsonIgnore
     @JsonIgnoreProperties("options")
     private Question question;
+
+//    @ManyToMany(mappedBy = "options")
+//    @JsonIgnore
+//    private List<QuizAttempt> quizAttempts;
 }

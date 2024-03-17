@@ -1,6 +1,7 @@
 package com.fdb.backend.Services;
 
 import com.fdb.backend.Entities.Course;
+import com.fdb.backend.Entities.QuizAttempt;
 import com.fdb.backend.Entities.Role;
 import com.fdb.backend.Entities.User;
 import com.fdb.backend.Repositories.CourseRepository;
@@ -96,6 +97,19 @@ public class UserService {
         // Assign the course to the user
         user.getCourses().add(course);
         userRepository.save(user);
+    }
+
+
+    public List<QuizAttempt> getAllQuizAttemptsByUserId(int userId) {
+        // Fetch the user by userId from the repository
+        User user = userRepository.findById(userId).orElse(null);
+
+        // If the user is found, return the list of quiz attempts
+        if (user != null) {
+            return user.getQuizAttempt();
+        } else {
+            return null;
+        }
     }
 
 }
