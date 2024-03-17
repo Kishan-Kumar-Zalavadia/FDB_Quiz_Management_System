@@ -42,12 +42,12 @@ public class QuizAttempt {
 //    @JoinColumn(name = "quiz_id", nullable = false)
     private Quiz quiz;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "quiz_attempt_option",
-//            joinColumns = @JoinColumn(name = "quiz_attempt_id"),
-//            inverseJoinColumns = @JoinColumn(name = "option_id")
-//    )
-//    private List<Option> selectedOptions;
+    @ManyToMany
+    @JoinTable(
+            name = "quiz_attempt_option",
+            joinColumns = @JoinColumn(name = "quiz_attempt_id"),
+            inverseJoinColumns = @JoinColumn(name = "option_id")
+    )
+    private List<Option> selectedOptions;
 
 }

@@ -31,6 +31,5 @@ public class Option {
     private Question question;
 
 //    @ManyToMany(mappedBy = "options")
-//    @JsonIgnore
 //    private List<QuizAttempt> quizAttempts;
 }
