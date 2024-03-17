@@ -1,9 +1,11 @@
 package com.fdb.backend.Services;
 
+import com.fdb.backend.Entities.Media;
 import com.fdb.backend.Entities.Option;
 import com.fdb.backend.Entities.Question;
 import com.fdb.backend.Repositories.OptionRepository;
 import com.fdb.backend.Repositories.QuestionRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,5 +57,11 @@ public class QuestionService {
         }
 
         return savedQuestion;
+    }
+
+    public List<Media> getMediaByQuestionId(int questionId) {
+        return questionRepository.findById(questionId)
+                .orElseThrow(() -> new EntityNotFoundException("Question not found with id: " + questionId))
+                .getMediaList();
     }
 }

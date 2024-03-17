@@ -19,6 +19,35 @@
 
  -->
 
+<!-- * No Media -->
+<!-- <div class="quiz-container" *ngIf="quiz">
+  <h2 class="quiz-title">{{ quiz.quizTitle }}</h2>
+  <p class="quiz-info">Duration: {{ quiz.quizDuration }}</p>
+  <p class="quiz-info">Number of Attempts: {{ quiz.quizNumberOfAttempts }}</p>
+  <p class="quiz-info">Access Code: {{ quiz.accessCode }}</p>
+
+  <form #quizForm="ngForm" (ngSubmit)="submitQuiz()" class="quiz-form">
+    <div *ngFor="let question of quiz.questions" class="question-container">
+      <h3 class="question-text">{{ question.questionText }}</h3>
+      <ul class="options-list">
+        <li *ngFor="let option of question.options" class="option-item">
+          <label class="option-label">
+            <input
+              type="radio"
+              name="question{{ question.questionId }}"
+              [(ngModel)]="selectedOptions[question.questionId]"
+              [value]="option.optionId"
+              class="option-input"
+            />
+            <span class="option-name">{{ option.optionName }}</span>
+          </label>
+        </li>
+      </ul>
+    </div>
+    <button type="submit" class="submit-button">Submit Quiz</button>
+  </form>
+</div> -->
+
 <div class="quiz-container" *ngIf="quiz">
   <h2 class="quiz-title">{{ quiz.quizTitle }}</h2>
   <p class="quiz-info">Duration: {{ quiz.quizDuration }}</p>
@@ -28,6 +57,30 @@
   <form #quizForm="ngForm" (ngSubmit)="submitQuiz()" class="quiz-form">
     <div *ngFor="let question of quiz.questions" class="question-container">
       <h3 class="question-text">{{ question.questionText }}</h3>
+
+      <!-- Display Media -->
+      <!-- <div *ngIf="question.mediaList && question.mediaList.length > 0" class="media-container">
+        <p class="media-label">Media:</p>
+        <ul>
+          <li *ngFor="let media of question.mediaList" class="media-item">
+            <a [href]="media.mediaLink" target="_blank">{{ media.mediaLink }}</a>
+          </li>
+        </ul>
+      </div> -->
+
+      <!-- Display media as image associated with the question -->
+      <div
+        *ngIf="question.mediaList && question.mediaList.length > 0"
+        class="media-container"
+      >
+        <img
+          *ngFor="let media of question.mediaList"
+          [src]="media.mediaLink"
+          alt="Media"
+        />
+      </div>
+
+      <!-- Display Options -->
       <ul class="options-list">
         <li *ngFor="let option of question.options" class="option-item">
           <label class="option-label">

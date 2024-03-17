@@ -1,3 +1,4 @@
+import { Media } from "../mediaModel/media";
 import { Option } from "../optionModel/option";
 
 export class Question {
@@ -5,4 +6,5 @@ export class Question {
   questionText!: string;
   questionMarks!: number;
   options!: Option[];
+  mediaList!: Media[];
 }

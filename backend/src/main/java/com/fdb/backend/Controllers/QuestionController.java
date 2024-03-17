@@ -1,4 +1,5 @@
 package com.fdb.backend.Controllers;
+import com.fdb.backend.Entities.Media;
 import com.fdb.backend.Entities.Option;
 import com.fdb.backend.Entities.Question;
 import com.fdb.backend.Services.QuestionService;
@@ -57,5 +58,11 @@ public class QuestionController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
+    }
+
+    @GetMapping("/{questionId}/media")
+    public ResponseEntity<List<Media>> getMediaByQuestionId(@PathVariable int questionId) {
+        List<Media> mediaList = questionService.getMediaByQuestionId(questionId);
+        return new ResponseEntity<>(mediaList, HttpStatus.OK);
     }
 }

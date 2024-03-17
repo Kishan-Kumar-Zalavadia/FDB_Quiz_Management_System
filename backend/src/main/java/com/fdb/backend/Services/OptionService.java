@@ -1,8 +1,11 @@
 package com.fdb.backend.Services;
 
+import com.fdb.backend.Entities.Media;
 import com.fdb.backend.Entities.Option;
 import com.fdb.backend.Entities.Question;
 import com.fdb.backend.Repositories.OptionRepository;
+import com.fdb.backend.Repositories.QuestionRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -19,6 +22,7 @@ public class OptionService {
 
     @Autowired
     private QuestionService questionService;
+
 
     public List<Option> getOptionsByQuestionId(Long questionId) {
         return optionRepository.findByQuestionQuestionId(questionId);
@@ -52,4 +56,6 @@ public class OptionService {
         }
         return score;
     }
+
+
 }
