@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Quiz } from 'src/app/models/quizModel/quiz';
 import { QuizService } from 'src/app/services/quizService/quiz.service';
 
@@ -11,15 +10,14 @@ import { QuizService } from 'src/app/services/quizService/quiz.service';
 })
 export class TakeQuizComponent implements OnInit {
   quiz = new Quiz();
-  formBuilder: any;
-  quizForm: any;
   selectedOptions: { [questionId: number]: number } = {};
   selectedOptionIDs!: number[];
   score: number = 0;
 
   constructor(
     private route: ActivatedRoute,
-    private quizService: QuizService
+    private quizService: QuizService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +42,12 @@ export class TakeQuizComponent implements OnInit {
       .subscribe((score) => {
         this.score = score;
         console.log('Score:', this.score);
+        this.alert(this.score);
       });
+  }
+
+  alert(score: number): void {
+    alert('Your quiz score is: ' + score);
+    this.router.navigate(['/home']);
   }
 }
