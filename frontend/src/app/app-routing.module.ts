@@ -8,6 +8,7 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { CourseComponent } from './components/course/course/course.component';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { TakeQuizComponent } from './components/take-quiz/take-quiz.component';
+import { AttemptsComponent } from './components/attempts/attempts.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'feedback', component: FeedbackComponent },
       { path: 'course', component: CourseComponent },
       { path: 'quizzes', component: QuizComponent },
+      { path: 'attempts', component: AttemptsComponent },
     ],
   },
   { path: 'quizzes/:quizId', component: TakeQuizComponent },

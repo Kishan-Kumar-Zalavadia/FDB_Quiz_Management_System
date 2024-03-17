@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { QuizAttempt } from 'src/app/models/attemptModel/attempt';
 import { User } from 'src/app/models/userModel/user';
 
 @Injectable({
@@ -40,4 +41,11 @@ export class UserService {
   //   const url = `${this.apiUrl}/update/${updatedUser.id}`;
   //   return this._http.put<User>(url, updatedUser);
   // }
+
+  // Method to fetch quiz attempts by user ID
+  getQuizAttemptsByUserId(userId: number): Observable<QuizAttempt[]> {
+    return this._http.get<QuizAttempt[]>(
+      `${this.usersUrl}/${userId}/quiz-attempts`
+    );
+  }
 }

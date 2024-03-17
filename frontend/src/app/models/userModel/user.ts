@@ -1,3 +1,4 @@
+import { QuizAttempt } from '../attemptModel/attempt';
 import { Course } from '../courseModel/course';
 import { Profile } from '../profileModel/profile';
 import { Role } from '../roleModel/role';
@@ -11,4 +12,5 @@ export class User {
   role!: Role;
 
   courses!: Course[];
+  attempts!: QuizAttempt[];
 }

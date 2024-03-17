@@ -15,6 +15,7 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { CourseComponent } from './components/course/course/course.component';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { TakeQuizComponent } from './components/take-quiz/take-quiz.component';
+import { AttemptsComponent } from './components/attempts/attempts.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { TakeQuizComponent } from './components/take-quiz/take-quiz.component';
     CourseComponent,
     QuizComponent,
     TakeQuizComponent,
+    AttemptsComponent,
   ],
   imports: [
     BrowserModule,
