@@ -78,20 +78,37 @@ export class TakeQuizComponent implements OnInit {
       selectedOptions: [],
     };
 
+    // this.quizService
+    //   .saveQuizAttempt(
+    //     this.user.userID,
+    //     this.quiz.quizId,
+    //     quizAttempt,
+    //     this.selectedOptionIDs
+    //   )
+    //   .subscribe(
+    //     (savedAttempt) => {
+    //       console.log('Quiz attempt saved:', savedAttempt);
+    //       this.calculateScore();
+    //     },
+    //     (error) => {
+    //       console.error('Error saving quiz attempt:', error);
+    //     }
+    //   );
     this.quizService
       .saveQuizAttempt(
         this.user.userID,
         this.quiz.quizId,
-        quizAttempt,
+        4,
         this.selectedOptionIDs
       )
       .subscribe(
         (savedAttempt) => {
           console.log('Quiz attempt saved:', savedAttempt);
-          this.calculateScore();
+          // Handle success response
         },
         (error) => {
           console.error('Error saving quiz attempt:', error);
+          // Handle error response
         }
       );
   }

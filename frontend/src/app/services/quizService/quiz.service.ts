@@ -37,27 +37,38 @@ export class QuizService {
   }
 
   // * Quiz Attempt
+  // saveQuizAttempt(
+  //   userId: number,
+  //   quizId: number,
+  //   quizAttempt: QuizAttempt,
+  //   optionIds: number[]
+  // ): Observable<QuizAttempt> {
+  //   return this.http.post<QuizAttempt>(
+  //     `${this.apiUrl}/quiz-attempts/save/user/${userId}/quiz/${quizId}`,
+  //     { quizAttempt, optionIds }
+  //   );
+  // }
+
+  // * Quiz Attempt without options
+  //   saveQuizAttempt(
+  //     userId: number,
+  //     quizId: number,
+  //     quizAttempt: QuizAttempt,
+  //   ): Observable<QuizAttempt> {
+  //     return this.http.post<QuizAttempt>(
+  //       `${this.apiUrl}/quiz-attempts/save/user/${userId}/quiz/${quizId}`,
+  //       { quizAttempt }
+  //     );
+  //   }
+
+  // * Quiz Attempt with options
   saveQuizAttempt(
     userId: number,
     quizId: number,
-    quizAttempt: QuizAttempt,
+    attemptNumber: number,
     optionIds: number[]
   ): Observable<QuizAttempt> {
-    return this.http.post<QuizAttempt>(
-      `${this.apiUrl}/quiz-attempts/save/user/${userId}/quiz/${quizId}`,
-      { quizAttempt, optionIds }
-    );
+    const url = `${this.apiUrl}/quiz-attempts/save/user/${userId}/quiz/${quizId}/attempt/${attemptNumber}`;
+    return this.http.post<QuizAttempt>(url, optionIds);
   }
-
-  // * Quiz Attempt without options
-//   saveQuizAttempt(
-//     userId: number,
-//     quizId: number,
-//     quizAttempt: QuizAttempt,
-//   ): Observable<QuizAttempt> {
-//     return this.http.post<QuizAttempt>(
-//       `${this.apiUrl}/quiz-attempts/save/user/${userId}/quiz/${quizId}`,
-//       { quizAttempt }
-//     );
-//   }
 }
