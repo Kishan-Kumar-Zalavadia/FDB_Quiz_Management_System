@@ -73,7 +73,10 @@ export class TakeQuizComponent implements OnInit {
           // Handle success response
         },
         (error) => {
-          console.error('Error fetching highest attempt number:', error);
+          // console.error('Error fetching highest attempt number:', error);
+          this.highestAttemptNumber=0;
+          console.log('Highest attempt number:', this.highestAttemptNumber);
+
           // Handle error response
         }
       );
