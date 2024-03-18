@@ -17,6 +17,7 @@ export class TakeQuizComponent implements OnInit {
   selectedOptions: { [questionId: number]: number } = {};
   selectedOptionIDs!: number[];
   score: number = 0;
+  highestAttemptNumber: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,8 +30,8 @@ export class TakeQuizComponent implements OnInit {
     this.getQuiz();
     this.getUser();
     console.log('From Quiz:' + this.quiz.quizId);
+    this.getHighestAttemptNumber();
   }
-  
 
   getQuiz() {
     this.quiz = this.quizService.getQuiz();
@@ -62,6 +63,22 @@ export class TakeQuizComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
+  getHighestAttemptNumber(): void {
+    this.quizService
+      .getHighestAttemptNumber(this.user.userID, this.quiz.quizId)
+      .subscribe(
+        (highestAttemptNumber) => {
+          this.highestAttemptNumber = highestAttemptNumber;
+          console.log('Highest attempt number:', highestAttemptNumber);
+          // Handle success response
+        },
+        (error) => {
+          console.error('Error fetching highest attempt number:', error);
+          // Handle error response
+        }
+      );
+  }
+
   saveQuizAttempt(): void {
     const currentTime = new Date(); // Assuming you want to set the current time as startTime and endTime
 
@@ -78,27 +95,11 @@ export class TakeQuizComponent implements OnInit {
       selectedOptions: [],
     };
 
-    // this.quizService
-    //   .saveQuizAttempt(
-    //     this.user.userID,
-    //     this.quiz.quizId,
-    //     quizAttempt,
-    //     this.selectedOptionIDs
-    //   )
-    //   .subscribe(
-    //     (savedAttempt) => {
-    //       console.log('Quiz attempt saved:', savedAttempt);
-    //       this.calculateScore();
-    //     },
-    //     (error) => {
-    //       console.error('Error saving quiz attempt:', error);
-    //     }
-    //   );
     this.quizService
       .saveQuizAttempt(
         this.user.userID,
         this.quiz.quizId,
-        4,
+        this.highestAttemptNumber + 1,
         this.selectedOptionIDs
       )
       .subscribe(

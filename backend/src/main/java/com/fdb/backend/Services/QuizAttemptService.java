@@ -183,4 +183,9 @@ public class QuizAttemptService {
         // Save the modified quizAttempt object
         return quizAttemptRepository.save(quizAttempt);
     }
+
+    public int getHighestAttemptNumber(int userId, int quizId) {
+        Optional<Integer> highestAttemptNumber = quizAttemptRepository.findHighestAttemptNumber(userId, quizId);
+        return highestAttemptNumber.orElse(-1);
+    }
 }

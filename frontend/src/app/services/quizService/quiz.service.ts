@@ -71,4 +71,9 @@ export class QuizService {
     const url = `${this.apiUrl}/quiz-attempts/save/user/${userId}/quiz/${quizId}/attempt/${attemptNumber}`;
     return this.http.post<QuizAttempt>(url, optionIds);
   }
+
+  getHighestAttemptNumber(userId: number, quizId: number): Observable<number> {
+    const url = `${this.apiUrl}/quiz-attempts/user/${userId}/quiz/${quizId}/highestAttemptNumber`;
+    return this.http.get<number>(url);
+  }
 }

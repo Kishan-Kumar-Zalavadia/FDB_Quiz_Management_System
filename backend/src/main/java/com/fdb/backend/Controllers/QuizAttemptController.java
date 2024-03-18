@@ -90,6 +90,16 @@ public class QuizAttemptController {
         }
     }
 
-
+    @GetMapping("/user/{userId}/quiz/{quizId}/highestAttemptNumber")
+    public ResponseEntity<Integer> getHighestAttemptNumber(
+            @PathVariable int userId,
+            @PathVariable int quizId) {
+        int highestAttemptNumber = quizAttemptService.getHighestAttemptNumber(userId, quizId);
+        if (highestAttemptNumber != -1) {
+            return ResponseEntity.ok(highestAttemptNumber);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(0);
+        }
+    }
 
 }
