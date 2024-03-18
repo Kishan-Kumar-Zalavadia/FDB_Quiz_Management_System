@@ -7,9 +7,9 @@ import { Option } from '../optionModel/option';
 export class QuizAttempt {
   quizAttemptId!: number;
   attemptNumber!: number;
-  startTime!: Time;
-  endTime!: Time;
-  attemptDate!: Date;
+  startTime?: Time;
+  endTime?: Time;
+  attemptDate?: Date;
 
 
   user!: User;

@@ -23,7 +23,7 @@ export class QuizComponent implements OnInit {
 
   takeQuiz(quiz: Quiz): void {
     this.quizService.setQuiz(quiz);
-    console.log("Quiz set to " + JSON.stringify(quiz));
+    console.log('Quiz set to ' + quiz.quizId);
     this.router.navigate(['/quizzes', quiz.quizId]);
   }
 }

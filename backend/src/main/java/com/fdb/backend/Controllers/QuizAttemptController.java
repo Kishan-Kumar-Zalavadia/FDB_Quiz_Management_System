@@ -7,10 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.*;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/quiz-attempts")
 public class QuizAttemptController {
 
@@ -27,17 +30,66 @@ public class QuizAttemptController {
 //        }
 //    }
 
-    @PostMapping("/save/user/{userId}/quiz/{quizId}")
-    public ResponseEntity<QuizAttempt> saveQuizAttempt(@PathVariable int userId, @PathVariable int quizId, @RequestBody QuizAttempt quizAttempt) {
-        List<Integer> optionIds = new ArrayList<>();
-        optionIds.add(3);
-        optionIds.add(4);
-        QuizAttempt savedAttempt = quizAttemptService.saveQuizAttempt(userId, quizId, quizAttempt, optionIds);
+//    @PostMapping("/save/user/{userId}/quiz/{quizId}")
+//    public ResponseEntity<QuizAttempt> saveQuizAttempt(@PathVariable int userId, @PathVariable int quizId, @RequestBody QuizAttempt quizAttempt, @RequestBody List<Integer> optionIds) {
+//        QuizAttempt savedAttempt = quizAttemptService.saveQuizAttempt(userId, quizId, quizAttempt, optionIds);
+//        if (savedAttempt != null) {
+//            return new ResponseEntity<>(savedAttempt, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
+
+
+//    @PostMapping("/save/user/{userId}/quiz/{quizId}")
+//    public ResponseEntity<QuizAttempt> saveQuizAttempt(@PathVariable int userId, @PathVariable int quizId, @RequestBody QuizAttempt quizAttempt) {
+//        List<Integer> optionIds = new ArrayList<>();
+//        optionIds.add(3);
+//        optionIds.add(4);
+//        QuizAttempt savedAttempt = quizAttemptService.saveQuizAttempt(userId, quizId, quizAttempt, optionIds);
+//        if (savedAttempt != null) {
+//            return new ResponseEntity<>(savedAttempt, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
+
+//    @PostMapping("/save/user/{userId}/quiz/{quizId}/attemptNumber/{attemptNumber}/from/{from}/to/{to}/on/{on}")
+//    public ResponseEntity<QuizAttempt> saveQuizAttempt(@PathVariable int userId, @PathVariable int quizId, @PathVariable int attemptNumber, @PathVariable Time from, @PathVariable Time to, @PathVariable Date on , @RequestBody List<Integer> optionIds) {
+//        QuizAttempt savedAttempt = quizAttemptService.saveQuizAttempt(userId, quizId, attemptNumber,from,to,on, optionIds);
+//        if (savedAttempt != null) {
+//            return new ResponseEntity<>(savedAttempt, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
+//@PostMapping("/save/user/{userId}/quiz/{quizId}/attempt/{attemptNumber}")
+//public ResponseEntity<QuizAttempt> saveQuizAttempt(@PathVariable int userId, @PathVariable int quizId, @PathVariable int attemptNumber, @RequestBody Integer[] optionIds) {
+//    List<Integer> optionIdList = Arrays.asList(optionIds);
+//    QuizAttempt savedAttempt = quizAttemptService.saveQuizAttempt(userId, quizId, attemptNumber, optionIdList);
+//    if (savedAttempt != null) {
+//        return new ResponseEntity<>(savedAttempt, HttpStatus.OK);
+//    } else {
+//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//    }
+//}
+
+    @PostMapping("/save/user/{userId}/quiz/{quizId}/attempt/{attemptNumber}")
+    public ResponseEntity<QuizAttempt> saveQuizAttempt(
+            @PathVariable int userId,
+            @PathVariable int quizId,
+            @PathVariable int attemptNumber,
+            @RequestBody Integer[] optionIds) {
+        List<Integer> optionIdList = Arrays.asList(optionIds);
+        QuizAttempt savedAttempt = quizAttemptService.saveQuizAttempt(userId, quizId, attemptNumber, optionIdList);
+        System.out.print("Yoyyo:"+savedAttempt);
         if (savedAttempt != null) {
             return new ResponseEntity<>(savedAttempt, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+
 
 }

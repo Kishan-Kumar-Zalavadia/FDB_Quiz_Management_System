@@ -11,7 +11,7 @@ export class UserService {
   currentUser = new User();
 
   setUser(user: User) {
-    console.log('User set as: ' + JSON.stringify(user));
+    console.log('User set as: ' + user.userID);
     this.currentUser = user;
   }
   getUser() {

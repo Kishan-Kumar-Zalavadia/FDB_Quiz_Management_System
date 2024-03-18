@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { QuizAttempt } from 'src/app/models/attemptModel/attempt';
 import { Quiz } from 'src/app/models/quizModel/quiz';
 
 @Injectable({
@@ -34,4 +35,29 @@ export class QuizService {
       selectedOptionIds
     );
   }
+
+  // * Quiz Attempt
+  saveQuizAttempt(
+    userId: number,
+    quizId: number,
+    quizAttempt: QuizAttempt,
+    optionIds: number[]
+  ): Observable<QuizAttempt> {
+    return this.http.post<QuizAttempt>(
+      `${this.apiUrl}/quiz-attempts/save/user/${userId}/quiz/${quizId}`,
+      { quizAttempt, optionIds }
+    );
+  }
+
+  // * Quiz Attempt without options
+//   saveQuizAttempt(
+//     userId: number,
+//     quizId: number,
+//     quizAttempt: QuizAttempt,
+//   ): Observable<QuizAttempt> {
+//     return this.http.post<QuizAttempt>(
+//       `${this.apiUrl}/quiz-attempts/save/user/${userId}/quiz/${quizId}`,
+//       { quizAttempt }
+//     );
+//   }
 }
