@@ -1,13 +1,7 @@
 package com.fdb.backend.Services;
 
-import com.fdb.backend.Entities.Option;
-import com.fdb.backend.Entities.Quiz;
-import com.fdb.backend.Entities.QuizAttempt;
-import com.fdb.backend.Entities.User;
-import com.fdb.backend.Repositories.OptionRepository;
-import com.fdb.backend.Repositories.QuizAttemptRepository;
-import com.fdb.backend.Repositories.QuizRepository;
-import com.fdb.backend.Repositories.UserRepository;
+import com.fdb.backend.Entities.*;
+import com.fdb.backend.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,109 +29,11 @@ public class QuizAttemptService {
     @Autowired
     private OptionRepository optionRepository;
 
-//    public QuizAttempt saveQuizAttempt(int userId, int quizId, QuizAttempt quizAttempt) {
-//        // Fetch user and quiz from database
-//        User user = userRepository.findById(userId).orElse(null);
-//        Quiz quiz = quizRepository.findById(quizId).orElse(null);
-//
-//        // Check if user and quiz exist
-//        if (user == null || quiz == null) {
-//            return null;
-//        }
-//
-//        // Set user and quiz in the quizAttempt object
-//        quizAttempt.setUser(user);
-//        quizAttempt.setQuiz(quiz);
-//
-//        // Save and return quiz attempt
-//        return quizAttemptRepository.save(quizAttempt);
-//    }
+    @Autowired
+    private ResultRepository resultRepository;
 
-////    public QuizAttempt saveQuizAttempt(int userId, int quizId, QuizAttempt quizAttempt, List<Integer> optionIds) {
-////        // Retrieve user from the database based on userId
-////        Optional<User> optionalUser = userRepository.findById(userId);
-////        if (!optionalUser.isPresent()) {
-////            // Handle user not found scenario
-////            return null;
-////        }
-////        User user = optionalUser.get();
-////
-////        // Retrieve quiz from the database based on quizId
-////        Optional<Quiz> optionalQuiz = quizRepository.findById(quizId);
-////        if (!optionalQuiz.isPresent()) {
-////            // Handle quiz not found scenario
-////            return null;
-////        }
-////        Quiz quiz = optionalQuiz.get();
-////
-////        // Set user and quiz in the quizAttempt object
-////        quizAttempt.setUser(user);
-////        quizAttempt.setQuiz(quiz);
-////
-////        // Fetch option objects from the database based on optionIds
-////        List<Option> selectedOptions = new ArrayList<>();
-////        for (Integer optionId : optionIds) {
-////            Optional<Option> optionalOption = optionRepository.findById(optionId);
-////            if (optionalOption.isPresent()) {
-////                selectedOptions.add(optionalOption.get());
-////            } else {
-////                // Handle option not found scenario
-////                return null;
-////            }
-////        }
-//
-//        // Set selected options in the quizAttempt object
-//        quizAttempt.setSelectedOptions(selectedOptions);
-//
-//        // Save the modified quizAttempt object
-//        return quizAttemptRepository.save(quizAttempt);
-//    }
 
-//    public QuizAttempt saveQuizAttempt(int userId, int quizId, int attemptNumber, Time from, Time to, Date on, List<Integer> optionIds) {
-//        // Retrieve user from the database based on userId
-//        Optional<User> optionalUser = userRepository.findById(userId);
-//        if (!optionalUser.isPresent()) {
-//            // Handle user not found scenario
-//            return null;
-//        }
-//        User user = optionalUser.get();
-//
-//        // Retrieve quiz from the database based on quizId
-//        Optional<Quiz> optionalQuiz = quizRepository.findById(quizId);
-//        if (!optionalQuiz.isPresent()) {
-//            // Handle quiz not found scenario
-//            return null;
-//        }
-//        Quiz quiz = optionalQuiz.get();
-//
-//        QuizAttempt quizAttempt = new QuizAttempt();
-//        quizAttempt.setUser(user);
-//        quizAttempt.setQuiz(quiz);
-//        quizAttempt.setAttemptNumber(attemptNumber);
-//        quizAttempt.setStartTime(from);
-//        quizAttempt.setEndTime(to);
-//        quizAttempt.setAttemptDate(on);
-//
-//        // Fetch option objects from the database based on optionIds
-//        List<Option> selectedOptions = new ArrayList<>();
-//        for (Integer optionId : optionIds) {
-//            Optional<Option> optionalOption = optionRepository.findById(optionId);
-//            if (optionalOption.isPresent()) {
-//                selectedOptions.add(optionalOption.get());
-//            } else {
-//                // Handle option not found scenario
-//                return null;
-//            }
-//        }
-//
-//        // Set selected options in the quizAttempt object
-//        quizAttempt.setSelectedOptions(selectedOptions);
-//
-//        // Save the modified quizAttempt object
-//        return quizAttemptRepository.save(quizAttempt);
-//    }
-
-    public QuizAttempt saveQuizAttempt(int userId, int quizId, int attemptNumber, List<Integer> optionIds) {
+    public QuizAttempt saveQuizAttempt(int userId, int quizId, int attemptNumber, List<Integer> optionIds, int score) {
         // Retrieve user from the database based on userId
         Optional<User> optionalUser = userRepository.findById(userId);
         if (!optionalUser.isPresent()) {
@@ -156,6 +52,11 @@ public class QuizAttemptService {
 
         LocalTime currentTime = LocalTime.now();
         LocalDate currentDate = LocalDate.now();
+
+        // Save the score
+        Result result = new Result();
+        result.setResultScore(score);
+        result = resultRepository.save(result); // Save the result and get the managed entity
 
         QuizAttempt quizAttempt = new QuizAttempt();
         quizAttempt.setUser(user);
@@ -176,13 +77,15 @@ public class QuizAttemptService {
             }
         }
 
+        quizAttempt.setResult(result); // Associate the result with the quizAttempt
+
         // Set selected options in the quizAttempt object
         quizAttempt.setSelectedOptions(selectedOptions);
-        System.out.println("Yo:"+quizAttempt);
 
         // Save the modified quizAttempt object
         return quizAttemptRepository.save(quizAttempt);
     }
+
 
     public int getHighestAttemptNumber(int userId, int quizId) {
         Optional<Integer> highestAttemptNumber = quizAttemptRepository.findHighestAttemptNumber(userId, quizId);

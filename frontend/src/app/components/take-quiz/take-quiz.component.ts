@@ -103,7 +103,8 @@ export class TakeQuizComponent implements OnInit {
         this.user.userID,
         this.quiz.quizId,
         this.highestAttemptNumber + 1,
-        this.selectedOptionIDs
+        this.score,
+        this.selectedOptionIDs,
       )
       .subscribe(
         (savedAttempt) => {

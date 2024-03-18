@@ -50,4 +50,6 @@ public class QuizAttempt {
     )
     private List<Option> selectedOptions;
 
+    @OneToOne
+    private Result result;
 }

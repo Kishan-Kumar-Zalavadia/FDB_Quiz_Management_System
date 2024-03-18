@@ -74,14 +74,15 @@ public class QuizAttemptController {
 //    }
 //}
 
-    @PostMapping("/save/user/{userId}/quiz/{quizId}/attempt/{attemptNumber}")
+    @PostMapping("/save/user/{userId}/quiz/{quizId}/attempt/{attemptNumber}/score/{score}")
     public ResponseEntity<QuizAttempt> saveQuizAttempt(
             @PathVariable int userId,
             @PathVariable int quizId,
             @PathVariable int attemptNumber,
+            @PathVariable int score,
             @RequestBody Integer[] optionIds) {
         List<Integer> optionIdList = Arrays.asList(optionIds);
-        QuizAttempt savedAttempt = quizAttemptService.saveQuizAttempt(userId, quizId, attemptNumber, optionIdList);
+        QuizAttempt savedAttempt = quizAttemptService.saveQuizAttempt(userId, quizId, attemptNumber, optionIdList, score);
         System.out.print("Yoyyo:"+savedAttempt);
         if (savedAttempt != null) {
             return new ResponseEntity<>(savedAttempt, HttpStatus.OK);

@@ -66,9 +66,10 @@ export class QuizService {
     userId: number,
     quizId: number,
     attemptNumber: number,
+    score: number,
     optionIds: number[]
   ): Observable<QuizAttempt> {
-    const url = `${this.apiUrl}/quiz-attempts/save/user/${userId}/quiz/${quizId}/attempt/${attemptNumber}`;
+    const url = `${this.apiUrl}/quiz-attempts/save/user/${userId}/quiz/${quizId}/attempt/${attemptNumber}/score/${score}`;
     return this.http.post<QuizAttempt>(url, optionIds);
   }
 
