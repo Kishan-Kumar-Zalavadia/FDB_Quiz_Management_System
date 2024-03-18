@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuizAttempt } from 'src/app/models/attemptModel/attempt';
 import { Quiz } from 'src/app/models/quizModel/quiz';
+import { Result } from 'src/app/models/resultModel/result';
 import { User } from 'src/app/models/userModel/user';
 import { QuizService } from 'src/app/services/quizService/quiz.service';
 import { UserService } from 'src/app/services/userService/user.service';
@@ -45,7 +46,6 @@ export class TakeQuizComponent implements OnInit {
     this.selectedOptionIDs = Object.values(this.selectedOptions);
     console.log('Selected Option IDs:', this.selectedOptionIDs);
     this.calculateScore();
-    this.saveQuizAttempt();
   }
 
   calculateScore(): void {
@@ -54,8 +54,10 @@ export class TakeQuizComponent implements OnInit {
       .subscribe((score) => {
         this.score = score;
         console.log('Score:', this.score);
+        this.saveQuizAttempt(score);
         this.alert(this.score);
       });
+
   }
 
   alert(score: number): void {
@@ -82,28 +84,31 @@ export class TakeQuizComponent implements OnInit {
       );
   }
 
-  saveQuizAttempt(): void {
+  saveQuizAttempt(score: number): void {
     const currentTime = new Date(); // Assuming you want to set the current time as startTime and endTime
-
+    console.log('Saving quiz score'+score)
     // Create a new QuizAttempt object
-    const quizAttempt: QuizAttempt = {
-      quizAttemptId: 0, // This value will be assigned by the backend upon creation
-      attemptNumber: 1, // Assuming attemptNumber starts from 1
-      // startTime: new Date().getTime(),
-      // endTime: ,
-      attemptDate: new Date(), // Set attemptDate to current date
+    // const quizAttempt: QuizAttempt = {
+    //   quizAttemptId: 0, // This value will be assigned by the backend upon creation
+    //   attemptNumber: 1, // Assuming attemptNumber starts from 1
 
-      user: this.userService.getUser(),
-      quiz: this.quizService.getQuiz(),
-      selectedOptions: [],
-    };
+
+    //   // startTime: new Date().getTime(),
+    //   // endTime: ,
+    //   attemptDate: new Date(), // Set attemptDate to current date
+
+    //   user: this.userService.getUser(),
+    //   quiz: this.quizService.getQuiz(),
+    //   selectedOptions: [],
+    //   result: new Result
+    // };
 
     this.quizService
       .saveQuizAttempt(
         this.user.userID,
         this.quiz.quizId,
         this.highestAttemptNumber + 1,
-        this.score,
+        score,
         this.selectedOptionIDs,
       )
       .subscribe(
