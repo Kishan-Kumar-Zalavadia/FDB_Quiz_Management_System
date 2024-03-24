@@ -23,6 +23,7 @@ export class AddCourseComponent {
     if (!this.course.courseName.trim()) {
       return;
     }
+    this.course.professor = this.userService.getUser();
     this.courseService.saveCourse(this.course).subscribe((savedCourse) => {
       console.log('Course added:', savedCourse);
       this.course = new Course();

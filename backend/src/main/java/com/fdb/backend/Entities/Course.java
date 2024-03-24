@@ -27,4 +27,7 @@ public class Course {
     @ManyToMany(mappedBy = "courses")
     @JsonIgnore
     private List<Department> departments;
+
+    @ManyToOne
+    private User professor;
 }
