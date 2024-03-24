@@ -22,9 +22,13 @@ export class UserService {
 
   private usersUrl = 'http://localhost:9292/users';
 
-  public getUserByIDFromRemote(userID: number): Observable<any> {
+  // public getUserByIDFromRemote(userID: number): Observable<any> {
+  //   const url = `${this.usersUrl}/${userID}`;
+  //   return this._http.get<any>(url);
+  // }
+  public getUserByIDFromRemote(userID: number): Observable<User> {
     const url = `${this.usersUrl}/${userID}`;
-    return this._http.get<any>(url);
+    return this._http.get<User>(url);
   }
 
   // //* ------------------------------------------------------------------------------------------------

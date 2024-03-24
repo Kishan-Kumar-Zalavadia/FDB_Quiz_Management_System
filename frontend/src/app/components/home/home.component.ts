@@ -20,7 +20,7 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.user = this._userService.getUser();
-    console.log(this.user.role.roleID);
-  }
 
+    if (this.user.userID === undefined) this._router.navigate(['/login']);
+  }
 }
