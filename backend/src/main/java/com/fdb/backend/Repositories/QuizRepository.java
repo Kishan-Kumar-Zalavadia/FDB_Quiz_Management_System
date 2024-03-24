@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface QuizRepository extends JpaRepository<Quiz,Integer> {
     List<Question> findByQuizId(int quizId);
+    List<Quiz> findAllByCourse_CourseId(int courseId);
 }

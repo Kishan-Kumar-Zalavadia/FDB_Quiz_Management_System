@@ -1,4 +1,5 @@
 import { QuizAttempt } from "../attemptModel/attempt";
+import { Course } from "../courseModel/course";
 import { Question } from "../questionModel/question";
 
 export class Quiz {
@@ -13,6 +14,7 @@ export class Quiz {
   instruction!: string;
   questions!: Question[];
   attempt!: QuizAttempt[];
+  course!: Course;
 }
 
 

@@ -37,4 +37,7 @@ public class Course {
 
     @ManyToOne
     private User professor;
+
+//    @OneToMany
+//    private List<Quiz> quizzes;
 }

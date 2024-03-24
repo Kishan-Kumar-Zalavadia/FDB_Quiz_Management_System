@@ -2,6 +2,7 @@ package com.fdb.backend.Controllers;
 
 import com.fdb.backend.Entities.Course;
 import com.fdb.backend.Entities.Department;
+import com.fdb.backend.Entities.Quiz;
 import com.fdb.backend.Services.CourseService;
 import com.fdb.backend.Services.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -54,4 +54,18 @@ public class QuizController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
+
+    // Endpoint to assign course to quiz
+    @PostMapping("/{quizId}/assign-course/{courseId}")
+    public ResponseEntity<String> assignCourseToQuiz(@PathVariable int quizId, @PathVariable int courseId) {
+        quizService.assignCourseToQuiz(quizId, courseId);
+        return new ResponseEntity<>("Course assigned to quiz successfully", HttpStatus.OK);
+    }
+
+    // Endpoint to get all quizzes by course ID
+    @GetMapping("/course/{courseId}")
+    public ResponseEntity<List<Quiz>> getAllQuizzesByCourseId(@PathVariable int courseId) {
+        List<Quiz> quizzes = quizService.getAllQuizzesByCourseId(courseId);
+        return new ResponseEntity<>(quizzes, HttpStatus.OK);
+    }
 }

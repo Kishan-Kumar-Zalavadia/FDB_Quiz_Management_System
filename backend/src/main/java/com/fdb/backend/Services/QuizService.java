@@ -1,7 +1,9 @@
 package com.fdb.backend.Services;
 
+import com.fdb.backend.Entities.Course;
 import com.fdb.backend.Entities.Question;
 import com.fdb.backend.Entities.Quiz;
+import com.fdb.backend.Repositories.CourseRepository;
 import com.fdb.backend.Repositories.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,9 @@ public class QuizService {
     public QuizService(QuizRepository quizRepository) {
         this.quizRepository = quizRepository;
     }
+
+    @Autowired
+    private CourseRepository courseRepository;
 
     public List<Quiz> getAllQuizzes() {
         return quizRepository.findAll();
@@ -43,6 +48,21 @@ public class QuizService {
     public Quiz getById(int id) {
         Optional<Quiz> optionalQuiz = quizRepository.findById(id);
         return optionalQuiz.orElse(null);
+    }
+
+    public void assignCourseToQuiz(int quizId, int courseId) {
+        Quiz quiz = quizRepository.findById(quizId)
+                .orElseThrow(() -> new IllegalArgumentException("Quiz not found with ID: " + quizId));
+
+        Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new IllegalArgumentException("Course not found with ID: " + courseId));
+
+        quiz.setCourse(course);
+        quizRepository.save(quiz);
+    }
+
+    public List<Quiz> getAllQuizzesByCourseId(int courseId) {
+        return quizRepository.findAllByCourse_CourseId(courseId);
     }
 }
 
