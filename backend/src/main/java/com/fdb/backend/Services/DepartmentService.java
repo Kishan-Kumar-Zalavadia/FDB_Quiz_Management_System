@@ -28,4 +28,8 @@ public class DepartmentService {
     public Optional<Department> fetchDepartmentById(Integer departmentID) {
         return departmentRepository.findById(departmentID);
     }
+
+    public Optional<Department> getDepartmentById(int departmentId) {
+        return departmentRepository.findById(departmentId);
+    }
 }

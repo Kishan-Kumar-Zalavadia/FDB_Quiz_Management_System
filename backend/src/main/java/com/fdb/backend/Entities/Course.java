@@ -24,8 +24,15 @@ public class Course {
     @JsonIgnore
     private List<User> users;
 
-    @ManyToMany(mappedBy = "courses")
-    @JsonIgnore
+//    @ManyToMany(mappedBy = "courses")
+//    private List<Department> departments;
+
+    @ManyToMany
+    @JoinTable(
+            name = "department_course",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "department_id")
+    )
     private List<Department> departments;
 
     @ManyToOne

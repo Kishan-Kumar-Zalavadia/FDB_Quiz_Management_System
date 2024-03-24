@@ -1,12 +1,16 @@
 package com.fdb.backend.Controllers;
 
 import com.fdb.backend.Entities.Course;
+import com.fdb.backend.Entities.Department;
 import com.fdb.backend.Services.CourseService;
+import com.fdb.backend.Services.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +24,9 @@ public class CourseController {
     public CourseController(CourseService courseService) {
         this.courseService = courseService;
     }
+
+    @Autowired
+    private DepartmentService departmentService;
 
     @GetMapping("")
     public ResponseEntity<List<Course>> getAllCourses() {
@@ -50,4 +57,18 @@ public class CourseController {
     public List<Course> getAllCoursesByUserId(@PathVariable int userId) {
         return courseService.getAllCoursesByUserId(userId);
     }
+    @PostMapping("/{courseId}/assign-departments")
+    public ResponseEntity<String> assignDepartmentsToCourse(@PathVariable int courseId, @RequestBody Integer[] departmentIds) {
+        try {
+            // Convert the array to an ArrayList
+            List<Integer> departmentIdList = Arrays.asList(departmentIds);
+
+            courseService.assignDepartmentsToCourse(courseId, departmentIdList);
+
+            return ResponseEntity.ok("Departments assigned to course successfully");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
 }

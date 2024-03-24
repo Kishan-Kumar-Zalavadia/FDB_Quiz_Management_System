@@ -1,4 +1,5 @@
 package com.fdb.backend.Entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,11 +20,12 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer departmentID;
     private String departmentName;
-    @ManyToMany
-    @JoinTable(
-            name = "department_course",
-            joinColumns = @JoinColumn(name = "department_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id")
-    )
-    private List<Course> courses;
+//    @ManyToMany
+//    @JsonIgnore
+//    @JoinTable(
+//            name = "department_course",
+//            joinColumns = @JoinColumn(name = "department_id"),
+//            inverseJoinColumns = @JoinColumn(name = "course_id")
+//    )
+//    private List<Course> courses;
 }

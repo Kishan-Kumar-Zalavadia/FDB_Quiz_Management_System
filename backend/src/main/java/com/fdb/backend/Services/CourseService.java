@@ -1,12 +1,15 @@
 package com.fdb.backend.Services;
 
 import com.fdb.backend.Entities.Course;
+import com.fdb.backend.Entities.Department;
 import com.fdb.backend.Entities.User;
 import com.fdb.backend.Repositories.CourseRepository;
+import com.fdb.backend.Repositories.DepartmentRepository;
 import com.fdb.backend.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,6 +22,9 @@ public class CourseService {
     public CourseService(CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
     }
+
+    @Autowired
+    private DepartmentRepository departmentRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -62,4 +68,33 @@ public class CourseService {
 
         return notEnrolledCourses;
     }
+
+    public Course assignDepartmentsToCourse(int courseId, List<Integer> departmentIds) {
+        // Retrieve course from the database based on courseId
+        Optional<Course> optionalCourse = courseRepository.findById(courseId);
+        if (!optionalCourse.isPresent()) {
+            // Handle course not found scenario
+            return null;
+        }
+        Course course = optionalCourse.get();
+
+        // Fetch department objects from the database based on departmentIds
+        List<Department> departments = new ArrayList<>();
+        for (Integer departmentId : departmentIds) {
+            Optional<Department> optionalDepartment = departmentRepository.findById(departmentId);
+            if (optionalDepartment.isPresent()) {
+                departments.add(optionalDepartment.get());
+            } else {
+                // Handle department not found scenario
+                return null;
+            }
+        }
+
+        // Set departments in the course object
+        course.setDepartments(departments);
+
+        // Save the modified course object
+        return courseRepository.save(course);
+    }
+
 }

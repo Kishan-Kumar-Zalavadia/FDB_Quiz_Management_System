@@ -33,4 +33,14 @@ export class CourseService {
   saveCourse(course: Course): Observable<Course> {
     return this.http.post<Course>(`${this.apiUrl}/courses/save`, course);
   }
+
+  assignDepartmentsToCourse(
+    courseId: number,
+    departmentIds: number[]
+  ): Observable<string> {
+    return this.http.post<string>(
+      `${this.apiUrl}/courses/${courseId}/assign-departments`,
+      departmentIds
+    );
+  }
 }
