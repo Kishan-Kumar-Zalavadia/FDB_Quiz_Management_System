@@ -25,10 +25,10 @@ const routes: Routes = [
       { path: 'addCourse', component: AddCourseComponent },
       { path: 'quizzes', component: QuizComponent },
       { path: 'attempts', component: AttemptsComponent },
+      { path: 'addQuiz/:courseId', component: AddQuizComponent },
     ],
   },
   { path: 'quizzes/:quizId', component: TakeQuizComponent },
-  { path: 'addQuiz/:courseId', component: AddQuizComponent },
 ];
 
 @NgModule({

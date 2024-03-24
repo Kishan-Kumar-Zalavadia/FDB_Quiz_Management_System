@@ -86,6 +86,6 @@ export class AddCourseComponent {
 
   showQuiz(course: Course): void {
     this.courseService.setCourse(course);
-    this.router.navigate(['/addQuiz', course.courseId]);
+    this.router.navigate(['/home/addQuiz', course.courseId]);
   }
 }
