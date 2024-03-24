@@ -8,8 +8,16 @@ import { Course } from 'src/app/models/courseModel/course';
 })
 export class CourseService {
   private apiUrl = 'http://localhost:9292';
-
+  currrentCourse = new Course();
   constructor(private http: HttpClient) {}
+
+  setCourse(course: Course) {
+    console.log('Course set as: ' + course.courseId);
+    this.currrentCourse = course;
+  }
+  getCourse() {
+    return this.currrentCourse;
+  }
 
   enrollCourse(userId: number, course: Course): Observable<any> {
     console.log('Enrolling Course' + JSON.stringify(course));
@@ -45,6 +53,8 @@ export class CourseService {
   }
 
   getAllCoursesByProfessorId(userId: number): Observable<Course[]> {
-    return this.http.get<Course[]>(`${this.apiUrl}/courses/professor/${userId}`);
+    return this.http.get<Course[]>(
+      `${this.apiUrl}/courses/professor/${userId}`
+    );
   }
 }

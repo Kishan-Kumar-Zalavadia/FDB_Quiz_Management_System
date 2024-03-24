@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Course } from 'src/app/models/courseModel/course';
 import { Department } from 'src/app/models/departmentModel/department';
 import { CourseService } from 'src/app/services/courseService/course.service';
@@ -17,6 +18,7 @@ export class AddCourseComponent {
   myCourses: Course[] = [];
 
   constructor(
+    private router: Router,
     private courseService: CourseService,
     private departmentService: DepartmentService,
     private userService: UserService
@@ -58,7 +60,6 @@ export class AddCourseComponent {
       this.getAllCoursesByProfessorId();
       this.course = new Course();
     });
-
   }
 
   assignDepartmentsToCourse(courseID: number): void {
@@ -81,5 +82,10 @@ export class AddCourseComponent {
           console.error('Error fetching courses:', error);
         }
       );
+  }
+
+  showQuiz(course: Course): void {
+    this.courseService.setCourse(course);
+    this.router.navigate(['/addQuiz', course.courseId]);
   }
 }

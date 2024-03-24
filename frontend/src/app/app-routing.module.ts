@@ -10,6 +10,7 @@ import { QuizComponent } from './components/quiz/quiz.component';
 import { TakeQuizComponent } from './components/take-quiz/take-quiz.component';
 import { AttemptsComponent } from './components/attempts/attempts.component';
 import { AddCourseComponent } from './components/add-course/add-course.component';
+import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
     ],
   },
   { path: 'quizzes/:quizId', component: TakeQuizComponent },
+  { path: 'addQuiz/:courseId', component: AddQuizComponent },
 ];
 
 @NgModule({
