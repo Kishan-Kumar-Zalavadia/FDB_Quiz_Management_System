@@ -27,3 +27,21 @@
   </div>
   <button (click)="addCourse()" class="btn btn-primary">Add Course</button>
 </div>
+
+<div *ngIf="myCourses.length > 0" class="course-list">
+  <h2>List of Courses</h2>
+  <ul>
+    <li *ngFor="let course of myCourses" class="course-item">
+      <strong>Course Name:</strong> {{ course.courseName }}<br />
+      <strong>Departments:</strong>
+      <ul>
+        <li *ngFor="let department of course.departments" class="department-item">
+          {{ department.departmentName }}
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<div *ngIf="myCourses.length === 0" class="no-courses">
+  <p>No courses found.</p>
+</div>

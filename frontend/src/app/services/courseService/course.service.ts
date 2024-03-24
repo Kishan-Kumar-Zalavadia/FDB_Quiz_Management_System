@@ -43,4 +43,8 @@ export class CourseService {
       departmentIds
     );
   }
+
+  getAllCoursesByProfessorId(userId: number): Observable<Course[]> {
+    return this.http.get<Course[]>(`${this.apiUrl}/courses/professor/${userId}`);
+  }
 }

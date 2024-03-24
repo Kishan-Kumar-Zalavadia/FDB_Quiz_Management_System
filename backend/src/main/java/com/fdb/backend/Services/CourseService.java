@@ -97,4 +97,7 @@ public class CourseService {
         return courseRepository.save(course);
     }
 
+    public List<Course> getAllCoursesByProfessorId(int userId) {
+        return courseRepository.findByProfessorUserID(userId);
+    }
 }

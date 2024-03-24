@@ -71,4 +71,14 @@ public class CourseController {
         }
     }
 
+    @GetMapping("/professor/{userId}")
+    public ResponseEntity<List<Course>> getAllCoursesByProfessorId(@PathVariable int userId) {
+        List<Course> courses = courseService.getAllCoursesByProfessorId(userId);
+        if (!courses.isEmpty()) {
+            return new ResponseEntity<>(courses, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

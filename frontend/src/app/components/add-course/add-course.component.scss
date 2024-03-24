@@ -52,3 +52,33 @@
     background-color: #0056b3;
   }
 }
+
+
+.course-list {
+  font-family: Arial, sans-serif;
+  margin: 10px;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  .course-item {
+    margin-bottom: 20px;
+    list-style-type: none;
+
+    strong {
+      font-weight: bold;
+    }
+
+    .department-item {
+      list-style-type: circle;
+      margin-left: 20px;
+    }
+  }
+
+  .no-courses {
+    p {
+      font-style: italic;
+    }
+  }
+}

@@ -13,7 +13,8 @@ import { UserService } from 'src/app/services/userService/user.service';
 export class AddCourseComponent {
   course: Course = new Course();
   departments: Department[] = [];
-  selectedDepartments: number[] = []; // Array to store selected department IDs
+  selectedDepartments: number[] = [];
+  myCourses: Course[] = [];
 
   constructor(
     private courseService: CourseService,
@@ -22,6 +23,7 @@ export class AddCourseComponent {
   ) {}
   ngOnInit(): void {
     this.loadDepartments();
+    this.getAllCoursesByProfessorId();
   }
   loadDepartments(): void {
     this.departmentService.getAllDepartments().subscribe((departments) => {
@@ -53,16 +55,31 @@ export class AddCourseComponent {
       this.course = savedCourse;
 
       this.assignDepartmentsToCourse(this.course.courseId);
+      this.getAllCoursesByProfessorId();
       this.course = new Course();
     });
+
   }
 
   assignDepartmentsToCourse(courseID: number): void {
     this.courseService
       .assignDepartmentsToCourse(courseID, this.selectedDepartments)
+      .subscribe
+      // (response) => console.log(response),
+      // (error) => console.error(error)
+      ();
+  }
+
+  getAllCoursesByProfessorId(): void {
+    this.courseService
+      .getAllCoursesByProfessorId(this.userService.getUser().userID)
       .subscribe(
-        // (response) => console.log(response),
-        // (error) => console.error(error)
+        (courses) => {
+          this.myCourses = courses;
+        },
+        (error) => {
+          console.error('Error fetching courses:', error);
+        }
       );
   }
 }
