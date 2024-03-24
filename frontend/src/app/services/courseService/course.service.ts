@@ -29,4 +29,8 @@ export class CourseService {
       `${this.apiUrl}/courses/not-enrolled/${userId}`
     );
   }
+
+  saveCourse(course: Course): Observable<Course> {
+    return this.http.post<Course>(`${this.apiUrl}/courses/save`, course);
+  }
 }

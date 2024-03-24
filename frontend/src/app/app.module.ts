@@ -16,6 +16,7 @@ import { CourseComponent } from './components/course/course/course.component';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { TakeQuizComponent } from './components/take-quiz/take-quiz.component';
 import { AttemptsComponent } from './components/attempts/attempts.component';
+import { AddCourseComponent } from './components/add-course/add-course.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AttemptsComponent } from './components/attempts/attempts.component';
     QuizComponent,
     TakeQuizComponent,
     AttemptsComponent,
+    AddCourseComponent,
   ],
   imports: [
     BrowserModule,
