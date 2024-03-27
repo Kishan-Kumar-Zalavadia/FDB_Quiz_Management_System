@@ -1,13 +1,41 @@
-<div *ngIf="quizzes.length > 0">
-  <h2>Quizzes for Course {{ course.courseName }}</h2>
-  <ul>
-    <li *ngFor="let quiz of quizzes">
-      <strong>Quiz Title:</strong> {{ quiz.quizTitle }}<br />
+<div class="addQuiz">
+<!-- * Add Quiz Form -->
+<form class="add-quiz-form" #quizForm="ngForm" (ngSubmit)="saveQuiz()">
+  <label class="form-label" for="quizTitle">Quiz Title:</label>
+  <input class="form-input" type="text" id="quizTitle" name="quizTitle" [(ngModel)]="quiz.quizTitle" required>
+
+  <label class="form-label" for="quizDuration">Duration (in minutes):</label>
+  <input class="form-input" type="number" id="quizDuration" name="quizDuration" [(ngModel)]="quiz.quizDuration" required>
+
+  <label class="form-label" for="quizNumberOfAttempts">Number of Attempts:</label>
+  <input class="form-input" type="number" id="quizNumberOfAttempts" name="quizNumberOfAttempts" [(ngModel)]="quiz.quizNumberOfAttempts" required>
+
+  <label class="form-label" for="accessCode">Access Code:</label>
+  <input class="form-input" type="text" id="accessCode" name="accessCode" [(ngModel)]="quiz.accessCode" required>
+
+  <label class="form-label" for="instruction">Instructions:</label>
+  <textarea class="form-textarea" id="instruction" name="instruction" [(ngModel)]="quiz.instruction" required></textarea>
+
+  <label class="form-label" for="endDate">End Date:</label>
+  <input class="form-input" type="date" id="endDate" name="endDate" [(ngModel)]="quiz.endDate" required>
+
+  <label class="form-label" for="endTime">End Time:</label>
+  <input class="form-input" type="time" id="endTime" name="endTime" [(ngModel)]="quiz.endTime" required>
+
+  <button class="submit-button" type="submit" [disabled]="quizForm.invalid">Save Quiz</button>
+</form>
+
+<!-- View Quizzes -->
+<div class="view-quizzes">
+  <h2 class="section-title">Quizzes for Course {{ course.courseName }}</h2>
+  <ul class="quiz-list">
+    <li *ngFor="let quiz of quizzes" class="quiz-item">
+      <strong class="quiz-title">Quiz Title:</strong> {{ quiz.quizTitle }}<br />
       <!-- Add more properties as needed -->
     </li>
   </ul>
+  <div *ngIf="quizzes.length === 0" class="no-quizzes-found">
+    <p>No quizzes found for Course {{ course.courseName }}.</p>
+  </div>
 </div>
-
-<div *ngIf="quizzes.length === 0">
-  <p>No quizzes found for Course {{ course.courseName }}.</p>
 </div>

@@ -1,3 +1,4 @@
+import { Time } from "@angular/common";
 import { QuizAttempt } from "../attemptModel/attempt";
 import { Course } from "../courseModel/course";
 import { Question } from "../questionModel/question";
@@ -10,7 +11,7 @@ export class Quiz {
   accessCode!: string;
   createdDate!: Date;
   endDate!: Date;
-  endTime!: string;
+  endTime!: Time;
   instruction!: string;
   questions!: Question[];
   attempt!: QuizAttempt[];

@@ -1,0 +1,62 @@
+// Add Quiz Form
+.addQuiz{
+    margin: 10px;
+}
+.add-quiz-form {
+  font-family: Arial, sans-serif;
+
+
+  .form-label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .submit-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+}
+
+// View Quizzes
+.view-quizzes {
+  margin: 10px;
+
+  .section-title {
+    margin-bottom: 10px;
+  }
+
+  .quiz-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .quiz-item {
+    margin-bottom: 15px;
+  }
+
+  .quiz-title {
+    font-weight: bold;
+  }
+
+  .no-quizzes-found {
+    margin-top: 10px;
+  }
+}

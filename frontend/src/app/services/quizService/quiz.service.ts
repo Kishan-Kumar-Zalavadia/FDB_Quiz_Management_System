@@ -81,4 +81,15 @@ export class QuizService {
   getAllQuizzesByCourseId(courseId: number): Observable<Quiz[]> {
     return this.http.get<Quiz[]>(`${this.apiUrl}/quizzes/course/${courseId}`);
   }
+
+  saveQuiz(quiz: Quiz): Observable<Quiz> {
+    return this.http.post<Quiz>(`${this.apiUrl}/quizzes/save`, quiz);
+  }
+
+  assignCourseToQuiz(quizId: number, courseId: number): Observable<string> {
+    return this.http.post<string>(
+      `${this.apiUrl}/quizzes/${quizId}/assign-course/${courseId}`,
+      null
+    );
+  }
 }
