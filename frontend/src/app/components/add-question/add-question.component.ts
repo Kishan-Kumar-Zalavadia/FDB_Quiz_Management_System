@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Question } from 'src/app/models/questionModel/question';
 import { Quiz } from 'src/app/models/quizModel/quiz';
+import { Option } from 'src/app/models/optionModel/option';
 import { QuestionService } from 'src/app/services/questionService/question.service';
 import { QuizService } from 'src/app/services/quizService/quiz.service';
 
@@ -26,7 +27,7 @@ export class AddQuestionComponent {
     this.loadQuestions();
   }
   loadQuestions(): void {
-    console.log("Loading Questions...");
+    console.log('Loading Questions...');
     this.questionService.getAllQuestionsByQuizId(this.quiz.quizId).subscribe(
       (questions) => {
         this.questions = questions;
@@ -56,6 +57,8 @@ export class AddQuestionComponent {
   //   }
   // }
 
+  // ********************************************************************************************************************************
+  // * Question
   showQuestionPopup: boolean = false; // Variable to control the visibility of the popup
   newQuestion: Question = new Question(); // Variable to store the new question data
 
@@ -93,6 +96,48 @@ export class AddQuestionComponent {
       },
       (error) => {
         console.error('Error assigning question to quiz:', error);
+        this.loadQuestions();
+      }
+    );
+  }
+
+  // ********************************************************************************************************************************
+  // * Option
+  newOption: Option = new Option(); // New option to be added
+  showOptionPopup: boolean = false;
+
+  openOptionPopup(): void {
+    this.showOptionPopup = true;
+  }
+
+  closeOptionPopup(): void {
+    this.showOptionPopup = false;
+  }
+
+  saveOption(currectQuestion: Question): void {
+    this.quizService.saveOption(this.newOption).subscribe(
+      (savedOption) => {
+        this.assignOptionToQuestion(
+          savedOption.optionId,
+          currectQuestion.questionId
+        );
+      },
+      (error) => {
+        console.error('Error saving option:', error);
+        // Handle the error appropriately
+      }
+    );
+    this.closeOptionPopup(); // Close the option popup after saving
+  }
+
+  assignOptionToQuestion(optionId: number, questionId: number): void {
+    this.quizService.assignOptionToQuestion(optionId, questionId).subscribe(
+      (response) => {
+        console.log('Option assigned to question successfully:', response);
+        this.loadQuestions();
+      },
+      (error) => {
+        console.error('Error assigning option to question:', error);
         this.loadQuestions();
       }
     );

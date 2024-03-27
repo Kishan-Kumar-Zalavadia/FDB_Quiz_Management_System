@@ -1,8 +1,6 @@
-<!-- <div *ngIf="questions">
-  <button (click)="openPopup()">Open Popup</button>
-</div> -->
-
-<button class="add-question-button" (click)="openQuestionPopup()">Add Question</button>
+<button class="add-question-button" (click)="openQuestionPopup()">
+  Add Question
+</button>
 
 <!-- Question Popup -->
 <div class="popup-overlay" *ngIf="showQuestionPopup">
@@ -11,11 +9,23 @@
 
     <!-- Question Text Input -->
     <label for="questionText">Question:</label>
-    <input type="text" id="questionText" name="questionText" [(ngModel)]="newQuestion.questionText" required>
+    <input
+      type="text"
+      id="questionText"
+      name="questionText"
+      [(ngModel)]="newQuestion.questionText"
+      required
+    />
 
     <!-- Marks Input -->
     <label for="marks">Marks:</label>
-    <input type="number" id="marks" name="marks" [(ngModel)]="newQuestion.questionMarks" required>
+    <input
+      type="number"
+      id="marks"
+      name="marks"
+      [(ngModel)]="newQuestion.questionMarks"
+      required
+    />
 
     <!-- Save Button -->
     <button class="save-button" (click)="saveQuestion()">Save Question</button>
@@ -25,13 +35,52 @@
   </div>
 </div>
 
-
-
 <div *ngIf="questions" class="quiz-questions">
   <h2>Questions for Quiz {{ quiz.quizTitle }}</h2>
   <ul class="question-list">
     <li *ngFor="let question of questions" class="question-item">
       <p>{{ question.questionText }}</p>
+      <button class="add-option-button" (click)="openOptionPopup()">
+        Add Option
+      </button>
+      <!-- Option Popup -->
+      <div class="popup-overlay" *ngIf="showOptionPopup">
+        <div class="popup-container">
+          <h2>Add New Option</h2>
+
+          <!-- Option Name Input -->
+          <label for="optionName">Option Name:</label>
+          <input
+            type="text"
+            id="optionName"
+            name="optionName"
+            [(ngModel)]="newOption.optionName"
+            required
+          />
+
+          <!-- Is Correct Select -->
+          <label for="isCorrect">Is Correct:</label>
+          <select
+            id="isCorrect"
+            name="isCorrect"
+            [(ngModel)]="newOption.isCorrect"
+            required
+          >
+            <option value="true">True</option>
+            <option value="false">False</option>
+          </select>
+
+          <!-- Save Button -->
+          <button class="save-button" (click)="saveOption(question)">
+            Save Option
+          </button>
+
+          <!-- Close Button -->
+          <button class="close-button" (click)="closeOptionPopup()">
+            Close
+          </button>
+        </div>
+      </div>
       <p>Marks: {{ question.questionMarks }}</p>
       <div *ngIf="hasOptions(question)" class="options-section">
         <h3>Options:</h3>

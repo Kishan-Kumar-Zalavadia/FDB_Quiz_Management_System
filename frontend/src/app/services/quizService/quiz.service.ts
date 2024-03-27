@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { QuizAttempt } from 'src/app/models/attemptModel/attempt';
 import { Quiz } from 'src/app/models/quizModel/quiz';
+import { Option } from 'src/app/models/optionModel/option';
 
 @Injectable({
   providedIn: 'root',
@@ -91,6 +92,20 @@ export class QuizService {
     return this.http.post<string>(
       `${this.apiUrl}/quizzes/${quizId}/assign-course/${courseId}`,
       null
+    );
+  }
+
+  saveOption(option: Option): Observable<Option> {
+    return this.http.post<Option>(`${this.apiUrl}/options/save`, option);
+  }
+
+  assignOptionToQuestion(
+    optionId: number,
+    questionId: number
+  ): Observable<string> {
+    return this.http.put<string>(
+      `${this.apiUrl}/options/${optionId}/assignToQuestion/${questionId}`,
+      {}
     );
   }
 }
