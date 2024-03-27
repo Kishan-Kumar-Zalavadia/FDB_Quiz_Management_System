@@ -1,3 +1,32 @@
+<!-- <div *ngIf="questions">
+  <button (click)="openPopup()">Open Popup</button>
+</div> -->
+
+<button class="add-question-button" (click)="openQuestionPopup()">Add Question</button>
+
+<!-- Question Popup -->
+<div class="popup-overlay" *ngIf="showQuestionPopup">
+  <div class="popup-container">
+    <h2>Add New Question</h2>
+
+    <!-- Question Text Input -->
+    <label for="questionText">Question:</label>
+    <input type="text" id="questionText" name="questionText" [(ngModel)]="newQuestion.questionText" required>
+
+    <!-- Marks Input -->
+    <label for="marks">Marks:</label>
+    <input type="number" id="marks" name="marks" [(ngModel)]="newQuestion.questionMarks" required>
+
+    <!-- Save Button -->
+    <button class="save-button" (click)="saveQuestion()">Save Question</button>
+
+    <!-- Close Button -->
+    <button class="close-button" (click)="closeQuestionPopup()">Close</button>
+  </div>
+</div>
+
+
+
 <div *ngIf="questions" class="quiz-questions">
   <h2>Questions for Quiz {{ quiz.quizTitle }}</h2>
   <ul class="question-list">

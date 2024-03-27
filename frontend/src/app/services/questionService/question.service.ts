@@ -16,4 +16,15 @@ export class QuestionService {
       `${this.baseUrl}/quizzes/${quizId}/questions`
     );
   }
+
+  saveQuestion(question: Question): Observable<Question> {
+    return this.http.post<Question>(`${this.baseUrl}/questions/save`, question);
+  }
+
+  assignQuestionToQuiz(questionId: number, quizId: number): Observable<string> {
+    return this.http.put<string>(
+      `${this.baseUrl}/questions/${questionId}/assignToQuiz/${quizId}`,
+      null
+    );
+  }
 }
