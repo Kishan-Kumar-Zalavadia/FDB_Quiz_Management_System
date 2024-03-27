@@ -32,10 +32,10 @@
     <li *ngFor="let quiz of quizzes" class="quiz-item">
       <strong class="quiz-title">Quiz Title:</strong> {{ quiz.quizTitle }}<br />
       <!-- Add more properties as needed -->
+      <button class="add-questions-button" (click)="redirectToAddQuestions(quiz)">Add Questions</button>
     </li>
   </ul>
   <div *ngIf="quizzes.length === 0" class="no-quizzes-found">
     <p>No quizzes found for Course {{ course.courseName }}.</p>
   </div>
-</div>
 </div>

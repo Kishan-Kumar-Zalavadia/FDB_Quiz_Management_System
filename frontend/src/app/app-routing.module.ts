@@ -11,6 +11,7 @@ import { TakeQuizComponent } from './components/take-quiz/take-quiz.component';
 import { AttemptsComponent } from './components/attempts/attempts.component';
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
+import { AddQuestionComponent } from './components/add-question/add-question.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: 'quizzes', component: QuizComponent },
       { path: 'attempts', component: AttemptsComponent },
       { path: 'addQuiz/:courseId', component: AddQuizComponent },
+      { path: 'addQuestions/:quizId', component: AddQuestionComponent },
     ],
   },
   { path: 'quizzes/:quizId', component: TakeQuizComponent },

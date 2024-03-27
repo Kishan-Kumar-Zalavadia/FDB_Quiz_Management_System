@@ -1,0 +1,31 @@
+<div *ngIf="questions" class="quiz-questions">
+  <h2>Questions for Quiz {{ quiz.quizTitle }}</h2>
+  <ul class="question-list">
+    <li *ngFor="let question of questions" class="question-item">
+      <p>{{ question.questionText }}</p>
+      <p>Marks: {{ question.questionMarks }}</p>
+      <div *ngIf="hasOptions(question)" class="options-section">
+        <h3>Options:</h3>
+        <ul class="option-list">
+          <li *ngFor="let option of question.options" class="option-item">
+            <p>{{ option.optionName }}</p>
+            <!-- Add more option properties if needed -->
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="hasMedia(question)" class="media-section">
+        <h3>Media:</h3>
+        <ul class="media-list">
+          <li *ngFor="let media of question.mediaList" class="media-item">
+            <img [src]="media.mediaLink" alt="Question Image" />
+            <!-- Add more media properties if needed -->
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="questions.length == 0" class="no-questions">
+  <p>No questions found for Quiz {{ quiz.quizTitle }}</p>
+</div>

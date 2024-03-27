@@ -12,6 +12,7 @@ export class QuizService {
 
   setQuiz(quiz: Quiz) {
     this.quiz = quiz;
+    console.log('Quiz set as: ' + this.quiz.quizId);
   }
 
   getQuiz() {

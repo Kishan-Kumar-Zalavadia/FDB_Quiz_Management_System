@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Course } from 'src/app/models/courseModel/course';
 import { Quiz } from 'src/app/models/quizModel/quiz';
 import { CourseService } from 'src/app/services/courseService/course.service';
@@ -11,6 +12,7 @@ import { QuizService } from 'src/app/services/quizService/quiz.service';
 })
 export class AddQuizComponent {
   constructor(
+    private router: Router,
     private quizService: QuizService,
     private courseService: CourseService
   ) {}
@@ -62,5 +64,10 @@ export class AddQuizComponent {
         console.error(error); // Handle error response
       }
     );
+  }
+
+  redirectToAddQuestions(quiz: Quiz): void {
+    this.quizService.setQuiz(quiz);
+    this.router.navigate(['/home/addQuestions', quiz.quizId]);
   }
 }
