@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { QuizAttempt } from 'src/app/models/attemptModel/attempt';
 import { Quiz } from 'src/app/models/quizModel/quiz';
 import { Option } from 'src/app/models/optionModel/option';
+import { Media } from 'src/app/models/mediaModel/media';
 
 @Injectable({
   providedIn: 'root',
@@ -105,6 +106,20 @@ export class QuizService {
   ): Observable<string> {
     return this.http.put<string>(
       `${this.apiUrl}/options/${optionId}/assignToQuestion/${questionId}`,
+      {}
+    );
+  }
+
+  saveMedia(media: Media): Observable<Media> {
+    return this.http.post<Media>(`${this.apiUrl}/media/save`, media);
+  }
+
+  assignMediaToQuestion(
+    mediaId: number,
+    questionId: number
+  ): Observable<string> {
+    return this.http.post<string>(
+      `${this.apiUrl}/media/${mediaId}/assignTo/${questionId}`,
       {}
     );
   }

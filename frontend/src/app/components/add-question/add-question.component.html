@@ -81,6 +81,11 @@
           </button>
         </div>
       </div>
+
+      <button class="add-media-button" (click)="openMediaAlert(question)">
+        Add Media
+      </button>
+
       <p>Marks: {{ question.questionMarks }}</p>
       <div *ngIf="hasOptions(question)" class="options-section">
         <h3>Options:</h3>
