@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -107,6 +108,17 @@ public class UserService {
         // If the user is found, return the list of quiz attempts
         if (user != null) {
             return user.getQuizAttempt();
+        } else {
+            return null;
+        }
+    }
+
+    public List<Integer> getAllCourseIDsForUser(int userId) {
+        User user = userRepository.findById(userId).orElse(null);
+        if (user != null) {
+            return user.getCourses().stream()
+                    .map(course -> course.getCourseId())
+                    .collect(Collectors.toList());
         } else {
             return null;
         }

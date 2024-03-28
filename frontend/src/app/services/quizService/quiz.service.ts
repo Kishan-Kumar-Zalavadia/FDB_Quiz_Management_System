@@ -28,8 +28,12 @@ export class QuizService {
 
   constructor(private http: HttpClient) {}
 
-  getAllQuizzes(): Observable<Quiz[]> {
-    return this.http.get<Quiz[]>(`${this.apiUrl}/quizzes`);
+  // getAllQuizzes(): Observable<Quiz[]> {
+  //   return this.http.get<Quiz[]>(`${this.apiUrl}/quizzes`);
+  // }
+
+  getAllQuizzesForUser(userID: number): Observable<Quiz[]> {
+    return this.http.get<Quiz[]>(`${this.apiUrl}/quizzes/user/${userID}`);
   }
 
   calculateScore(selectedOptionIds: number[]): Observable<number> {

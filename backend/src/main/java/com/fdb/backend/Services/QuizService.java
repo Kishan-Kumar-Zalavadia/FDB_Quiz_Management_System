@@ -21,6 +21,9 @@ public class QuizService {
     @Autowired
     private CourseRepository courseRepository;
 
+    @Autowired
+    private UserService userService;
+
     public List<Quiz> getAllQuizzes() {
         return quizRepository.findAll();
     }
@@ -64,5 +67,16 @@ public class QuizService {
     public List<Quiz> getAllQuizzesByCourseId(int courseId) {
         return quizRepository.findAllByCourse_CourseId(courseId);
     }
+
+
+    public List<Quiz> getAllQuizzesForUser(int userId) {
+        List<Integer> courseIds = userService.getAllCourseIDsForUser(userId);
+        if (courseIds != null && !courseIds.isEmpty()) {
+            return quizRepository.findAllByCourse_CourseIdIn(courseIds);
+        } else {
+            return null;
+        }
+    }
+
 }
 

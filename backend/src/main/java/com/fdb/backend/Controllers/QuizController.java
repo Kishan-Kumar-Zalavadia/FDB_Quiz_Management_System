@@ -68,4 +68,11 @@ public class QuizController {
         List<Quiz> quizzes = quizService.getAllQuizzesByCourseId(courseId);
         return new ResponseEntity<>(quizzes, HttpStatus.OK);
     }
+
+
+    @GetMapping("/user/{userId}")
+    public List<Quiz> getAllQuizzesForUser(@PathVariable int userId) {
+        return quizService.getAllQuizzesForUser(userId);
+    }
+
 }
