@@ -2,7 +2,7 @@
   <h2 class="quizzes-title">All Quizzes</h2>
   <ul class="quizzes-list">
     <li *ngFor="let quiz of quizzes" class="quiz-item">
-      <span class="quiz-title">{{ quiz.quizTitle }}</span>
+      <span class="quiz-title">{{quiz.course.courseName}} - {{ quiz.quizTitle }}</span>
       <button (click)="takeQuiz(quiz)" class="quiz-button">Take Quiz</button>
     </li>
   </ul>
