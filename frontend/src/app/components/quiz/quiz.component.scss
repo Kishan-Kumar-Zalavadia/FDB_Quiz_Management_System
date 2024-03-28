@@ -8,6 +8,7 @@
   .quizzes-list {
     list-style-type: none;
     padding: 0;
+    justify-content: space-evenly;
   }
 
   .quiz-item {
@@ -16,11 +17,12 @@
     padding: 10px;
     border-radius: 5px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
   }
 
   .quiz-title {
-    flex: 1;
+    // flex: 0.5;
     font-size: 1.2rem;
   }
 
@@ -38,7 +40,4 @@
     background-color: #0056b3;
   }
 
-  .attempt-info {
-    padding: 0px 10px;
-  }
 }
