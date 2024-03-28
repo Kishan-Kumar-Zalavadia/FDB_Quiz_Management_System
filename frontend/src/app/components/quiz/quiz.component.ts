@@ -13,6 +13,7 @@ import { UserService } from 'src/app/services/userService/user.service';
 export class QuizComponent implements OnInit {
   quizzes: Quiz[] = [];
   user = new User();
+  highestAttemptsMap: Map<number, number> = new Map<number, number>(); // Map to store highest attempts for each quiz
 
   constructor(
     private quizService: QuizService,
@@ -25,19 +26,35 @@ export class QuizComponent implements OnInit {
     this.getQuizzes();
   }
 
-  // getQuizzes(): void {
-  //   this.quizService.getAllQuizzes().subscribe((data) => (this.quizzes = data));
-  // }
-
   getQuizzes(): void {
     this.quizService
       .getAllQuizzesForUser(this.user.userID)
-      .subscribe((data) => (this.quizzes = data));
+      .subscribe((data) => {
+        this.quizzes = data;
+        // Initialize highestAttemptsMap with default values of 0 for all quizzes
+        this.quizzes.forEach((quiz) => {
+          this.highestAttemptsMap.set(quiz.quizId, 0);
+        });
+        // For each quiz, fetch the highest attempt number
+        this.quizzes.forEach((quiz) => {
+          this.quizService
+            .getHighestAttemptNumber(this.user.userID, quiz.quizId)
+            .subscribe((highestAttemptNumber) => {
+              this.highestAttemptsMap.set(quiz.quizId, highestAttemptNumber);
+            });
+        });
+      });
   }
 
   takeQuiz(quiz: Quiz): void {
     this.quizService.setQuiz(quiz);
-    console.log('Quiz set to ' + quiz.quizId);
     this.router.navigate(['/quizzes', quiz.quizId]);
+  }
+  isDisabled(quiz: Quiz): boolean {
+    const highestAttempt = this.highestAttemptsMap.get(quiz.quizId);
+    return (
+      highestAttempt !== undefined &&
+      highestAttempt === quiz.quizNumberOfAttempts
+    );
   }
 }
