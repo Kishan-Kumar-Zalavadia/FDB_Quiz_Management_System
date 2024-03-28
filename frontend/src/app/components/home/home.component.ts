@@ -21,6 +21,21 @@ export class HomeComponent {
   ngOnInit(): void {
     this.user = this._userService.getUser();
 
-    if (this.user.userID === undefined) this._router.navigate(['/login']);
+    // ! Remove this line to eliminate default user
+    this.loginUser(1);
+
+    // if (this.user.userID === undefined) this._router.navigate(['/login']);
+  }
+
+  loginUser(userID: number) {
+    this._userService.getUserByIDFromRemote(userID).subscribe(
+      (data) => {
+        // console.log(data);
+        console.log('Default user logged in');
+        this.user = data;
+        this._userService.setUser(data);
+      },
+      (error) => {}
+    );
   }
 }

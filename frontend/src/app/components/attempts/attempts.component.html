@@ -1,4 +1,4 @@
-<div class="quiz-attempts">
+<div class="quiz-attempts" *ngIf="quizAttempts && quizAttempts.length > 0">
   <h2>Quiz Attempts</h2>
   <ul>
     <li *ngFor="let attempt of quizAttempts" class="attempt-item">
@@ -11,4 +11,7 @@
       <!-- Display other attempt details as needed -->
     </li>
   </ul>
+</div>
+<div *ngIf="!quizAttempts || quizAttempts.length === 0">
+  <p>No Attempts</p>
 </div>
