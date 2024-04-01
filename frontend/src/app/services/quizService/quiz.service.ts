@@ -101,6 +101,7 @@ export class QuizService {
   }
 
   saveOption(option: Option): Observable<Option> {
+    console.log("Saving option from service"+JSON.stringify(option));
     return this.http.post<Option>(`${this.apiUrl}/options/save`, option);
   }
 

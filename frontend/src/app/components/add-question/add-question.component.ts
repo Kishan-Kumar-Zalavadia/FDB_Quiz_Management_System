@@ -148,7 +148,6 @@ export class AddQuestionComponent {
   // * Media
   newMedia: Media = new Media();
 
-
   openMediaAlert(question: Question): void {
     const mediaLink = window.prompt('Enter the media link:');
     if (mediaLink !== null) {
@@ -190,5 +189,4 @@ export class AddQuestionComponent {
       }
     );
   }
-
 }

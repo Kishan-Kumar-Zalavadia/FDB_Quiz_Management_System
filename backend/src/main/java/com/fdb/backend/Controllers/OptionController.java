@@ -23,8 +23,25 @@ public class OptionController {
     @PostMapping("/save")
     public ResponseEntity<Option> saveOption(@RequestBody Option option) {
         Option savedOption = optionService.saveOption(option);
+        System.out.println("Option from angular: "+savedOption.isCorrect());
         return ResponseEntity.status(HttpStatus.CREATED).body(savedOption);
     }
+
+//    @PostMapping("/save")
+//    public ResponseEntity<Option> saveOption(@RequestBody Option optionDTO) {
+//        Option option = converttoEntity(optionDTO); // Convert DTO to entity if needed
+//        Option savedOption = optionService.saveOption(option);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(savedOption);
+//    }
+//
+//    private Option convertDTOtoEntity(Option optionDTO) {
+//        Option option = new Option();
+//        option.setOptionId(optionDTO.getOptionId());
+//        option.setOptionName(optionDTO.getOptionName());
+//        option.setCorrect(optionDTO.isCorrect());
+//        return option;
+//    }
+
 
     @GetMapping("/question/{questionId}")
     public ResponseEntity<List<Option>> getOptionsByQuestionId(@PathVariable Long questionId) {

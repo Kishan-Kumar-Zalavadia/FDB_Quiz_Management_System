@@ -22,7 +22,7 @@ public class Option {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int optionId;
     private String optionName;
-    private boolean isCorrect;
+    private boolean correct;
 
     @ManyToOne
     @JoinColumn(name = "question_id")
