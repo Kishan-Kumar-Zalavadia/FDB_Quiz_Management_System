@@ -48,4 +48,14 @@
     </div>
     <button type="submit" class="submit-button">Submit Quiz</button>
   </form>
+
+  <form>
+  <div class="form-group">
+    <label for="feedbackText">Feedback Text</label>
+    <textarea class="form-control" id="feedbackText" rows="3" [(ngModel)]="quizFeedback.text" name="text"></textarea>
+  </div>
+  <!-- Add more input fields if needed for other feedback properties -->
+  <button type="button" class="btn btn-primary" (click)="saveFeedback(user.userID,quiz.quizId)">Submit Feedback</button>
+</form>
+
 </div>

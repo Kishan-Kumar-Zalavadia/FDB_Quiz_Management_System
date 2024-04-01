@@ -72,4 +72,8 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<QuizAttempt> quizAttempt;
+
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//    private List<QuizFeedback> quizFeedbacks;
+
 }

@@ -35,4 +35,7 @@ public class Quiz {
 
     @ManyToOne
     private Course course;
+
+//    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
+//    private List<QuizFeedback> quizFeedbacks;
 }

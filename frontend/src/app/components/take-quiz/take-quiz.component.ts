@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuizAttempt } from 'src/app/models/attemptModel/attempt';
+import { QuizFeedback } from 'src/app/models/quizFeedbackModel/quiz-feedback';
 import { Quiz } from 'src/app/models/quizModel/quiz';
 import { Result } from 'src/app/models/resultModel/result';
 import { User } from 'src/app/models/userModel/user';
+import { QuizFeedbackService } from 'src/app/services/quizFeedbackService/quiz-feedback.service';
 import { QuizService } from 'src/app/services/quizService/quiz.service';
 import { UserService } from 'src/app/services/userService/user.service';
 
@@ -19,11 +21,13 @@ export class TakeQuizComponent implements OnInit {
   selectedOptionIDs!: number[];
   score: number = 0;
   highestAttemptNumber: number = 0;
+  quizFeedback = new QuizFeedback();
 
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
     private quizService: QuizService,
+    private quizFeedbackService: QuizFeedbackService,
     private router: Router
   ) {}
 
@@ -57,7 +61,6 @@ export class TakeQuizComponent implements OnInit {
         this.saveQuizAttempt(score);
         this.alert(this.score);
       });
-
   }
 
   alert(score: number): void {
@@ -76,7 +79,7 @@ export class TakeQuizComponent implements OnInit {
         },
         (error) => {
           // console.error('Error fetching highest attempt number:', error);
-          this.highestAttemptNumber=0;
+          this.highestAttemptNumber = 0;
           console.log('Highest attempt number:', this.highestAttemptNumber);
 
           // Handle error response
@@ -86,12 +89,11 @@ export class TakeQuizComponent implements OnInit {
 
   saveQuizAttempt(score: number): void {
     const currentTime = new Date(); // Assuming you want to set the current time as startTime and endTime
-    console.log('Saving quiz score'+score)
+    console.log('Saving quiz score' + score);
     // Create a new QuizAttempt object
     // const quizAttempt: QuizAttempt = {
     //   quizAttemptId: 0, // This value will be assigned by the backend upon creation
     //   attemptNumber: 1, // Assuming attemptNumber starts from 1
-
 
     //   // startTime: new Date().getTime(),
     //   // endTime: ,
@@ -109,7 +111,7 @@ export class TakeQuizComponent implements OnInit {
         this.quiz.quizId,
         this.highestAttemptNumber + 1,
         score,
-        this.selectedOptionIDs,
+        this.selectedOptionIDs
       )
       .subscribe(
         (savedAttempt) => {
@@ -119,6 +121,20 @@ export class TakeQuizComponent implements OnInit {
         (error) => {
           console.error('Error saving quiz attempt:', error);
           // Handle error response
+        }
+      );
+  }
+
+  saveFeedback(userId: number, quizId: number): void {
+    this.quizFeedbackService
+      .saveFeedback(userId, quizId, this.quizFeedback)
+      .subscribe(
+        (response) => {
+          console.log('Feedback saved successfully:', response);
+          alert('Feedback sent successfully');
+        },
+        (error) => {
+          console.error('Error saving feedback:', error);
         }
       );
   }
