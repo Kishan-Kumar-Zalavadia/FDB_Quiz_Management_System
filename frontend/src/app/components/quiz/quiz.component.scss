@@ -1,43 +1,86 @@
 .quizzes-container {
-  padding: 10px;
-  .quizzes-title {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-
-  .quizzes-list {
-    list-style-type: none;
-    padding: 0;
-    justify-content: space-evenly;
-  }
-
-  .quiz-item {
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .quiz-title {
-    // flex: 0.5;
-    font-size: 1.2rem;
-  }
-
-  .quiz-button {
-    padding: 5px 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-
-  .quiz-button:hover {
-    background-color: #0056b3;
-  }
-
+  // margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
 }
+
+.background {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background-image: url("../../../assets/bg.jpg");
+  background-size: cover;
+  backdrop-filter: blur(8px);
+}
+
+.quizzes-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.quizzes-list {
+  list-style: none;
+  padding: 0;
+}
+
+.quiz-item {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
+
+.quiz-title {
+  font-weight: bold;
+}
+
+.quiz-details {
+  margin-top: 10px;
+}
+
+.quiz-detail {
+  margin-bottom: 5px;
+}
+
+.quiz-button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.quiz-button:hover {
+  background-color: #0056b3;
+}
+
+.no-quizzes {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.quiz-item {
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow */
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: transform 0.3s ease; /* Add transition effect */
+}
+
+// .quiz-item:hover {
+//   transform: translateY(-5px); /* Add hover effect */
+// }

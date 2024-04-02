@@ -1,16 +1,29 @@
 <div class="quizzes-container" *ngIf="quizzes">
+  <div class="background"></div>
   <h2 class="quizzes-title">All Quizzes</h2>
   <ul class="quizzes-list">
     <li *ngFor="let quiz of quizzes" class="quiz-item">
-      <span class="quiz-title">{{ quiz.course.courseName }} - {{ quiz.quizTitle }}</span>
+      <span class="quiz-title"
+        >{{ quiz.course.courseName }} - {{ quiz.quizTitle }}</span
+      >
       <div class="quiz-details">
         <p class="quiz-detail">Duration: {{ quiz.quizDuration }}</p>
-        <p class="quiz-detail">Attempts: {{ highestAttemptsMap.get(quiz.quizId) }} / {{ quiz.quizNumberOfAttempts }}</p>
+        <p class="quiz-detail">
+          Attempts: {{ highestAttemptsMap.get(quiz.quizId) }} /
+          {{ quiz.quizNumberOfAttempts }}
+        </p>
         <p class="quiz-detail">Access Code: {{ quiz.accessCode }}</p>
+        <p class="quiz-detail">Instruction: {{ quiz.instruction }}</p>
         <p class="quiz-detail">Created Date: {{ quiz.createdDate | date }}</p>
         <p class="quiz-detail">End Date: {{ quiz.endDate | date }}</p>
       </div>
-      <button *ngIf="!isDisabled(quiz)" (click)="takeQuiz(quiz)" class="quiz-button">Take Quiz</button>
+      <button
+        *ngIf="!isDisabled(quiz)"
+        (click)="takeQuiz(quiz)"
+        class="quiz-button"
+      >
+        Take Quiz
+      </button>
     </li>
   </ul>
 </div>
