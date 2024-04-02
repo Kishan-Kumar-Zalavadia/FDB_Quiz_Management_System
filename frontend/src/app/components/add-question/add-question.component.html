@@ -1,114 +1,118 @@
-<button class="add-question-button" (click)="openQuestionPopup()">
-  Add Question
-</button>
+<div class="add-question-container">
+  <div class="background"></div>
+  <button class="add-question-button" (click)="openQuestionPopup()">
+    Add Question
+  </button>
 
-<!-- Question Popup -->
-<div class="popup-overlay" *ngIf="showQuestionPopup">
-  <div class="popup-container">
-    <h2>Add New Question</h2>
+  <!-- Question Popup -->
+  <div class="popup-overlay" *ngIf="showQuestionPopup">
+    <div class="popup-container">
+      <h2>Add New Question</h2>
 
-    <!-- Question Text Input -->
-    <label for="questionText">Question:</label>
-    <input
-      type="text"
-      id="questionText"
-      name="questionText"
-      [(ngModel)]="newQuestion.questionText"
-      required
-    />
+      <!-- Question Text Input -->
+      <label for="questionText">Question:</label>
+      <input
+        type="text"
+        id="questionText"
+        name="questionText"
+        [(ngModel)]="newQuestion.questionText"
+        required
+      />
 
-    <!-- Marks Input -->
-    <label for="marks">Marks:</label>
-    <input
-      type="number"
-      id="marks"
-      name="marks"
-      [(ngModel)]="newQuestion.questionMarks"
-      required
-    />
+      <!-- Marks Input -->
+      <label for="marks">Marks:</label>
+      <input
+        type="number"
+        id="marks"
+        name="marks"
+        [(ngModel)]="newQuestion.questionMarks"
+        required
+      />
 
-    <!-- Save Button -->
-    <button class="save-button" (click)="saveQuestion()">Save Question</button>
+      <!-- Save Button -->
+      <button class="save-button" (click)="saveQuestion()">
+        Save Question
+      </button>
 
-    <!-- Close Button -->
-    <button class="close-button" (click)="closeQuestionPopup()">Close</button>
+      <!-- Close Button -->
+      <button class="close-button" (click)="closeQuestionPopup()">Close</button>
+    </div>
   </div>
-</div>
 
-<div *ngIf="questions" class="quiz-questions">
-  <h2>Questions for Quiz {{ quiz.quizTitle }}</h2>
-  <ul class="question-list">
-    <li *ngFor="let question of questions" class="question-item">
-      <p>{{ question.questionText }}</p>
-      <button class="add-option-button" (click)="openOptionPopup()">
-        Add Option
-      </button>
-      <!-- Option Popup -->
-      <div class="popup-overlay" *ngIf="showOptionPopup">
-        <div class="popup-container">
-          <h2>Add New Option</h2>
+  <div *ngIf="questions" class="quiz-questions">
+    <h2>Questions for Quiz {{ quiz.quizTitle }}</h2>
+    <ul class="question-list">
+      <li *ngFor="let question of questions" class="question-item">
+        <p>{{ question.questionText }}</p>
+        <button class="add-option-button" (click)="openOptionPopup()">
+          Add Option
+        </button>
+        <!-- Option Popup -->
+        <div class="popup-overlay" *ngIf="showOptionPopup">
+          <div class="popup-container">
+            <h2>Add New Option</h2>
 
-          <!-- Option Name Input -->
-          <label for="optionName">Option Name:</label>
-          <input
-            type="text"
-            id="optionName"
-            name="optionName"
-            [(ngModel)]="newOption.optionName"
-            required
-          />
+            <!-- Option Name Input -->
+            <label for="optionName">Option Name:</label>
+            <input
+              type="text"
+              id="optionName"
+              name="optionName"
+              [(ngModel)]="newOption.optionName"
+              required
+            />
 
-          <!-- Is Correct Select -->
-          <label for="isCorrect">Is Correct:</label>
-          <select
-            id="isCorrect"
-            name="isCorrect"
-            [(ngModel)]="newOption.correct"
-            required
-          >
-            <option value="true">True</option>
-            <option value="false">False</option>
-          </select>
+            <!-- Is Correct Select -->
+            <label for="isCorrect">Is Correct:</label>
+            <select
+              id="isCorrect"
+              name="isCorrect"
+              [(ngModel)]="newOption.correct"
+              required
+            >
+              <option value="true">True</option>
+              <option value="false">False</option>
+            </select>
 
-          <!-- Save Button -->
-          <button class="save-button" (click)="saveOption(question)">
-            Save Option
-          </button>
+            <!-- Save Button -->
+            <button class="save-button" (click)="saveOption(question)">
+              Save Option
+            </button>
 
-          <!-- Close Button -->
-          <button class="close-button" (click)="closeOptionPopup()">
-            Close
-          </button>
+            <!-- Close Button -->
+            <button class="close-button" (click)="closeOptionPopup()">
+              Close
+            </button>
+          </div>
         </div>
-      </div>
 
-      <button class="add-media-button" (click)="openMediaAlert(question)">
-        Add Media
-      </button>
+        <button class="add-media-button" (click)="openMediaAlert(question)">
+          Add Media
+        </button>
 
-      <p>Marks: {{ question.questionMarks }}</p>
-      <div *ngIf="hasOptions(question)" class="options-section">
-        <h3>Options:</h3>
-        <ul class="option-list">
-          <li *ngFor="let option of question.options" class="option-item">
-            <p>{{ option.optionName }}</p>
-            <!-- Add more option properties if needed -->
-          </li>
-        </ul>
-      </div>
-      <div *ngIf="hasMedia(question)" class="media-section">
-        <h3>Media:</h3>
-        <ul class="media-list">
-          <li *ngFor="let media of question.mediaList" class="media-item">
-            <img [src]="media.mediaLink" alt="Question Image" />
-            <!-- Add more media properties if needed -->
-          </li>
-        </ul>
-      </div>
-    </li>
-  </ul>
-</div>
+        <p>Marks: {{ question.questionMarks }}</p>
+        <div *ngIf="hasOptions(question)" class="options-section">
+          <h3>Options:</h3>
+          <ul class="option-list">
+            <li *ngFor="let option of question.options" class="option-item">
+              <p>{{ option.optionName }}</p>
+              <!-- Add more option properties if needed -->
+            </li>
+          </ul>
+        </div>
+        <div *ngIf="hasMedia(question)" class="media-section">
+          <h3>Media:</h3>
+          <ul class="media-list">
+            <li *ngFor="let media of question.mediaList" class="media-item">
+              <img class="media-img" [src]="media.mediaLink" alt="Question Image" />
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
 
-<div *ngIf="questions.length == 0" class="no-questions">
-  <p>No questions found for Quiz {{ quiz.quizTitle }}</p>
+  <div *ngIf="questions.length == 0" class="no-questions">
+    <p>No questions found for Quiz {{ quiz.quizTitle }}</p>
+  </div>
 </div>
