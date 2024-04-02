@@ -1,4 +1,5 @@
 <div class="quiz-container" *ngIf="quiz">
+  <div class="background"></div>
   <h2 class="quiz-title">{{ quiz.quizTitle }}</h2>
   <p class="quiz-info">Duration: {{ quiz.quizDuration }}</p>
   <p class="quiz-info">Number of Attempts: {{ quiz.quizNumberOfAttempts }}</p>
@@ -7,18 +8,8 @@
   <form #quizForm="ngForm" (ngSubmit)="submitQuiz()" class="quiz-form">
     <div *ngFor="let question of quiz.questions" class="question-container">
       <h3 class="question-text">{{ question.questionText }}</h3>
+      <p>Marks: {{ question.questionMarks }}</p>
 
-      <!-- Display Media -->
-      <!-- <div *ngIf="question.mediaList && question.mediaList.length > 0" class="media-container">
-        <p class="media-label">Media:</p>
-        <ul>
-          <li *ngFor="let media of question.mediaList" class="media-item">
-            <a [href]="media.mediaLink" target="_blank">{{ media.mediaLink }}</a>
-          </li>
-        </ul>
-      </div> -->
-
-      <!-- Display media as image associated with the question -->
       <div
         *ngIf="question.mediaList && question.mediaList.length > 0"
         class="media-container"
@@ -30,7 +21,6 @@
         />
       </div>
 
-      <!-- Display Options -->
       <ul class="options-list">
         <li *ngFor="let option of question.options" class="option-item">
           <label class="option-label">
@@ -50,12 +40,22 @@
   </form>
 
   <form>
-  <div class="form-group">
-    <label for="feedbackText">Feedback Text</label>
-    <textarea class="form-control" id="feedbackText" rows="3" [(ngModel)]="quizFeedback.text" name="text"></textarea>
-  </div>
-  <!-- Add more input fields if needed for other feedback properties -->
-  <button type="button" class="btn btn-primary" (click)="saveFeedback(user.userID,quiz.quizId)">Submit Feedback</button>
-</form>
-
+    <div class="form-group">
+      <label for="feedbackText">Quiz Feedback:</label>
+      <textarea
+        class="form-control"
+        id="feedbackText"
+        rows="3"
+        [(ngModel)]="quizFeedback.text"
+        name="text"
+      ></textarea>
+    </div>
+    <button
+      type="button"
+      class="btn-primary"
+      (click)="saveFeedback(user.userID, quiz.quizId)"
+    >
+      Submit Feedback
+    </button>
+  </form>
 </div>
