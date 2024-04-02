@@ -13,6 +13,7 @@ import { AddCourseComponent } from './components/add-course/add-course.component
 import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
 import { AddQuestionComponent } from './components/add-question/add-question.component';
 import { QuizFeedbackComponent } from './components/quiz-feedback/quiz-feedback.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     children: [
+      { path: '', component: LandingComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'feedback', component: FeedbackComponent },
       { path: 'course', component: CourseComponent },

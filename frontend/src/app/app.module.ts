@@ -20,6 +20,7 @@ import { AddCourseComponent } from './components/add-course/add-course.component
 import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
 import { AddQuestionComponent } from './components/add-question/add-question.component';
 import { QuizFeedbackComponent } from './components/quiz-feedback/quiz-feedback.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { QuizFeedbackComponent } from './components/quiz-feedback/quiz-feedback.
     AddQuizComponent,
     AddQuestionComponent,
     QuizFeedbackComponent,
+    LandingComponent,
   ],
   imports: [
     BrowserModule,
