@@ -1,19 +1,63 @@
 .quiz-attempts {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-}
+  position: relative;
+  padding: 20px;
 
-.attempt-item {
-  list-style-type: none;
-  padding: 10px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-}
+  .background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../../assets/bg.jpg"); /* Replace with your background image */
+    background-size: cover;
+    backdrop-filter: blur(8px);
+    z-index: -1;
+  }
 
-.quiz-name,
-.attempt-number,
-.start-time,
-.end-time,
-.attempt-date {
-  margin: 0;
+  h2 {
+    font-size: 1.5rem; /* Reduced font size */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    .attempt-item {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid black;
+
+      .quiz-name,
+      .attempt-number,
+      .end-time,
+      .attempt-date,
+      .score {
+        font-size: 1rem; /* Reduced font size */
+        color: #555;
+        margin-bottom: 10px;
+      }
+
+      .quiz-name {
+        font-weight: bold;
+        color: #333;
+      }
+
+      .score {
+        font-weight: bold;
+        color: green;
+      }
+    }
+  }
+}
+/* Style for the no attempts message */
+.quiz-attempts + div {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #555;
 }
