@@ -19,6 +19,7 @@ import { AttemptsComponent } from './components/attempts/attempts.component';
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
 import { AddQuestionComponent } from './components/add-question/add-question.component';
+import { QuizFeedbackComponent } from './components/quiz-feedback/quiz-feedback.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AddQuestionComponent } from './components/add-question/add-question.com
     AddCourseComponent,
     AddQuizComponent,
     AddQuestionComponent,
+    QuizFeedbackComponent,
   ],
   imports: [
     BrowserModule,

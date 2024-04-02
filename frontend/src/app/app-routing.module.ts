@@ -12,6 +12,7 @@ import { AttemptsComponent } from './components/attempts/attempts.component';
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
 import { AddQuestionComponent } from './components/add-question/add-question.component';
+import { QuizFeedbackComponent } from './components/quiz-feedback/quiz-feedback.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
       { path: 'attempts', component: AttemptsComponent },
       { path: 'addQuiz/:courseId', component: AddQuizComponent },
       { path: 'addQuestions/:quizId', component: AddQuestionComponent },
+      { path: 'quizFeedbacks/:quizId', component: QuizFeedbackComponent },
     ],
   },
   { path: 'quizzes/:quizId', component: TakeQuizComponent },

@@ -1,0 +1,15 @@
+<div >
+  <h2>Quiz Feedbacks</h2>
+  <ul>
+    <li *ngFor="let feedback of quizFeedbacks">
+      <strong>User:</strong> {{ feedback.user.userName }}<br>
+      <strong>Feedback:</strong> {{ feedback.text }}<br>
+      <strong>Date:</strong> {{ feedback.date | date }}<br>
+      <strong>Time:</strong> {{ feedback.time }}<br>
+      <!-- Add more properties as needed -->
+    </li>
+  </ul>
+</div>
+<ng-template #noFeedbacks>
+  <p>No quiz feedbacks available.</p>
+</ng-template>

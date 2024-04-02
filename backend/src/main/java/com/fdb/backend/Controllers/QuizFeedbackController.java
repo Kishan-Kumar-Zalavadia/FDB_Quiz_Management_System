@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -47,6 +48,16 @@ public class QuizFeedbackController {
 
         QuizFeedback savedFeedback = quizFeedbackService.saveFeedback(feedback);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedFeedback);
+    }
+
+    @GetMapping("/quiz/{quizId}")
+    public ResponseEntity<List<QuizFeedback>> getQuizFeedbacksByQuizId(@PathVariable int quizId) {
+        List<QuizFeedback> quizFeedbacks = quizFeedbackService.getQuizFeedbacksByQuizId(quizId);
+        if (quizFeedbacks.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(quizFeedbacks);
+        }
     }
 
 }

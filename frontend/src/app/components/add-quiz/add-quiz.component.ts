@@ -70,4 +70,9 @@ export class AddQuizComponent {
     this.quizService.setQuiz(quiz);
     this.router.navigate(['/home/addQuestions', quiz.quizId]);
   }
+
+  redirectToQuizFeedback(quiz: Quiz): void {
+    this.quizService.setQuiz(quiz);
+    this.router.navigate(['/home/quizFeedbacks', quiz.quizId]);
+  }
 }

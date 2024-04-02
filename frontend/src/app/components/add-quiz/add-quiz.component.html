@@ -33,6 +33,7 @@
       <strong class="quiz-title">Quiz Title:</strong> {{ quiz.quizTitle }}<br />
       <!-- Add more properties as needed -->
       <button class="add-questions-button" (click)="redirectToAddQuestions(quiz)">Add Questions</button>
+      <button class="view-feedbacks-button" (click)="redirectToQuizFeedback(quiz)">Show Quiz Feedback</button>
     </li>
   </ul>
   <div *ngIf="quizzes.length === 0" class="no-quizzes-found">

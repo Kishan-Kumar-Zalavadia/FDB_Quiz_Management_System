@@ -21,4 +21,10 @@ export class QuizFeedbackService {
       feedback
     );
   }
+
+  getQuizFeedbacksByQuizId(quizId: number): Observable<QuizFeedback[]> {
+    return this.http.get<QuizFeedback[]>(
+      `${this.apiUrl}/quiz/${quizId}`
+    );
+  }
 }
