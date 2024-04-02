@@ -1,60 +1,130 @@
-<div class="main-container"> 
-    <div class="container">
-        <h2>Registration</h2>
-        <form #RegistrationForm="ngForm" (ngSubmit)="registerUser(RegistrationForm)">
-            <small class="text-success">{{msg}}</small>
-            
-            <div class="form-group" [class.has-error]="email.invalid && email.touched">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" placeholder="Enter email" name="email"
-                    [(ngModel)]="user.emailID" required #email="ngModel">
-                <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email Id is required field</small>
-                <!-- <div *ngIf="email.errors && (email.invalid && email.touched)">
+<div class="main-container">
+  <div class="background"></div>
+  <div class="container">
+    <h2>Registration</h2>
+    <form
+      #RegistrationForm="ngForm"
+      (ngSubmit)="registerUser(RegistrationForm)"
+    >
+      <small class="text-success">{{ msg }}</small>
+
+      <div
+        class="form-group"
+        [class.has-error]="email.invalid && email.touched"
+      >
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Enter email"
+          name="email"
+          [(ngModel)]="user.emailID"
+          required
+          #email="ngModel"
+        />
+        <small
+          class="text-danger"
+          [class.d-none]="email.valid || email.untouched"
+          >Email Id is required field</small
+        >
+        <!-- <div *ngIf="email.errors && (email.invalid && email.touched)">
                     <small class="text-danger" *ngIf="email.errors">Enter a valid Email Id</small>
                 </div> -->
-            </div> 
+      </div>
 
-            <div class="form-group" [class.has-error]="username.invalid && username.touched">
-                <label for="username">User Name:</label>
-                <input type="text" class="form-control" placeholder="Enter username" name="username"
-                    [(ngModel)]="user.userName" required #username="ngModel">
-                <div *ngIf="username.errors && (username.invalid && username.touched)">
-                    <small class="text-danger" *ngIf="username.errors">Username is required field</small>
-                </div>
-            </div>
+      <div
+        class="form-group"
+        [class.has-error]="username.invalid && username.touched"
+      >
+        <label for="username">User Name:</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter username"
+          name="username"
+          [(ngModel)]="user.userName"
+          required
+          #username="ngModel"
+        />
+        <div *ngIf="username.errors && username.invalid && username.touched">
+          <small class="text-danger" *ngIf="username.errors"
+            >Username is required field</small
+          >
+        </div>
+      </div>
 
-            <div class="form-group" [class.has-error]="password.invalid && password.touched">
-                <label for="pwd">Password:</label>
-                <input type="password" class="form-control" placeholder="Enter password" name="password"
-                    [(ngModel)]="user.password" required #password="ngModel">
-                <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required field</small>
-                <div *ngIf="password.errors && (password.invalid && password.touched)">
-                    <!-- <small class="text-danger" *ngIf="password.errors">Password Id is required field</small> -->
-                    <!-- <small class="text-danger" *ngIf="email.errors">Enter the valid emailId</small> -->
-                </div>
-            </div>
+      <div
+        class="form-group"
+        [class.has-error]="password.invalid && password.touched"
+      >
+        <label for="pwd">Password:</label>
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Enter password"
+          name="password"
+          [(ngModel)]="user.password"
+          required
+          #password="ngModel"
+        />
+        <small
+          class="text-danger"
+          [class.d-none]="password.valid || password.untouched"
+          >Password is required field</small
+        >
+        <div *ngIf="password.errors && password.invalid && password.touched">
+          <!-- <small class="text-danger" *ngIf="password.errors">Password Id is required field</small> -->
+          <!-- <small class="text-danger" *ngIf="email.errors">Enter the valid emailId</small> -->
+        </div>
+      </div>
 
+      <div class="form-group">
+        <label for="role">Role:</label>
+        <select
+          class="form-control"
+          name="role"
+          [(ngModel)]="selectedRole"
+          required
+          #role="ngModel"
+          (change)="logSelectedRole()"
+          [compareWith]="compareRoles"
+        >
+          <option value="" disabled selected>Select role</option>
+          <option *ngFor="let role of roles" [ngValue]="role">
+            {{ role.roleType }}
+          </option>
+        </select>
+      </div>
 
-            <div class="form-group">
-                <label for="role">Role:</label>
-                <select class="form-control" name="role" [(ngModel)]="selectedRole" required #role="ngModel" (change)="logSelectedRole()" [compareWith]="compareRoles">
-                    <option value="" disabled selected>Select role</option>
-                    <option *ngFor="let role of roles" [ngValue]="role">{{ role.roleType }}</option>
-                </select>
-            </div>
+      <div class="form-group">
+        <label for="role">Department:</label>
+        <select
+          class="form-control"
+          name="role"
+          [(ngModel)]="selectedDepartment"
+          required
+          #department="ngModel"
+          (change)="logSelectedDepartment()"
+          [compareWith]="compareDepartments"
+        >
+          <option value="" disabled selected>Select Department</option>
+          <option *ngFor="let department of departments" [ngValue]="department">
+            {{ department.departmentName }}
+          </option>
+        </select>
+      </div>
 
-            <div class="form-group">
-                <label for="role">Department:</label>
-                <select class="form-control" name="role" [(ngModel)]="selectedDepartment" required #department="ngModel" (change)="logSelectedDepartment()" [compareWith]="compareDepartments">
-                    <option value="" disabled selected>Select Department</option>
-                    <option *ngFor="let department of departments" [ngValue]="department">{{ department.departmentName }}</option>
-                </select>
-            </div>
-
-            <button [disabled]="RegistrationForm.form.invalid" type="submit" class="btn">Register</button>
-        </form>
-        <!-- <small class="float-right" (click)="gotoRegistration()">New User? Register here</small> -->
-        <small class="float-right" [routerLink]="['/login']">Existing User? Login here</small>
-    </div>
-
+      <button
+        [disabled]="RegistrationForm.form.invalid"
+        type="submit"
+        class="btn"
+      >
+        Register
+      </button>
+    </form>
+    <!-- <small class="float-right" (click)="gotoRegistration()">New User? Register here</small> -->
+    <small class="float-right" [routerLink]="['/login']"
+      >Existing User? Login here</small
+    >
+  </div>
 </div>

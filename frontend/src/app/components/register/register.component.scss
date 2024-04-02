@@ -2,71 +2,81 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: black;
-  // background-image: url(../../../assets/bg1.avif);
+  height: 90vh;
+}
+
+.background {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../../assets/bg.jpg");
   background-size: cover;
+  backdrop-filter: blur(8px);
 }
 
 .container {
   max-width: 400px;
-}
-
-/* Common styles for the container and form */
-.main-container,
-.container {
-  background-color: #333;
-  color: #fff;
-  border-radius: 5px;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
 }
 
 h2 {
   text-align: center;
-  color: #fff;
+  margin-bottom: 20px;
 }
 
 .form-group {
   margin-bottom: 20px;
 }
 
-.form-group label {
-  font-weight: bold;
-  color: #fff;
+.has-error {
+  border-color: #dc3545;
 }
 
 .form-control {
-  width: 90%;
+  width: 92%;
   padding: 10px;
-  border: 1px solid #444;
+  font-size: 16px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #222;
-  color: #fff;
 }
 
-.form-control:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+.text-danger {
+  color: #dc3545;
 }
 
-.checkbox label {
-  display: block;
+.text-success {
+  color: #28a745;
+}
+
+.float-right {
+  float: right;
   margin-top: 10px;
-  color: #fff;
 }
 
 .btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 5px;
-  padding: 10px 20px;
   cursor: pointer;
 }
 
-.btn:hover {
-  background-color: #0056b3;
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .text-danger {
