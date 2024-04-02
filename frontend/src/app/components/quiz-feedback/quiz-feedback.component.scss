@@ -1,0 +1,46 @@
+.quiz-feedback-container {
+    position: relative;
+  padding: 20px;
+}
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../../assets/bg.jpg"); /* Replace with your background image */
+  background-size: cover;
+  backdrop-filter: blur(8px);
+  z-index: -1;
+}
+.quiz-feedbacks {
+  .feedbacks-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .feedbacks-list {
+    list-style: none;
+    padding: 0;
+
+    .feedback-item {
+      background-color: #f9f9f9;
+      border: 1px solid black;
+      border-radius: 4px;
+      padding: 10px;
+      margin-bottom: 10px;
+
+      .user-label,
+      .feedback-label,
+      .date-label,
+      .time-label {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .no-feedbacks-message {
+    font-size: 1rem;
+    color: #333;
+  }
+}
