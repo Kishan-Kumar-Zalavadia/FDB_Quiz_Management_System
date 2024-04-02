@@ -1,31 +1,36 @@
-<div class="add-course">
+<div class="add-course-main-container">
+  <div class="background"></div>
+
   <h2>Add Course</h2>
-  <div class="form-group">
-    <label for="courseName">Course Name</label>
-    <input
-      type="text"
-      id="courseName"
-      [(ngModel)]="course.courseName"
-      name="courseName"
-      class="form-control"
-    />
-  </div>
-  <div class="form-group">
-    <label>Departments</label>
-    <div *ngFor="let department of departments" class="department-checkbox">
+  <div class="add-course">
+    <div class="form-group">
+      <label for="courseName">Course Name: </label>
       <input
-        type="checkbox"
-        id="department{{ department.departmentID }}"
-        (change)="toggleSelection(department.departmentID)"
+        type="text"
+        id="courseName"
+        [(ngModel)]="course.courseName"
+        name="courseName"
+        class="form-control"
       />
-      <label
-        for="department{{ department.departmentID }}"
-        class="department-label"
-        >{{ department.departmentName }}</label
-      >
     </div>
+    <div class="form-group">
+      <label>Departments: </label>
+      <div *ngFor="let department of departments" class="department-checkbox">
+        <input
+          type="checkbox"
+          id="department{{ department.departmentID }}"
+          (change)="toggleSelection(department.departmentID)"
+        />
+        <label
+          for="department{{ department.departmentID }}"
+          class="department-label"
+          >{{ department.departmentName }}</label
+        >
+      </div>
+    </div>
+    <button (click)="addCourse()" class="btn btn-primary">Add Course</button>
+    
   </div>
-  <button (click)="addCourse()" class="btn btn-primary">Add Course</button>
 </div>
 
 <div *ngIf="myCourses.length > 0" class="course-list">
@@ -35,15 +40,20 @@
       <strong>Course Name:</strong> {{ course.courseName }}<br />
       <strong>Departments:</strong>
       <ul>
-        <li *ngFor="let department of course.departments" class="department-item">
+        <li
+          *ngFor="let department of course.departments"
+          class="department-item"
+        >
           {{ department.departmentName }}
         </li>
       </ul>
-            <button (click)="showQuiz(course)" class="btn btn-secondary">Show Quiz</button>
-
+      <button (click)="showQuiz(course)" class="btn btn-secondary">
+        Show Quizzes
+      </button>
     </li>
   </ul>
-</div>
-<div *ngIf="myCourses.length === 0" class="no-courses">
-  <p>No courses found.</p>
+
+  <div *ngIf="myCourses.length === 0" class="no-courses">
+    <p>No courses found.</p>
+  </div>
 </div>

@@ -54,6 +54,7 @@ export class AddCourseComponent {
     );
     this.courseService.saveCourse(this.course).subscribe((savedCourse) => {
       console.log('Course added:', savedCourse);
+      alert('Course added successfully');
       this.course = savedCourse;
 
       this.assignDepartmentsToCourse(this.course.courseId);
