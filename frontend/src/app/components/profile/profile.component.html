@@ -1,7 +1,7 @@
 <div class="profile-main-container">
   <div class="background"></div>
   <div *ngIf="profile" class="profile-container">
-    <h2>{{ profile.firstName }} {{ profile.lastName }}</h2>
+    <p><span>Name:</span> {{ profile.firstName }} {{ profile.lastName }}</p>
     <p><span>Phone Number:</span> {{ profile.phoneNumber }}</p>
     <p>
       <span>Street: </span>{{ profile.streetNumber }} {{ profile.streetName }},

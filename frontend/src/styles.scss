@@ -10,6 +10,7 @@ body {
 }
 
 $bg-image: url("../../../assets/bg3.jpeg");
+$bg-image-2: url("../../../../assets/bg3.jpeg");
 
 @mixin box-style {
   border: 1px solid black;
