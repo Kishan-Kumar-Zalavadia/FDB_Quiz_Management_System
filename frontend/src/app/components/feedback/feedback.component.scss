@@ -58,10 +58,7 @@
     padding: 0;
 
     .feedback-item {
-      margin-bottom: 15px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      @include box-style;
 
       .feedback-property {
         margin-bottom: 5px;

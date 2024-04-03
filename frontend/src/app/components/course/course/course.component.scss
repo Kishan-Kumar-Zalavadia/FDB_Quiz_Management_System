@@ -1,4 +1,4 @@
-// @import "../../../../styles.scss";
+@import "../../../../styles.scss";
 
 .background {
   z-index: -1;
@@ -21,10 +21,12 @@
   flex: 1;
   margin: 20px;
   padding: 20px;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.5); /* Adjust opacity as needed */
-  border: 1px solid black;
-  backdrop-filter: blur(10px);
+  // border-radius: 10px;
+  // background-color: rgba(255, 255, 255, 0.5); /* Adjust opacity as needed */
+  // border: 1px solid black;
+  // backdrop-filter: blur(10px);
+
+  @include box-style;
 }
 
 .section-title {
