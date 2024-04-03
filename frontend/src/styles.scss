@@ -9,17 +9,18 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-$bg-image: url("../../../assets/bg2.webp");
+$bg-image: url("../../../assets/bg3.jpeg");
 
-@mixin box-style-dark {
+@mixin box-style {
   border: 1px solid black;
   padding: 20px;
   border-radius: 5px;
+  margin-bottom: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-@mixin box-style {
+@mixin box-style-light {
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   padding: 20px;
