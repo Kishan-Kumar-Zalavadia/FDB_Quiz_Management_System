@@ -2,17 +2,21 @@
     position: relative;
   padding: 20px;
 }
-.background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("../../../assets/bg.jpg"); /* Replace with your background image */
-  background-size: cover;
-  backdrop-filter: blur(8px);
-  z-index: -1;
-}
+ @import "../../../styles.scss";
+
+  .background {
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // background-image: url("../../../assets/bg2.webp");
+    background-image: $bg-image;
+    min-height: 100vh;
+    background-size: cover;
+    backdrop-filter: blur(8px);
+  }
 .quiz-feedbacks {
   .feedbacks-title {
     font-size: 1.5rem;
