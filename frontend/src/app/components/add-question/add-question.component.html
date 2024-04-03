@@ -43,7 +43,8 @@
     <h2>Questions for Quiz {{ quiz.quizTitle }}</h2>
     <ul class="question-list">
       <li *ngFor="let question of questions" class="question-item">
-        <p>{{ question.questionText }}</p>
+        <h2>{{ question.questionText }}</h2>
+        <p>Marks: {{ question.questionMarks }}</p>
         <button class="add-option-button" (click)="openOptionPopup()">
           Add Option
         </button>
@@ -90,13 +91,12 @@
           Add Media
         </button>
 
-        <p>Marks: {{ question.questionMarks }}</p>
-        <div *ngIf="hasOptions(question)" class="options-section">
+        <div *ngIf="question.options.length > 0" class="options-section">
           <h3>Options:</h3>
           <ul class="option-list">
             <li *ngFor="let option of question.options" class="option-item">
-              <p>{{ option.optionName }}</p>
-              <!-- Add more option properties if needed -->
+              <!-- Style correct options in green -->
+              <p [ngStyle]="{'color': option.correct ? 'green' : 'inherit'}">{{ option.optionName }}</p>
             </li>
           </ul>
         </div>
@@ -104,7 +104,11 @@
           <h3>Media:</h3>
           <ul class="media-list">
             <li *ngFor="let media of question.mediaList" class="media-item">
-              <img class="media-img" [src]="media.mediaLink" alt="Question Image" />
+              <img
+                class="media-img"
+                [src]="media.mediaLink"
+                alt="Question Image"
+              />
             </li>
           </ul>
         </div>

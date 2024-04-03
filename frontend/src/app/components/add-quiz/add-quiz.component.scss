@@ -18,11 +18,13 @@
   }
   .add-quiz-form {
     // margin-bottom: 20px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border: 1px solid black;
-    margin-bottom: 15px;
-    padding: 10px;
-    border-radius: 5px;
+    // background-color: rgba(255, 255, 255, 0.5);
+    // border: 1px solid black;
+    // margin-bottom: 15px;
+    // padding: 10px;
+    // border-radius: 5px;
+
+    @include box-style;
 
     .form-label {
       display: block;
@@ -63,16 +65,18 @@
       padding: 0;
 
       .quiz-item {
-        background-color: #f9f9f9;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        padding: 10px;
-        margin-bottom: 10px;
-        background-color: rgba(255, 255, 255, 0.5);
-        border: 1px solid black;
-        margin-bottom: 15px;
-        padding: 10px;
-        border-radius: 5px;
+        // background-color: #f9f9f9;
+        // border: 1px solid #ccc;
+        // border-radius: 4px;
+        // padding: 10px;
+        // margin-bottom: 10px;
+        // background-color: rgba(255, 255, 255, 0.5);
+        // border: 1px solid black;
+        // margin-bottom: 15px;
+        // padding: 10px;
+        // border-radius: 5px;
+
+        @include box-style;
 
         .quiz-title {
           font-weight: bold;

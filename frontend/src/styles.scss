@@ -11,7 +11,7 @@ body {
 
 $bg-image: url("../../../assets/bg2.webp");
 
-@mixin box-style {
+@mixin box-style-dark {
   border: 1px solid black;
   padding: 20px;
   border-radius: 5px;
@@ -19,7 +19,7 @@ $bg-image: url("../../../assets/bg2.webp");
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-@mixin box-style-light {
+@mixin box-style {
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   padding: 20px;
