@@ -9,8 +9,8 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-$bg-image: url("../../../assets/bg3.jpeg");
-$bg-image-2: url("../../../../assets/bg3.jpeg");
+$bg-image: url("../src/assets/bg3.jpeg");
+// $bg-image-2: url("../../src/assets/bg3.jpeg");
 
 @mixin box-style {
   border: 1px solid black;
