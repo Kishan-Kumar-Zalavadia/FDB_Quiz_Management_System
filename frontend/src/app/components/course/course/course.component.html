@@ -10,6 +10,7 @@
         </button>
       </li>
     </ul>
+    <p *ngIf="courses.length === 0">No courses found</p>
   </div>
 
   <div class="course-section enrolled-courses">
@@ -19,5 +20,6 @@
         {{ course.courseName }}
       </li>
     </ul>
+    <p *ngIf="enrolledCourses.length === 0">No courses enrolled</p>
   </div>
 </div>
