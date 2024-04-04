@@ -49,7 +49,9 @@ export class TakeQuizComponent implements OnInit {
     console.log('Selected Options:', this.selectedOptions);
     this.selectedOptionIDs = Object.values(this.selectedOptions);
     console.log('Selected Option IDs:', this.selectedOptionIDs);
-    this.calculateScore();
+    if (window.confirm('Are you sure you want to submit the quiz?')) {
+      this.calculateScore();
+    }
   }
 
   calculateScore(): void {
