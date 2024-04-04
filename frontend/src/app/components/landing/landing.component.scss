@@ -21,17 +21,18 @@
 }
 
 .overlay {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  // position: absolute;
+  // top: 30%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+  padding-top: 10px;
   z-index: 1;
   text-align: center;
   color: #000000;
 }
 
 .overlay h1 {
-  font-size: 3rem;
+  font-size: 2.3rem;
   // font-weight: bold;
 }
 
@@ -45,7 +46,7 @@ img {
 }
 
 .information-container {
-  margin: 50px 20px;
+  margin: 0px 20px;
   padding: 20px;
   border: 1px solid #ccc;
   color: black;
@@ -67,6 +68,10 @@ img {
       strong {
         margin-right: 5px;
       }
+    }
+
+    .team-member-info {
+      @include box-style;
     }
   }
 }
