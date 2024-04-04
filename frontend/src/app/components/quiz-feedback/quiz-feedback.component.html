@@ -1,20 +1,21 @@
 <div class="quiz-feedback-container">
-    <div class="background"></div>
-<div class="quiz-feedbacks">
-  <h2 class="feedbacks-title">Quiz Feedbacks</h2>
-  <ul class="feedbacks-list">
-    <li *ngFor="let feedback of quizFeedbacks" class="feedback-item">
-      <strong class="user-label">User:</strong> {{ feedback.user.userName
-      }}<br />
-      <strong class="feedback-label">Feedback:</strong> {{ feedback.text
-      }}<br />
-      <strong class="date-label">Date:</strong> {{ feedback.date | date }}<br />
-      <strong class="time-label">Time:</strong> {{ feedback.time }}<br />
-      <!-- Add more properties as needed -->
-    </li>
-  </ul>
-</div>
-<ng-template #noFeedbacks>
-  <p class="no-feedbacks-message">No quiz feedbacks available.</p>
-</ng-template>
+  <div class="background"></div>
+  <div class="quiz-feedbacks">
+    <h2 class="feedbacks-title">Quiz Feedbacks</h2>
+    <ul class="feedbacks-list">
+      <li *ngFor="let feedback of quizFeedbacks" class="feedback-item">
+        <strong class="user-label">User:</strong> {{ feedback.user.userName
+        }}<br />
+        <strong class="feedback-label">Feedback:</strong> {{ feedback.text
+        }}<br />
+        <strong class="date-label">Date:</strong> {{ feedback.date | date
+        }}<br />
+        <strong class="time-label">Time:</strong> {{ feedback.time }}<br />
+        <!-- Add more properties as needed -->
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="quizFeedbacks.length == 0">
+    <p class="no-feedbacks-message">No quiz feedbacks available.</p>
+  </div>
 </div>
