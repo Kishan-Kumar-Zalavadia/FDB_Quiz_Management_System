@@ -22,8 +22,8 @@ export class HomeComponent {
     this.user = this._userService.getUser();
 
     // ! Remove this line to eliminate default user
-    this.loginUser(1);
-    // if (this.user.userID === undefined) this._router.navigate(['/login']);
+    // this.loginUser(1);
+    if (this.user.userID === undefined) this._router.navigate(['/login']);
   }
 
   loginUser(userID: number) {
