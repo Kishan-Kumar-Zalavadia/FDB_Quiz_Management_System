@@ -1,0 +1,38 @@
+<div class="quiz-feedback-container">
+  <div class="background"></div>
+  <div class="quiz-feedbacks">
+    <h2 class="feedbacks-title">Quiz Feedbacks</h2>
+    <ul class="feedbacks-list">
+      <li *ngFor="let attempt of quizAttemptsUsers" class="feedback-item">
+        <strong class="user-label">User:</strong> {{ attempt.userName }}<br />
+        <ul>
+          <li *ngFor="let score of attempt.quizAttempt">
+            <strong>Attempt Number:</strong> {{ score.attemptNumber }}
+            <strong>Score:</strong> {{ score.result.resultScore }}
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="quizAttemptsUsers.length === 0">
+    <p class="no-feedbacks-message">No quiz feedbacks available.</p>
+  </div>
+</div>
+
+<!-- <div class="quiz-feedback-container">
+  <div class="background"></div>
+  <div class="quiz-feedbacks">
+    <h2 class="feedbacks-title">Quiz Feedbacks</h2>
+    <ul class="feedbacks-list">
+      <li *ngFor="let attempt of allAttempts" class="feedback-item">
+        <strong>User:</strong> {{ attempt.user.userName }}<br />
+        <strong>Attempt Number:</strong> {{ attempt.attemptNumber }}<br />
+        <strong>Attempt Date:</strong> {{ attempt.attemptDate | date }}<br />
+        <strong>Score:</strong> {{ attempt.result.resultScore }}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="allAttempts.length === 0">
+    <p class="no-feedbacks-message">No quiz feedbacks available.</p>
+  </div>
+</div> -->

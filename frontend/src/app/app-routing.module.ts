@@ -14,6 +14,7 @@ import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
 import { AddQuestionComponent } from './components/add-question/add-question.component';
 import { QuizFeedbackComponent } from './components/quiz-feedback/quiz-feedback.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { QuizResultComponent } from './components/quiz-result/quiz-result.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -32,6 +33,7 @@ const routes: Routes = [
       { path: 'addQuiz/:courseId', component: AddQuizComponent },
       { path: 'addQuestions/:quizId', component: AddQuestionComponent },
       { path: 'quizFeedbacks/:quizId', component: QuizFeedbackComponent },
+      { path: 'quizResult/:quizId', component: QuizResultComponent },
     ],
   },
   { path: 'quizzes/:quizId', component: TakeQuizComponent },

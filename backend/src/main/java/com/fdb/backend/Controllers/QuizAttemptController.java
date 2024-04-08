@@ -103,4 +103,9 @@ public class QuizAttemptController {
         }
     }
 
+    @GetMapping("/quiz/{quizId}")
+    public List<QuizAttempt> getQuizAttemptsByQuizId(@PathVariable int quizId) {
+        return quizAttemptService.getQuizAttemptsByQuizId(quizId);
+    }
+
 }

@@ -75,4 +75,8 @@ export class AddQuizComponent {
     this.quizService.setQuiz(quiz);
     this.router.navigate(['/home/quizFeedbacks', quiz.quizId]);
   }
+  redirectToQuizResults(quiz: Quiz): void {
+    this.quizService.setQuiz(quiz);
+    this.router.navigate(['/home/quizResult', quiz.quizId]);
+  }
 }

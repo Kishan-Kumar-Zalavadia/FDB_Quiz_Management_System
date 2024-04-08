@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class QuizAttemptService {
@@ -90,5 +91,9 @@ public class QuizAttemptService {
     public int getHighestAttemptNumber(int userId, int quizId) {
         Optional<Integer> highestAttemptNumber = quizAttemptRepository.findHighestAttemptNumber(userId, quizId);
         return highestAttemptNumber.orElse(-1);
+    }
+
+    public List<QuizAttempt> getQuizAttemptsByQuizId(int quizId) {
+        return quizAttemptRepository.findByQuiz_QuizId(quizId);
     }
 }

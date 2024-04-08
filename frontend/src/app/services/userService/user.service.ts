@@ -52,4 +52,8 @@ export class UserService {
       `${this.usersUrl}/${userId}/quiz-attempts`
     );
   }
+
+  getUsersWithFilteredQuizAttempts(quizId: number): Observable<User[]> {
+    return this._http.get<User[]>(`${this.usersUrl}/quiz/${quizId}`);
+  }
 }

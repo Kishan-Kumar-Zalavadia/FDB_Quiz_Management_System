@@ -101,7 +101,7 @@ export class QuizService {
   }
 
   saveOption(option: Option): Observable<Option> {
-    console.log("Saving option from service"+JSON.stringify(option));
+    console.log('Saving option from service' + JSON.stringify(option));
     return this.http.post<Option>(`${this.apiUrl}/options/save`, option);
   }
 
@@ -126,6 +126,12 @@ export class QuizService {
     return this.http.post<string>(
       `${this.apiUrl}/media/${mediaId}/assignTo/${questionId}`,
       {}
+    );
+  }
+
+  getQuizAttemptsByQuizId(quizId: number): Observable<QuizAttempt[]> {
+    return this.http.get<QuizAttempt[]>(
+      `${this.apiUrl}/quiz-attempts/quiz/${quizId}`
     );
   }
 }

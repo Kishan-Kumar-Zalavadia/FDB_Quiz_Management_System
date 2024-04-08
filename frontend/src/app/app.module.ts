@@ -21,6 +21,7 @@ import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
 import { AddQuestionComponent } from './components/add-question/add-question.component';
 import { QuizFeedbackComponent } from './components/quiz-feedback/quiz-feedback.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { QuizResultComponent } from './components/quiz-result/quiz-result.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { LandingComponent } from './components/landing/landing.component';
     AddQuestionComponent,
     QuizFeedbackComponent,
     LandingComponent,
+    QuizResultComponent,
   ],
   imports: [
     BrowserModule,

@@ -228,4 +228,9 @@ public User registerUser(@RequestBody User user) throws Exception {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/quiz/{quizId}")
+    public List<User> getUsersByQuizId(@PathVariable int quizId) {
+        return userService.getUsersWithFilteredQuizAttempts(quizId);
+    }
 }

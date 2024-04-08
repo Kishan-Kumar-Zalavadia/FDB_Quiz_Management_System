@@ -12,5 +12,5 @@ export class User {
   role!: Role;
 
   courses!: Course[];
-  attempts!: QuizAttempt[];
+  quizAttempt!: QuizAttempt[];
 }

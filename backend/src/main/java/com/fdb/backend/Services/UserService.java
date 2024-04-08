@@ -124,4 +124,22 @@ public class UserService {
         }
     }
 
+    public List<User> getUsersByQuizId(int quizId) {
+        return userRepository.findByQuizAttempt_Quiz_QuizId(quizId);
+    }
+
+    public List<User> getUsersWithFilteredQuizAttempts(int quizId) {
+        List<User> users = userRepository.findByQuizAttempt_Quiz_QuizId(quizId);
+        return users.stream()
+                .map(user -> {
+                    List<QuizAttempt> filteredAttempts = user.getQuizAttempt().stream()
+                            .filter(attempt -> attempt.getQuiz().getQuizId() == quizId)
+                            .collect(Collectors.toList());
+                    User updatedUser = new User(user.getUserID(), user.getEmailID(), user.getUserName(), user.getPassword(),
+                            user.getProfile(), user.getRole(), user.getCourses(), filteredAttempts);
+                    return updatedUser;
+                })
+                .collect(Collectors.toList());
+    }
+
 }
