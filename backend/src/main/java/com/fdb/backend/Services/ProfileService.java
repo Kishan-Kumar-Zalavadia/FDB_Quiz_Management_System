@@ -41,7 +41,7 @@ public class ProfileService {
         existingProfile.setFirstName(updatedProfile.getFirstName());
         existingProfile.setLastName(updatedProfile.getLastName());
         existingProfile.setPhoneNumber(updatedProfile.getPhoneNumber());
-        existingProfile.setPhotoURL(updatedProfile.getPhotoURL());
+//        existingProfile.setPhotoURL(updatedProfile.getPhotoURL());
         existingProfile.setStreetNumber(updatedProfile.getStreetNumber());
         existingProfile.setStreetName(updatedProfile.getStreetName());
         existingProfile.setAptNumber(updatedProfile.getAptNumber());

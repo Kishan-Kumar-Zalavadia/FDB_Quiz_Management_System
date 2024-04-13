@@ -54,7 +54,7 @@ public class Profile {
     private String firstName;
     private String lastName;
     private long phoneNumber;
-    private String photoURL;
+//    private String photoURL;
     private String streetNumber;
     private String streetName;
     private String aptNumber;

@@ -5,7 +5,7 @@ export class Profile {
   firstName!: string;
   lastName!: string;
   phoneNumber!: number;
-  photoURL!: string;
+  // photoURL!: string;
   streetNumber!: string;
   streetName!: string;
   aptNumber!: string;
