@@ -1,10 +1,10 @@
 <div class="container">
   <div class="background"></div>
   <div class="feedback-form">
-    <h2 class="form-title">Submit Feedback</h2>
+    <h2 class="form-title">Add Announcement</h2>
     <textarea
       [(ngModel)]="announcementText"
-      placeholder="Enter your feedback"
+      placeholder="Enter your announcement"
       class="feedback-textarea"
     ></textarea>
     <button (click)="addAnnouncement()" class="submit-button">Submit</button>
@@ -18,8 +18,7 @@
           <span>Feedback:</span> {{ announcement.content }}
         </p>
         <p class="feedback-property">
-          <span>Date: </span
-          >{{ announcement.date | date : "mediumDate" }}
+          <span>Date: </span>{{ announcement.date | date : "mediumDate" }}
         </p>
         <p class="feedback-property">
           <span>Time:</span> {{ announcement.time }}
