@@ -22,6 +22,8 @@ import { AddQuestionComponent } from './components/add-question/add-question.com
 import { QuizFeedbackComponent } from './components/quiz-feedback/quiz-feedback.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { QuizResultComponent } from './components/quiz-result/quiz-result.component';
+import { AddAnnouncementComponent } from './components/add-announcement/add-announcement.component';
+import { AnnouncementsComponent } from './components/announcements/announcements.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { QuizResultComponent } from './components/quiz-result/quiz-result.compon
     QuizFeedbackComponent,
     LandingComponent,
     QuizResultComponent,
+    AddAnnouncementComponent,
+    AnnouncementsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Course } from 'src/app/models/courseModel/course';
 import { CourseService } from 'src/app/services/courseService/course.service';
 import { UserService } from 'src/app/services/userService/user.service';
@@ -15,6 +16,7 @@ export class CourseComponent {
   userID!: number;
 
   constructor(
+    private router: Router,
     private courseService: CourseService,
     private userService: UserService
   ) {
@@ -95,5 +97,10 @@ export class CourseComponent {
         this.getAllCourses();
       }
     );
+  }
+
+  showAnnouncements(course: Course): void {
+    this.courseService.setCourse(course);
+    this.router.navigate(['/home/announcement', course.courseId]);
   }
 }

@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="background"></div>
+
+  <div *ngIf="announcements.length > 0" class="feedbacks-container">
+    <h2 class="feedbacks-title">Announcements</h2>
+    <ul class="feedbacks-list">
+      <li *ngFor="let announcement of announcements" class="feedback-item">
+        <p class="feedback-property">
+          <span>Feedback:</span> {{ announcement.content }}
+        </p>
+        <p class="feedback-property">
+          <span>Date: </span
+          >{{ announcement.date | date : "mediumDate" }}
+        </p>
+        <p class="feedback-property">
+          <span>Time:</span> {{ announcement.time }}
+        </p>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="announcements.length === 0" class="no-feedbacks">
+    <p>No announcement found.</p>
+  </div>
+</div>
