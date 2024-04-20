@@ -21,6 +21,7 @@ import { AnnouncementsComponent } from './components/announcements/announcements
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: '', component: LoginComponent },
   {
     path: 'home',
     component: HomeComponent,
@@ -30,7 +31,10 @@ const routes: Routes = [
       { path: 'feedback', component: FeedbackComponent },
       { path: 'course', component: CourseComponent },
       { path: 'addCourse', component: AddCourseComponent },
-      { path: 'addAnnouncement/:courseID', component: AddAnnouncementComponent },
+      {
+        path: 'addAnnouncement/:courseID',
+        component: AddAnnouncementComponent,
+      },
       { path: 'announcement/:courseID', component: AnnouncementsComponent },
       { path: 'quizzes', component: QuizComponent },
       { path: 'attempts', component: AttemptsComponent },
